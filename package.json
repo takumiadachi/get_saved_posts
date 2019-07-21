@@ -4,7 +4,7 @@
   "description": "Download your saved posts from reddit into a easy to data mine format.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --verbose",
+    "start": "nodemon",
     "test": "jest"
   },
   "author": "Takumi Adachi",
