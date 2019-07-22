@@ -1,5 +1,6 @@
 require("dotenv").config();
-import snoowrap, { Submission, Listing } from "snoowrap";
+import snoowrap, { Submission, Listing, Comment } from "snoowrap";
+import _ from "lodash";
 const fs = require("fs");
 
 const USER_AGENT = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246c`;
@@ -36,12 +37,24 @@ const rMe = new snoowrap({
 // Get saved user posts
 (async () => {
   try {
-    const content = await rMe.getMe().getSavedContent();
-    const allContent = content.fetchAll();
-    allContent.map((submission: Submission, count) => {
-      count += 1;
-      console.log(submission.title, count);
-    });
+    const savedContent = await rMe.getMe().getSavedContent();
+    const allSavedContent = await savedContent.fetchAll();
+    let count = 0;
+    // Get all saved content urls
+    const filteredContent: (Comment | Submission)[] = allSavedContent.filter(
+      (submission: Submission) => {
+        if (submission.title) {
+          if (submission.title.includes("crush")) {
+            return submission;
+          }
+        }
+      }
+    );
+    const sub = filteredContent[0];
+
+    if ((<Submission>sub).title) {
+      console.log((<Submission>sub).title);
+    }
     // const json = JSON.stringify(content);
     // fs.writeFile("reddit_me.json", json, (err, result) => {
     //   if (err) console.log("error", err);
