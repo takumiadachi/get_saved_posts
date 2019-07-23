@@ -13,26 +13,13 @@ const r = new snoowrap({
 });
 
 // Alternatively, just pass in a username and password for script-type apps.
-const rMe = new snoowrap({
+let rMe = new snoowrap({
   userAgent: USER_AGENT,
   clientId: process.env.REDDIT_CLIENT_ID,
   clientSecret: process.env.REDDIT_CLIENT_SECRET,
   username: process.env.REDDIT_USERNAME,
   password: process.env.REDDIT_PASSWORD
 });
-
-// Printing a list of the titles on the front page
-// (async () => {
-//   try {
-//     const content = await r.getHot();
-//     const json = JSON.stringify(content);
-//     fs.writeFile("front_page.json", json, (err, result) => {
-//       if (err) console.log("error", err);
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// })();
 
 // Get saved user posts
 (async () => {
@@ -51,15 +38,100 @@ const rMe = new snoowrap({
       }
     );
     const sub = filteredContent[0];
-
-    if ((<Submission>sub).title) {
-      console.log((<Submission>sub).title);
-    }
-    // const json = JSON.stringify(content);
-    // fs.writeFile("reddit_me.json", json, (err, result) => {
-    //   if (err) console.log("error", err);
+    const filteredComments = await (<Submission>sub).comments.fetchMore({
+      amount: 1
+    });
+    // filteredComments[0].expandReplies().then(expanded => {
+    //   expanded.replies.forEach(c => {
+    //     if (c) {
+    //       const nc = new TrimmedComment(c.created, c.ups, c.body);
+    //       console.log(nc);
+    //     }
+    //   });
     // });
+
+    let expandedComment: Comment;
+    <Comment>filteredComments[0].expandReplies().then(expanded => {
+      function bar(expanded: Comment) {
+        if (expanded.replies) {
+          return bar(expanded.replies);
+        }
+        return expanded.replies;
+      }
+      expandedComment = bar(expanded);
+    });
+    // const expandedFilteredComments = await filteredComments.map((comment) => {
+    //   try {
+    //     const new: Comment = await comment.expandReplies()
+    //     return new ;
+    //   catch (err) {
+    //     console.log(err)
+    //   }
+
+    // });
+    // const TrimmedComments: TrimmedComment[] = filteredComments.map(
+    //   comment =>
+    //     new TrimmedComment(
+    //       comment.created,
+    //       comment.ups,
+    //       comment.body,
+    //       comment.replies
+    //     )
+    // );
+    // console.log(TrimmedComments);
+
+    const json = JSON.stringify(expandedComment);
+    fs.writeFile("expandedFilteredComments.json", json, (err, result) => {
+      if (err) console.log("error", err);
+    });
   } catch (err) {
     console.error(err);
   }
 })();
+
+class TrimmedComment implements TrimmedComment {
+  created: number;
+  ups: number;
+  body: string;
+  replies?: Listing<Comment>;
+  constructor(created, ups, body, replies = null) {
+    this.created = created;
+    this.ups = ups;
+    this.body = body;
+    if (!replies) {
+      this.replies = null;
+    } else {
+      this.replies = replies.map(
+        comment =>
+          new TrimmedComment(
+            comment.created,
+            comment.ups,
+            comment.body,
+            comment.replies
+          )
+      );
+      const trimReplies = replies => {
+        if (replies !== null) {
+          this.replies = replies.map(
+            comment =>
+              new TrimmedComment(
+                comment.created,
+                comment.ups,
+                comment.body,
+                comment.replies
+              )
+          );
+          trimReplies(replies);
+        }
+        return replies;
+      };
+    }
+  }
+}
+
+interface TrimmedComment {
+  created: number;
+  ups: number;
+  body: string;
+  replies?: Listing<Comment>;
+}
