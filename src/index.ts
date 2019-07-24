@@ -26,7 +26,6 @@ let rMe = new snoowrap({
   try {
     const savedContent = await rMe.getMe().getSavedContent();
     const allSavedContent = await savedContent.fetchAll();
-    let count = 0;
     // Get all saved content urls
     const filteredContent: (Comment | Submission)[] = allSavedContent.filter(
       (submission: Submission) => {
@@ -38,51 +37,41 @@ let rMe = new snoowrap({
       }
     );
     const sub = filteredContent[0];
+    // Get only the first comment of the submission
     const filteredComments = await (<Submission>sub).comments.fetchMore({
       amount: 1
     });
-    // filteredComments[0].expandReplies().then(expanded => {
-    //   expanded.replies.forEach(c => {
-    //     if (c) {
-    //       const nc = new TrimmedComment(c.created, c.ups, c.body);
-    //       console.log(nc);
-    //     }
-    //   });
-    // });
 
-    let expandedComment: Comment;
     <Comment>filteredComments[0].expandReplies().then(expanded => {
-      function bar(expanded: Comment) {
-        if (expanded.replies) {
-          return bar(expanded.replies);
+      function trim(expanded: Listing<Comment>) {
+        if (!expanded) {
+          return null;
+        } else {
+          let trimmedComments = new Array<TrimmedComment>();
+          for (const comment of expanded) {
+            const trimmedComment = new TrimmedComment(
+              comment.created,
+              comment.ups,
+              comment.body,
+              comment.replies ? trim(comment.replies) : null
+            );
+            trimmedComments.push(trimmedComment);
+          }
+          return trimmedComments;
         }
-        return expanded.replies;
       }
-      expandedComment = bar(expanded);
-    });
-    // const expandedFilteredComments = await filteredComments.map((comment) => {
-    //   try {
-    //     const new: Comment = await comment.expandReplies()
-    //     return new ;
-    //   catch (err) {
-    //     console.log(err)
-    //   }
 
-    // });
-    // const TrimmedComments: TrimmedComment[] = filteredComments.map(
-    //   comment =>
-    //     new TrimmedComment(
-    //       comment.created,
-    //       comment.ups,
-    //       comment.body,
-    //       comment.replies
-    //     )
-    // );
-    // console.log(TrimmedComments);
+      const TopComment: TrimmedComment = new TrimmedComment(
+        expanded.created,
+        expanded.ups,
+        expanded.body,
+        trim(expanded.replies)
+      );
 
-    const json = JSON.stringify(expandedComment);
-    fs.writeFile("expandedFilteredComments.json", json, (err, result) => {
-      if (err) console.log("error", err);
+      const json = JSON.stringify(TopComment);
+      fs.writeFile("trimmedExpandedTopComment.json", json, (err, result) => {
+        if (err) console.log("error", err);
+      });
     });
   } catch (err) {
     console.error(err);
@@ -93,39 +82,13 @@ class TrimmedComment implements TrimmedComment {
   created: number;
   ups: number;
   body: string;
-  replies?: Listing<Comment>;
+  replies?: Listing<Comment> | TrimmedComment[];
+
   constructor(created, ups, body, replies = null) {
     this.created = created;
     this.ups = ups;
     this.body = body;
-    if (!replies) {
-      this.replies = null;
-    } else {
-      this.replies = replies.map(
-        comment =>
-          new TrimmedComment(
-            comment.created,
-            comment.ups,
-            comment.body,
-            comment.replies
-          )
-      );
-      const trimReplies = replies => {
-        if (replies !== null) {
-          this.replies = replies.map(
-            comment =>
-              new TrimmedComment(
-                comment.created,
-                comment.ups,
-                comment.body,
-                comment.replies
-              )
-          );
-          trimReplies(replies);
-        }
-        return replies;
-      };
-    }
+    this.replies = replies;
   }
 }
 
@@ -133,5 +96,5 @@ interface TrimmedComment {
   created: number;
   ups: number;
   body: string;
-  replies?: Listing<Comment>;
+  replies?: Listing<Comment> | TrimmedComment[];
 }
