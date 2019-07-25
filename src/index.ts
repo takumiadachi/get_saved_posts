@@ -1,100 +1,79 @@
 require("dotenv").config();
-import snoowrap, { Submission, Listing, Comment } from "snoowrap";
+import { Submission, Listing, Comment } from "snoowrap";
 import _ from "lodash";
+import { TrimmedComment } from "./TrimmedComment";
+import { rMe } from "./r";
+import moment = require("moment");
 const fs = require("fs");
 
-const USER_AGENT = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246c`;
-
-const r = new snoowrap({
-  userAgent: USER_AGENT,
-  clientId: process.env.REDDIT_CLIENT_ID,
-  clientSecret: process.env.REDDIT_CLIENT_SECRET,
-  refreshToken: process.env.REDDIT_REFRESH_TOKEN
-});
-
-// Alternatively, just pass in a username and password for script-type apps.
-let rMe = new snoowrap({
-  userAgent: USER_AGENT,
-  clientId: process.env.REDDIT_CLIENT_ID,
-  clientSecret: process.env.REDDIT_CLIENT_SECRET,
-  username: process.env.REDDIT_USERNAME,
-  password: process.env.REDDIT_PASSWORD
-});
-
 // Get saved user posts
-(async () => {
-  try {
-    const savedContent = await rMe.getMe().getSavedContent();
-    const allSavedContent = await savedContent.fetchAll();
-    // Get all saved content urls
-    const filteredContent: (Comment | Submission)[] = allSavedContent.filter(
-      (submission: Submission) => {
-        if (submission.title) {
-          if (submission.title.includes("crush")) {
-            return submission;
-          }
+async function getSavedPosts(
+  search: string
+): Promise<(Comment | Submission)[]> {
+  const savedContent = await rMe.getMe().getSavedContent();
+  const allSavedContent = await savedContent.fetchAll();
+  // Get all saved content urls
+  const filteredContent: (Comment | Submission)[] = allSavedContent.filter(
+    (submission: Submission) => {
+      if (submission.title) {
+        if (submission.title.includes(search)) {
+          return submission;
         }
       }
-    );
-    const sub = filteredContent[0];
-    // Get only the first comment of the submission
-    const filteredComments = await (<Submission>sub).comments.fetchMore({
-      amount: 1
-    });
+    }
+  );
+  return filteredContent;
+}
 
-    <Comment>filteredComments[0].expandReplies().then(expanded => {
-      function trim(expanded: Listing<Comment>) {
+async function getSavedPost(
+  id: string,
+  upVotes: number
+): Promise<TrimmedComment> {
+  // Change this to async await in the future
+
+  return rMe
+    .getSubmission(id)
+    .fetch()
+    .then(submission =>
+      submission.comments.fetchMore({
+        amount: 1
+      })
+    )
+    .then(filteredComments => <Comment>filteredComments[0].expandReplies())
+    .then(expanded => {
+      // Trims Snoowrap.comment to have less properties and uses upvote threshold
+      function trim(expanded: Listing<Comment>, upVotes: number) {
         if (!expanded) {
           return null;
         } else {
           let trimmedComments = new Array<TrimmedComment>();
           for (const comment of expanded) {
             const trimmedComment = new TrimmedComment(
-              comment.created,
               comment.ups,
               comment.body,
-              comment.replies ? trim(comment.replies) : null
+              moment.unix(comment.created).format("DD-MM-YYYY h:mm:ss"),
+              comment.replies ? trim(comment.replies, upVotes) : null
             );
-            trimmedComments.push(trimmedComment);
+            if (trimmedComment.ups > upVotes) {
+              trimmedComments.push(trimmedComment);
+            }
           }
           return trimmedComments;
         }
       }
 
       const TopComment: TrimmedComment = new TrimmedComment(
-        expanded.created,
         expanded.ups,
         expanded.body,
-        trim(expanded.replies)
+        moment.unix(expanded.created).format("DD-MM-YYYY h:mm:ss"),
+        trim(expanded.replies, upVotes)
       );
-
-      const json = JSON.stringify(TopComment);
-      fs.writeFile("trimmedExpandedTopComment.json", json, (err, result) => {
-        if (err) console.log("error", err);
-      });
+      return TopComment;
     });
-  } catch (err) {
-    console.error(err);
-  }
+}
+
+(async () => {
+  // const topTrimmedComment = await getSavedPost("av816j", 10);
+  // console.log(topTrimmedComment);
+  const submissions = await getSavedPosts("");
 })();
-
-class TrimmedComment implements TrimmedComment {
-  created: number;
-  ups: number;
-  body: string;
-  replies?: Listing<Comment> | TrimmedComment[];
-
-  constructor(created, ups, body, replies = null) {
-    this.created = created;
-    this.ups = ups;
-    this.body = body;
-    this.replies = replies;
-  }
-}
-
-interface TrimmedComment {
-  created: number;
-  ups: number;
-  body: string;
-  replies?: Listing<Comment> | TrimmedComment[];
-}
