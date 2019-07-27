@@ -1,711 +1,1257 @@
 {
-  "created": 1551279019,
-  "ups": 12148,
-  "body": "Used to be a Calc 1 teaching Assistant -- this really smart kid kept coming up to the TA sessions  because he very obviously had a crush on a girl (who would also show up to after-hours). They would both be the only two people in the sessions.  When they needed homework help, I'd ask them to solve the problems together and come to me if they had any questions (while I pretended to catch up on work but actually played GTA on my laptop). Sometimes I'd overhear them talking and getting to know each other -- it was cute. He sure did make my life a hell of a lot easier. ",
+  "created": "26-07-2019 10:57:06",
+  "ups": 1,
+  "body": "Think of it like a Buzzfeed quiz. You answer a bunch of multiple-choice input questions about seemingly random topics ('What's your favourite breakfast cereal?', 'What's your favourite classic movie?', 'What did you want to be when you grew up?', and so on), and you get a response back at the end: usually which Hogwarts house you belong in.\n\nBut shock, horror: after answering twenty questions honestly, Buzzfeed informs you that you are a Hufflepuff, when you *know* that you're actually (obviously) a Ravenclaw. So you take the test again. You change one answer, and boom! Now Buzzfeed tells you that you're the Ravenclaw you always knew you were meant to be.\n\nBut you start to wonder: just how many of the input questions could you change in order to change the output? Some of them won't make a difference to the result; it doesn't matter whether you prefer Coco Pops or Rice Krispies, because the Sorting Hat only uses that to determine between Gryffindors and Slytherins, and based on your other answers you are *obviously* neither. On the other hand, some of them will. No self-respecting Hufflepuff would ever answer that their favourite classic movie is *Inherit the Wind*, so flipping that answer will immediately flip the output and put you in a different house, without you changing the answer to any other question.\n\n*That's* the sensitivity of a system. If there are three individual answers you could switch that would each change the output, we say the system has a sensitivity of -- you guessed it -- three. (In computer science terms, this is usually considered as a sort of true-or-false, 1-or-0 example, but the basic idea is the same: how many true-or-false inputs can you flip to change the true-or-false output?) This is a way of measuring just how complex the system is. There are other measures of complexity, but over time they were mathematically proven to be polynomial in nature. (That contrasts with it being *exponential* in nature, which would have set it apart from other complexity measures. You don't need to worry *too* much about what that means to get a surface understanding of what's going on; just understand that people suspected it might be polynomial like all the others, but hadn't yet proved it.) \n\nThe conjecture, and I'm really ELI5ing it here, is about whether or not the rules for sensitivity follow the same rules as other measures of complexity, or whether it's a weird outlier. The short version is yes, it follows the same rules. (If you want to get particular about it, what was proved was that 'every 2^n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n', which is comfortably above my paygrade and well out of the remit of ELI5.)\n\nThe reason why it's so significant is because this was one of those problems that anyone who's anyone in the field had tried to make even incremental progress towards in the past thirty years, but had generally failed. Along comes Huang, and produces a proof that's two pages long -- that is to say, extremely elegant. It's the computer science version of a team of cryptozoologists spending decades searching for Bigfoot, and then the new guy on the team says, 'Wait, you mean Harry? Hairy guy, kind of blurry, lives in the woods? Yeah, he's on my bowling team. He's cool.' (In actual fact, the solution goes above and beyond what would be needed for a proof, so it's opened up several new interesting questions; it's closer to the new guy saying, 'Yeah, Harry's on my bowling team. Last week he brought the Loch Ness Monster and the Chupacabra. We went out for tacos. Nice guys. Want me to give you their Snapchat?')\n\nThat's why people are talking about it. It's not a *colossal* leap forward in terms of changing the field, but it's impressive that it was solved and that the solution was so neat.",
   "replies": [{
-    "created": 1551294682,
-    "ups": 622,
-    "body": "Sounds like a win-win to me.",
+    "created": "26-07-2019 12:05:32",
+    "ups": 1,
+    "body": "Assuming you know what you’re talking about (and it sure sounds like you do) this is one of the best ELI5s I’ve read here.\n\n(I’m not doubting you, it’s just that some people can write really beautiful explanations despite being completely wrong, especially on this sub...)",
     "replies": [{
-      "created": 1551300043,
-      "ups": 300,
-      "body": "[deleted]",
+      "created": "26-07-2019 12:15:47",
+      "ups": 1,
+      "body": "I had a *vague* idea before I started looking into it specifically to answer this, but I'll be the first to admit that it's not exactly my field. If anyone wants to pick me up on factual errors (not how basic it is, but on the actual facts; I did try and make it as simple as possible on purpose, because it's a pretty esoteric topic as it is), I'll happily edit to fix any mistakes I might have made.\n\nThere's a longer and more in-depth explanation [here](https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/) that makes for pretty good reading.",
       "replies": [{
-        "created": 1551307635,
-        "ups": 16,
-        "body": "Fuck I have like neither of those things.",
+        "created": "26-07-2019 12:40:31",
+        "ups": 1,
+        "body": "You sir are the true spirit of ELI5. I was 5 when I started reading that and now I’m definitely 6 at least.",
         "replies": [{
-          "created": 1551311963,
-          "ups": 15,
-          "body": "They're both skills. Work on them ",
-          "replies": []
-        }]
-      }, {
-        "created": 1551317636,
-        "ups": 3,
-        "body": "Yeah, the two are massively seperate. I’m pretty intelligent (or at least I like to think I am, anyway), but I’m a fucking mess when it comes to trying to interact with strangers.\n\nThen again, in my case it’s at least partially cos I’ve got asperger’s.",
-        "replies": [{
-          "created": 1551322808,
-          "ups": 3,
-          "body": "Lol me too",
-          "replies": []
-        }]
-      }, {
-        "created": 1551325181,
-        "ups": -3,
-        "body": "> Yeah, and it's a great example of someone who's \"book smart\" but also has good emotional intelligence. His plan of showing up for extra help seems to have totally worked.\n\nlolwhat\n\nmaybe it's just because we're out here looking in, but it seems like a super obvious and awkward move",
-        "replies": []
-      }, {
-        "created": 1551313291,
-        "ups": -10,
-        "body": "in b4 newspeak.",
-        "replies": [{
-          "created": 1551313819,
-          "ups": 15,
-          "body": "Newspeak was like the exact opposite this. It aimed to simply language to prohibit complex nuanced thoughts. This here is us trying to express nuanced concepts in a more precise manner.",
+          "created": "26-07-2019 12:47:55",
+          "ups": 1,
+          "body": "I was twenty-eight and then I became five when I heard \"polynomial.\" Aaaa math.",
+          "replies": [{
+            "created": "26-07-2019 1:21:09",
+            "ups": 1,
+            "body": "When you're talking about complexity, \"linear\" means dead easy to scale up, \"polynomial\" means still pretty easy, and \"exponential\" means basically impossible on big inputs. You don't actually have to solve any polynomials most of the time.",
+            "replies": [{
+              "created": "26-07-2019 1:59:58",
+              "ups": 1,
+              "body": "I had only heard of O(1), O(n), and O^n before, so I looked into it and found [this to be useful](https://stackoverflow.com/questions/4317414/polynomial-time-and-exponential-time) and thought I'd share.\n\nIt's probably only meaningful to someone interested in math or programming.",
+              "replies": []
+            }, {
+              "created": "26-07-2019 1:39:43",
+              "ups": 1,
+              "body": "No. Polynomial can mean anything from quadratic to n^c. And n^c (where c is a constant and n the number of inputs) is also completely undoable for large c (with large honestly starting at 4 or 5 already if we're talking about big n). Polynomial is easy compared to exponential, but it's still not good enough for big numbers (although for a lot of problems we have to accept a quadratic or cubic solution)\nLinear is easy, or linearly logarithmic is close, polynomial is bad beyond n^3 and exponential should be avoided in all possible cases",
+              "replies": [{
+                "created": "26-07-2019 3:10:33",
+                "ups": 1,
+                "body": "For whatever reason, there really aren't many algorithms that are polynomial but with large exponent. Theoretically, sure there should be many, but in practice I'm not aware of a single well-known algorithm for anything that is polynomial-time like n^10 or larger.",
+                "replies": [{
+                  "created": "26-07-2019 3:48:53",
+                  "ups": 1,
+                  "body": "From what I recall of my university days, if you start digging into NP-equivalence then some of the theoretical algorithms that show two problems are equivalent would have pretty high exponents if they existed. But as yet they don't exist because they depend on an imaginary black box polynomial algorithm that solves a different NP-complete problem, and no such algorithm has been found (and probably are not actually possible).\n\nBut yeah, real-world high exponent algorithms aren't exactly common, probably because in most cases people will try to find ways to simplify the problem so they can use a better algorithm. After all, for our hardware there isn't much difference between O(n^10) and an exponential algorithm in terms of being able to complete the run in a reasonable amount of time for middling to largish values of n.",
+                  "replies": [{
+                    "created": "26-07-2019 4:36:03",
+                    "ups": 1,
+                    "body": "But you do have powerful algorithms for exponential-time problems that can have n the size of millions which work fine, like SAT solvers. Many other problems are exponential time ones, and are known and have known solutions.\n\nBut n^5 type polynomial time algorithms? It's not that they're too hard, it's that there don't seem to be almost any problems humans know of that have that sorta time scaling. If you have polynomial time algorithm that is currently best one know to solve some problem, exponent is always 3 or smaller.",
+                    "replies": []
+                  }]
+                }, {
+                  "created": "26-07-2019 4:48:54",
+                  "ups": 1,
+                  "body": "Reality also doesn't seem to have laws with large exponents or weird exponents. Suspicious.",
+                  "replies": [{
+                    "created": "26-07-2019 6:00:01",
+                    "ups": 1,
+                    "body": "Have you seen the [Weizsaecker Formula](https://www.nuclear-power.net/nuclear-power/fission/weizsaecker-formula-semi-empirical-mass-formula/)?",
+                    "replies": []
+                  }]
+                }]
+              }, {
+                "created": "26-07-2019 3:32:41",
+                "ups": 1,
+                "body": "When we talk about complexity, it's always the worst case.  In practice, most polynomial applications have heuristics that make them quite reasonable even for very large inputs.",
+                "replies": []
+              }, {
+                "created": "26-07-2019 3:13:43",
+                "ups": 1,
+                "body": "> (where c is a constant and n the number of inputs)\n\nn is the bit length of the input and the number of possible inputs is 2^n .",
+                "replies": []
+              }]
+            }, {
+              "created": "26-07-2019 1:33:04",
+              "ups": 1,
+              "body": "Wait, why don't you have to solve polynomials?",
+              "replies": [{
+                "created": "26-07-2019 2:14:42",
+                "ups": 1,
+                "body": "The polynomial is in the description of how much work you need to do to solve the problem.\n\nA linear problem would be one where the number of steps you need to do to solve it is a multiple of how big the problem is. Counting how many items are in a list, for example. Ten items in the list, ten steps to count them. Complexity *n*. If the problem is to generate ten different synonyms for each item on the list, it's 10n because you need to do 10 things n times. More complex, still linear.\n\nA polynomial problem is one where the number of steps you need to do to solve it is dependent on the size of the problem multipled *by itself*. Suppose you have a list of items and you need to count every way two of those items can be combined. You pick the first item, and combine it with the entire list in turn, and that's n steps. You pick the second item and do the same and that's another n, and now you're at 2n total. Once you've got to the end of the list you've racked up n\\*n steps - n^2. That's a polynomial problem, but solving it only required picking through a list, you never actually had to do any maths. It's just a description of how many steps were necessary.\n\nExponentials are where the number of steps you need to do is some number raised to the power of the size of the problem. Absolute nightmare. Can't think of any decent examples.",
+                "replies": [{
+                  "created": "26-07-2019 5:47:01",
+                  "ups": 1,
+                  "body": "An easy example of an exponential problem is, continuing from your example, one that asks us to check all possible subsets of a list . Suppose you want to check which subset(s) of the list satisfy a certain property (e.g., optimal for a certain purpose), and suppose there's no shortcut to arrive at the answer, then you'd have to go through all possible subsets of the list, of which there are exponentially many (in terms of the number of objects in the list).",
+                  "replies": [{
+                    "created": "26-07-2019 6:06:43",
+                    "ups": 1,
+                    "body": "That's good, and really obvious in retrospect, whoops. Thanks!",
+                    "replies": []
+                  }]
+                }, {
+                  "created": "26-07-2019 6:47:51",
+                  "ups": 1,
+                  "body": "An example of exponential time algorithmic complexity would be finding every possible subset of a given set of items (complexity 2^n). If, say, you wanted to compute all the subsets and see which ones sum to zero.\n\nBeyond exponential time is factorial time (n!), such as brute-force solving the Travelling Salesman Problem (\"Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?\").",
+                  "replies": []
+                }]
+              }, {
+                "created": "26-07-2019 2:02:50",
+                "ups": 1,
+                "body": "It’s a measure of complexity.\n\nHere’s an example:\n\nSay you have five random playing cards, and you want to put them in order from least to greatest. How many steps does that take? Let’s also assume you’re a robot who is very methodical and can’t remember too many things at once.\n\nSo first you look for the lowest card. You have to look at all five cards to find it, so that’s five steps. You put it at the front of the line.\n\nThen you look for the second lowest card. You already put the lowest card where it should be, so there are four left. Four more steps to find the second lowest. Then three, then two, then one.\n\nSorting 5 cards took 5+4+3+2+1 = 15 steps. That is, you had to add up the numbers from 1 to 5. There’s actually an equation for the sum of the first x numbers, which is x \\* (x + 1) / 2\n\nSo sorting x cards using this method takes x \\* (x + 1) / 2 steps. Expand that out and you have 1/2 x^2 + x / 2 which is a polynomial. Hence we say this sorting algorithm has *polynomial* complexity, but you don’t actually have to solve this polynomial per se.",
+                "replies": []
+              }, {
+                "created": "26-07-2019 2:26:00",
+                "ups": 1,
+                "body": "The terms refer to how (in terms of computing power) the time required to solve a given problem scales as the input gets larger; the polynomials aren't part of the problem itself.",
+                "replies": [{
+                  "created": "26-07-2019 2:54:26",
+                  "ups": 1,
+                  "body": "Is that the whole \"O\" time thing? I remember we talked about that for like a day in a programming class on like stacks and queues and things like that.",
+                  "replies": [{
+                    "created": "26-07-2019 2:57:07",
+                    "ups": 1,
+                    "body": "Yup! That's exactly it.",
+                    "replies": [{
+                      "created": "26-07-2019 3:08:09",
+                      "ups": 1,
+                      "body": "Ah okay! Thank you!",
+                      "replies": []
+                    }]
+                  }]
+                }]
+              }, {
+                "created": "26-07-2019 2:58:04",
+                "ups": 1,
+                "body": "They are talking only in terms of complexity. It's a term they gets introduced in discrete math. \n\nThink of it as measuring an equation. The larger the measurement, the longer it will take to solve.\n\nIf you have 2 solutions to a problem and one will take 'n' amount of steps and another takes n^2 amount, n is less complex. It doesn't mean better. Just less complex.",
+                "replies": []
+              }, {
+                "created": "26-07-2019 5:33:17",
+                "ups": 1,
+                "body": "Because polynomial complexity still scales pretty well even on big inputs, of course linear is better but it's impossible (at least for now) to simplify everything into linear\n\n\nLet's imagine these example, imagine you have 3 function\n\n1) y=5x\n\n2) y=2x^2\n\n3) y=0.5x^x\n\nIf you give x as small number as like 2 then y is still relatively small number for all of them, now imagine set x as 1000 even 10000, the number 3 y value will be very very massive. Now imagine that your PC need to do some job as much as *y* given any input *x*, then it's easy too see that #1 is very nice, #2 is still okay, but #3 is a definitely no-no for big x\n\n\nTherefore, which is why CS people care about converting non-polynomial to polynomial rather than polynomial to linear",
+                "replies": []
+              }]
+            }, {
+              "created": "26-07-2019 4:28:13",
+              "ups": 1,
+              "body": "Thanks for this. I actually armchair game design JRPGs, and a lot of times I struggle with game balance over time. When I posted I was mostly joking, but hearing you divide things in this way was illuminating.",
+              "replies": []
+            }, {
+              "created": "26-07-2019 5:31:41",
+              "ups": 1,
+              "body": "I thought exponential meant something grows really fast to start with and then tapers off. Like infection rates from a virus. In the first 5 weeks a million people become infected each week, then half a million the 6th week, 250,000 the 7th week, 125,000 the 8th week, and so on and so forth.",
+              "replies": []
+            }]
+          }]
+        }, {
+          "created": "26-07-2019 5:34:51",
+          "ups": 1,
+          "body": "Which parts of his explanation could be removed so as to keep you at 5?",
           "replies": []
         }, {
-          "created": 1551318353,
-          "ups": 7,
-          "body": "Ok, so I was going to ignore this ignorant comment, but actually, I think this is important to address, because I’ve seen old pissbaby Graham Lineham make this comparison when it came to cis/trans.\n\nNewspeak was all about removing words. Forcing the people to compress more and more complicated ideas into simpler and simpler language - literally forcing the people to be unable to adequately communicate ideas that went against ingsoc.\n\nWhat we’re seeing here is an attempt to add further nuance to a language - instead of classing ‘intelligence’ as solely to do with academic achievement is extremely clunky, and actually masks the reality (as we currently understand it) of multiple areas in which our minds can excel.\n\nFrankly, it’s an attempt to get away from the simple, clunky words being used to describe highly complex concepts.\n\nIt’s the same with trans and cis. The purpose is to add greater nuance to a language - allowing one to distinguish where necessary, but also combine where more useful. Is it at the same level as the other example? No. Could an argument be made that it obfuscates and erases the ‘natural’ definition of woman? I would very much disagree, but it could be made.\n\nBut yeah, to get back to the main point: this is actually the opposite of newspeak. Changing language isn’t automatically wrong, language changes all the time. That’s literally how language works.",
+          "created": "26-07-2019 6:14:23",
+          "ups": 1,
+          "body": "Mentally you've matured to 6, or you mean his answer took to long to read? :-)",
           "replies": []
         }]
+      }, {
+        "created": "26-07-2019 2:51:10",
+        "ups": 1,
+        "body": "Holy shit you’re smart. Thanks for ELI5ing this so well for the rest of us. I mean, this is still over my head, but I feel like you did a pretty phenomenal job of making it even slightly possible for me to begin to understand... “*understand*” might be too strong of a word but still—this was pretty cool!",
+        "replies": []
+      }, {
+        "created": "26-07-2019 2:05:52",
+        "ups": 1,
+        "body": "Thank you for sharing that article!",
+        "replies": []
+      }, {
+        "created": "26-07-2019 5:35:09",
+        "ups": 1,
+        "body": "I loved the Sorting Hat analogy!",
+        "replies": []
       }]
     }, {
-      "created": 1551309799,
-      "ups": 7,
-      "body": "Unless of course the girl wasn't interested at all in the smart kid, and just wanted the TA to help her. But I guess we don't know how she felt, or if the smart kid made a pass at her or anything",
+      "created": "26-07-2019 1:35:13",
+      "ups": 1,
+      "body": "My favorite eli5 has to be the one where a guy explains how a computer knows how long a second is",
+      "replies": [{
+        "created": "26-07-2019 1:36:50",
+        "ups": 1,
+        "body": "Is it all right to share the link if you have it? Sounds interesting!",
+        "replies": [{
+          "created": "26-07-2019 1:43:53",
+          "ups": 1,
+          "body": "http://reddit.com/r/explainlikeimfive/comments/32y8kf/eli5_how_does_a_computer_know_how_long_a_second_is/cqfroxm",
+          "replies": [{
+            "created": "26-07-2019 4:23:44",
+            "ups": 1,
+            "body": "'little piece of rock' is what does it for me.",
+            "replies": [{
+              "created": "26-07-2019 4:27:03",
+              "ups": 1,
+              "body": "Phrasing",
+              "replies": []
+            }]
+          }]
+        }]
+      }, {
+        "created": "26-07-2019 2:02:15",
+        "ups": 1,
+        "body": "Link?",
+        "replies": [{
+          "created": "26-07-2019 3:45:44",
+          "ups": 1,
+          "body": "https://www.reddit.com/r/explainlikeimfive/comments/ci0q00/_/ev0rc28?context=1000",
+          "replies": []
+        }]
+      }, {
+        "created": "26-07-2019 2:02:18",
+        "ups": 1,
+        "body": ">how a computer knows how long a second is\n\nI misread that (somehow) as 'how a computer knows how long a crocodile is' and was immediately intrigued, then confused by the explanation involving quartz computer clocks.",
+        "replies": []
+      }, {
+        "created": "26-07-2019 3:44:56",
+        "ups": 1,
+        "body": "why that username? I like it.",
+        "replies": []
+      }]
+    }, {
+      "created": "26-07-2019 12:54:38",
+      "ups": 1,
+      "body": "This was everything I hoped and dreamed for in an ELI5. My body is oscillating.",
+      "replies": []
+    }, {
+      "created": "26-07-2019 2:50:42",
+      "ups": 1,
+      "body": "Harry Potter and snapchat? /r/ELIMillenial",
+      "replies": []
+    }, {
+      "created": "26-07-2019 4:22:42",
+      "ups": 1,
+      "body": "r/bestof material for sure",
+      "replies": [{
+        "created": "26-07-2019 5:02:52",
+        "ups": 1,
+        "body": "It deserves it just for seamlessly fitting in Bigfoot, tacos, and bowling in a proper ELI5 response. Now my goal this weekend is to slip in a cryptozoologist reference somewhere in everyday conversation.",
+        "replies": []
+      }]
+    }, {
+      "created": "26-07-2019 2:34:28",
+      "ups": 1,
+      "body": "True enough.",
+      "replies": []
+    }, {
+      "created": "26-07-2019 3:28:07",
+      "ups": 1,
+      "body": "> this is one of the ~~best~~ only ELI5...\n\nFTFY",
+      "replies": []
+    }, {
+      "created": "26-07-2019 3:44:28",
+      "ups": 1,
+      "body": "Where can you find the 2-page proof?",
+      "replies": []
+    }, {
+      "created": "26-07-2019 5:02:15",
+      "ups": 1,
+      "body": "Right?  I was waiting for the explanation to move into nineteen ninety eight the Undertaker territory...",
+      "replies": []
+    }, {
+      "created": "26-07-2019 5:13:15",
+      "ups": 1,
+      "body": "His answer was clear, fascinating, and satisfying, until I reached this part:\n\n>If you want to get particular about it, what was proved was that 'every 2n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n', \n\nThen I was reminded how simple-minded I am. But seriously, five-star explanation.",
+      "replies": []
+    }, {
+      "created": "26-07-2019 5:48:31",
+      "ups": 1,
+      "body": "Or ending in someone being thrown off the roof of a cage through a desk during a certain wrestling match",
+      "replies": []
+    }, {
+      "created": "26-07-2019 6:16:10",
+      "ups": 1,
+      "body": "Nah, I don’t buy it, there’s definitely doubt in your voice. Not cool, man.",
+      "replies": []
+    }, {
+      "created": "26-07-2019 6:28:29",
+      "ups": 1,
+      "body": "If it was one of the best ELI5s then you would understand it and wouldn't have to \"assuming you know what you're talking about\".",
+      "replies": []
+    }, {
+      "created": "26-07-2019 3:52:33",
+      "ups": 1,
+      "body": "If I knew anything about Harry Potter this might make sense to me, unfortunately this explained about as much as trying to read the original document for me.",
       "replies": []
     }]
   }, {
-    "created": 1551280622,
-    "ups": 4876,
-    "body": ">(while I pretended to catch up on work but actually played GTA on my laptop).\n\nlol.",
+    "created": "26-07-2019 1:58:19",
+    "ups": 1,
+    "body": "> every 2^n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n\n\nJust for fun I'm going to try my hand at breaking this down and ELI5ing it. (I know you (/u/portarossa) probably understand it, or could understand it with a bit of googling, so this is more addressed to readers of your comment. Hopefully someone will get something out of it.)\n\nFirst, what is a graph? A graph is a list of points (aka vertices) and edges that connect two vertices. Depending on how you want to use them, vertices and edges may have labels, and edges may have a direction (e.g. a directional edge from vertex A to vertex B is not the same as a edge from vertex B to vertex A). Graphs can be used to model all sorts of things, from relationships between people in social networks to Sudoku puzzles. In short, a graph is just a formal mathematical way to represent relationships among a group of something.\n\nNext, now that we know what a graph in general is, what is an ”n-dimensional cube graph\"? In a cube graph every vertex is labeled with a binary \"word\". The n-dimensional part refers to the length of the word, e.g. a 3-dimensional cube graph is for words that are three characters long. A binary word is just a string of 0s and 1s, e.g. `010` is one of those 3-dimensional words. An n-dimensional cube graph has one vertex for every unique n-length binary word. So a 1-dimensional cube graph has two vertices: `0` and `1`, while a 2-dimensional cube graph has `00`, `01`, `10`, and `11`. The other thing that makes a graph is the edges, so what are those? In an n-dimensional cube graph there are (non-directional) edges between every pair of vertices whose labels differ by exactly one character. For example, when n=3, `010` and `011` will have an edge between them, while `010` and `111` will not, because they differ at two places (the first and last character). You may find it helpful to see a visualization of this, so [this article](http://mathonline.wikidot.com/cube-graphs) has pictures showing the 1, 2 and 3-dimensional cube graphs in full.\n\nNow, one thing to mention is the number of vertices and edges in a cube graph. The number of vertices is exactly equal to the number of unique binary words of length n. This just so happens to be 2^n, because there are n characters and each one has two possibilities, so when counting up all the possibilities you get `2 * 2 * 2 * ... * 2` n times, which is 2^n. (I know this may not be entirely convincing to non-mathematicians, but to explain it more clearly in a simple way would take too much typing for what is a fairly minor point). As for the number of edges, each vertex has exactly n edges, because the words are n characters long and an edge exists with every word that differs by exactly one character, so for each word there are n places that can be changed to make a new edge.\n\nNow let's talk about the word \"degree\". With graphs, the degree of a vertex is simply the number of edges connected to that vertex. So in a cube graph, each vertex is connected to n edges, meaning every vertex has degree n. The maximum degree of a graph is the maximum of all of the individual vertices in the graph. So in a cube graph the maximum degree is n, because every degree is n.\n\nNext, it's subgraph time. A subgraph is a graph that can be seen as a \"part\" of a larger graph. There are a few ways to create subgraphs out of graphs, but for this we only have to talk about one: the \"vertex induced\" subgraph. A vertex induced subgraph is when you pick any number of vertices from the starting graph, then add all the edges from the starting graph where the vertices for the edge are both part of the subgraph. So, if I were to make a vertex induced subgraph of the 2-dimensional cube graph and I chose vertices `01` and `11`, then I would also include the edge between those two vertices because it existed in the parent graph, but I would not include the edge between `01` and `00`, because `00` was not chosen to be part of the subgraph. The total subgraph in this example would just be two vertices (labeled `01` and `11`) and an edge between them.\n\nEdit: I should note that it's possible for a subgraph formed in this way to be disconnected, which means that there may be two or more segments that have no vertices connecting them. This is fine, it doesn't matter if the subgraph is connected or disconnected within this particular problem.\n\nSo a \"2^n-1 + 1 vertex induced subgraph of the n-dimensional cube graph\" is a subgraph where you choose 1 more than half of the vertices (remember, there are 2^n vertices in the cube graph, so half is 2^n / 2 = 2^n-1), and then include all the edges from the original graph that still have vertices in the subgraph.\n\nAnd then what was proved was that for every such subgraph, no matter which vertices you choose, the maximum degree is at least √n. In other words, you cannot choose any set of 2^n-1 + 1 vertices to make it so that every vertex is connected to less than √n other vertices. There will always be at least one vertex with at least that many edges. In other other words, if you choose more than half of the binary words of length n, there will always be at least one word that differs by exactly one character with at least √n other words in your chosen set.\n\nHopefully I've now explained the literal meaning of that statement in a way that most adults could understand, though I'm sure an actual 5 year old would lose interest halfway through the first paragraph. What I haven't touched on is how exactly the truth of that statement ties into the idea of sensitivity that /u/portarossa explained so very well. The reason for that is that I don't actually know, so while I have a vague idea I'd need to do more research to be sure I get it, and I also suspect that explaining it would be an even longer trek than this one was.",
     "replies": [{
-      "created": 1551282918,
-      "ups": 3112,
-      "body": "ALL YOU HAD TO DO WAS FOLLOW THE DAMN TRIG, CJ",
+      "created": "26-07-2019 2:00:56",
+      "ups": 1,
+      "body": "Figuring the specifics of it out is a bit beyond my capacity, so I'm happy to let you take the lead on explaining this one. Someone else might have to check your work, though :p",
+      "replies": []
+    }, {
+      "created": "26-07-2019 2:59:17",
+      "ups": 1,
+      "body": "Very good explanation, thank you! Might be hard to understand for a five year old though :)",
+      "replies": []
+    }, {
+      "created": "26-07-2019 4:25:07",
+      "ups": 1,
+      "body": "ELI5ing this somewhat (please check!):\n\nSuppose you have a standard 3-dimensional cube with lights on all the corners, and you want to wire it to make a single circuit so that at least half of the lights are switched on. Wires can only go along the edges of the cube - no diagonal tricks, and any two adjacent lights that are both switched on are always connected by a wire. Then at least one light will have at least 2 wires going into it. (Aside: If you think, the largest single circuit you could make for which all lights only have 1 wire going in has only 2 lights. Can you make a circuit of 4 lights where the maximum number of wires for a single light is 2?)\n\nNow suppose instead of a 3-dimensional cube, it's an n-dimensional cube, but you still want to wire it so that at least half of the lights are switched on. Again, wires can only go along the edges of the cube and any two adjacent lights that are both switched on are connected by a wire. Now at least one light will have at least √n wires going into it.",
       "replies": [{
-        "created": 1551289284,
-        "ups": 503,
-        "body": "san andreas is a bad port tho :/ tried playing it without a controller and it wasnt bearable",
+        "created": "26-07-2019 5:13:58",
+        "ups": 1,
+        "body": "Not quite. One problem with your metaphor is that the subgraph does not have to be connected. That is, your supposition of a \"single circuit\" is incorrect. Another minor point is that you must choose *more* than half of the vertices (the actual proof is for exactly 1 more than half, but it will hold true for any amount more than half).\n\nAs a counterexample that highlights why both those points are important, if you take the 3d cube, you can choose two pairs of vertices that aren't connected to each other (think opposite edges across the diagonal). e.g. vertices `000`, `001`, `111` and `110`. Then the max degree of that graph is 1, which is less than √3, but that doesn't contradict the proof because the number of vertices is only half. If you added one more vertex then it must connect with at least one of those existing 4, bringing the max degree up to 2 > √3, which matches the theorem.\n\nTo be fair I didn't explicitly say that the subgraph might not be connected, so it's understandable that you didn't realize that. Disconnected graphs are not very intuitive, so I really should have called it out.",
+        "replies": []
+      }]
+    }, {
+      "created": "26-07-2019 4:08:06",
+      "ups": 1,
+      "body": "This really helped me, thank you!",
+      "replies": []
+    }, {
+      "created": "26-07-2019 4:19:24",
+      "ups": 1,
+      "body": "You know more than me, but I independently wrote up a comment taking a stab at explaining and it touched on the same points, except that I forgot \"degree\" has a unique meaning when dealing with vertices.\n\nAs far as how this touches on sensitivity, here's a guess. Imagine if we had included only half the vertices of the hypercube into our subgraph. Then we'd lose dimensionality. So we're looking at the smallest subgraph such that we still need the full machinery of the hypercube to characterize it, and seeing what the addition of what even one additional vertex, possibly relatively on its lonesome, will do to the system.\n\nAlso, something something I am vaguely reminded of leave-n out cross validation.",
+      "replies": []
+    }, {
+      "created": "26-07-2019 4:58:16",
+      "ups": 1,
+      "body": "Wow thanks a lot for this breakdown",
+      "replies": []
+    }, {
+      "created": "26-07-2019 4:34:26",
+      "ups": 1,
+      "body": "Great stuff. Makes it very digestible the way you take it each step at a time.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 11:35:53",
+    "ups": 1,
+    "body": "I'm here for the sick *Inherit The Wind* ref.",
+    "replies": [{
+      "created": "26-07-2019 11:37:44",
+      "ups": 1,
+      "body": "I'm on a run of classic legal dramas at the moment, so it's on my mind. Last week was *To Kill a Mockingbird*. *Inherit the Wind* was yesterday. Next up is either *Judgement at Nuremberg*, *Anatomy of a Murder* or *12 Angry Men*, for about the fiftieth time.\n\nOriginally I wrote that no self-respecting Ravenclaw would choose that as their favourite movie, but I changed it, because *Inherit the Wind* may be one of the most Ravenclaw movies of all time and I'm not about spreading misinformation, *thank you very much*.",
+      "replies": [{
+        "created": "26-07-2019 12:51:55",
+        "ups": 1,
+        "body": "You seem like real solid Ravenclaw material",
+        "replies": []
+      }, {
+        "created": "26-07-2019 1:58:22",
+        "ups": 1,
+        "body": "I took an actual college class called \"Cinematic Crime\", you're bringing back all the feels. *Anatomy of a Murder* is one of my all-time favorites. I assume you've seen *M*?",
         "replies": [{
-          "created": 1551292686,
-          "ups": 127,
-          "body": "Its a fine port as long as you're not flying the hydra.",
+          "created": "26-07-2019 2:05:31",
+          "ups": 1,
+          "body": "Not yet! I've spent the past month working my way through all the Dreamworks movies, so I'm trying to round out my recently-watched list with films with slightly fewer cartoon zebras in them.\n\nI'll put it on the list, for sure.",
           "replies": [{
-            "created": 1551306440,
-            "ups": 9,
-            "body": "Use numpad to control the jet and you're fine.",
-            "replies": []
-          }, {
-            "created": 1551305780,
-            "ups": 11,
-            "body": "Hail!",
+            "created": "26-07-2019 2:28:09",
+            "ups": 1,
+            "body": "Haha. Not that there's anything wrong with cartoon zebras. Hell, I spent a few weeks watching every Pixar production I could get my hands on a few years back.\n\n*M* is a little dry, but if you're really into the genre, I think you'll love it.",
             "replies": [{
-              "created": 1551315432,
+              "created": "26-07-2019 3:04:29",
               "ups": 1,
-              "body": "Sieg",
+              "body": "Jumping in to say that although *M* is a little creaky, mostly due to its age, it's still a Fritz Lang film (and I've never seen a film of his that rates any less than 'worth watching'). Peter Lorre's performance forever changed my perspective of him from 'that guy who was in *The Maltese Falcon* and *Arsenic and Old Lace*' to 'one of the greatest character actors in cinema history *and I will fight you over that opinion*'.\n\nI even went as Hans Beckert one Halloween, he was the most horrifying yet tragic person in cinema history I could think of.",
               "replies": []
             }]
-          }, {
-            "created": 1551312089,
-            "ups": 4,
-            "body": "Oh it's super easy to fly one with a keyboard, I did stunts on them all the time.",
-            "replies": []
-          }, {
-            "created": 1551317057,
-            "ups": 2,
-            "body": "Try flying it on mobile",
-            "replies": []
-          }, {
-            "created": 1551317693,
-            "ups": 2,
-            "body": "Flying in San Andreas was a pain in the neck on the PS2 as well. I haven't played every mission but I think the hardest part of the game for me was passing the flight school.\n\n",
-            "replies": []
-          }, {
-            "created": 1551316570,
+          }]
+        }]
+      }, {
+        "created": "26-07-2019 3:15:37",
+        "ups": 1,
+        "body": "12 angry men is so damn good.\nHonestly my favourite movie of all time, which is surprising given how impatient i am",
+        "replies": []
+      }, {
+        "created": "26-07-2019 3:49:26",
+        "ups": 1,
+        "body": "12 angry men is fantastic and last time I checked you have it in HD on YouTube",
+        "replies": []
+      }, {
+        "created": "26-07-2019 12:59:38",
+        "ups": 1,
+        "body": "Okay, now I'm here to say that Harry Potter fuckin' sucks. *Why'd ya make me do it???*",
+        "replies": [{
+          "created": "26-07-2019 1:25:50",
+          "ups": 1,
+          "body": "This is the new popular-unpopular opinion I’ve seen doing the rounds. Nice memeing.",
+          "replies": [{
+            "created": "26-07-2019 1:53:05",
             "ups": 1,
-            "body": "bunch of rookies, I grew up playing SA on pc because I didn't have a ps2, I was a beast at flying the hydra. There were so many obscure keys to control it",
+            "body": "We've just reached the summer of reddit where kids old enough to meme didn't grow up reading/watching new releases of HP (last book 2007, last movie 2010)",
             "replies": []
           }]
-        }, {
-          "created": 1551290403,
-          "ups": 170,
-          "body": "I would disagree. The port was fine and aiming with a mouse is so much easier. Though that is subjective. I've always found playing GTA with a controller kinda clunky. I'm way used to being able to observe my surroundings more freely.",
+        }]
+      }]
+    }, {
+      "created": "26-07-2019 1:17:19",
+      "ups": 1,
+      "body": "Gene Kelly stole the show",
+      "replies": [{
+        "created": "26-07-2019 2:51:35",
+        "ups": 1,
+        "body": "'I may be rancid butter, but I'm on your side of the bread.'",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 12:28:42",
+    "ups": 1,
+    "body": "This is brilliant. The only thing that would make it better is if the cereal choice were between Sugar Puffs and Frosties.",
+    "replies": [{
+      "created": "26-07-2019 3:36:35",
+      "ups": 1,
+      "body": "He's Program and Control man. The whole thing's a metaphor.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 12:53:18",
+    "ups": 1,
+    "body": ">The Sensitivity Conjecture\n\nI found this visual aid helpful (along with your description): [https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean-Sensitivity\\_2880x1620\\_Lede.gif](https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean-Sensitivity_2880x1620_Lede.gif)",
+    "replies": [{
+      "created": "26-07-2019 12:55:21",
+      "ups": 1,
+      "body": "That's the computer-sciencey version, yeah. If you want to see how it would apply to logic gates, that's where to go.\n\nAlso, kudos on throwing out literally the biggest gif I think I've ever seen.",
+      "replies": [{
+        "created": "26-07-2019 1:10:29",
+        "ups": 1,
+        "body": "Thanks for the warning. Anyone got a gifv version?",
+        "replies": [{
+          "created": "26-07-2019 2:43:45",
+          "ups": 1,
+          "body": "https://gfycat.com/mediocrepepperychameleon\n\nThe original gif itself is only 4MB, but the gfycat webm version is 350bytes",
           "replies": [{
-            "created": 1551305063,
-            "ups": 7,
-            "body": "I drive with a controller but use K+M for everything else. ",
-            "replies": []
-          }, {
-            "created": 1551315991,
-            "ups": 2,
-            "body": "I beat the train mission on PC after a couple of tries... In the PS2 it took me about a dozen tries and I remember having to use the slow motion cheat code a bunch. ",
-            "replies": []
-          }]
-        }, {
-          "created": 1551290159,
-          "ups": 94,
-          "body": "[deleted]",
-          "replies": [{
-            "created": 1551308070,
-            "ups": 7,
-            "body": "San Andreas was replaced with a 'remastered' version on Steam back in 2013-2014.  The existing port was replaced with a port of the iOS version of the game and a bunch of songs were removed due to expiring licenses.  It's possible that you and the person you're replying to weren't even playing the same version of the game.\n\nI've only played the pre-remastered version and I've never had problems playing with a kb/m.  I haven't had any reason to play the remastered version because most of the songs that were removed were among my favorite songs in the game.",
-            "replies": []
-          }, {
-            "created": 1551304988,
-            "ups": 2,
-            "body": "Which ones the car battery? Need a new one. ",
-            "replies": []
-          }, {
-            "created": 1551315258,
-            "ups": 2,
-            "body": "To me it's like this:\n\n-on foot you're playing an FPS, and it's much better with a mouse and keyboard.\n\n-driving vehicles with a keyboard, on the other hand, sucks",
-            "replies": []
-          }, {
-            "created": 1551321149,
-            "ups": 2,
-            "body": ">Now if there's a game that had a horrible port for controls, it would be Saints Row 2.\n\nFun Fact: In Saints Row 2 if you go to the suburb (don't remember name) and yank out a mailbox, any NPC you throw it at to be launched ragdoll-glitching like 50ft.\n\nWe managed to traverse from the suburb to downtown with mailbox in hand with an idea. The Pimpville spawns pimps like rabbits, so we proceeded to play pimp-bowling. Hilarious.",
-            "replies": []
-          }, {
-            "created": 1551314479,
+            "created": "26-07-2019 3:36:33",
             "ups": 1,
-            "body": "The only parts that were bad with mouse/kb were the remote controlled vehicles. for some reason these were impossible.",
+            "body": "ELI 5: How can it only be 350 bytes?",
             "replies": [{
-              "created": 1551315687,
+              "created": "26-07-2019 3:40:26",
               "ups": 1,
-              "body": "As a console gamer, let me assure you, they weren't exactly easy with a controller either. \n\n*CURSE YOU BERKELEY, CURSE YOUUUUUUU*",
-              "replies": []
-            }]
-          }]
-        }, {
-          "created": 1551296201,
-          "ups": 3,
-          "body": "I agree with these other guys, FUCK YOU!",
-          "replies": [{
-            "created": 1551296786,
-            "ups": 3,
-            "body": "imo camera movement just feels really realllllly clunky. Played it on a ps2 years ago but i guess newer games spoiled me :x",
-            "replies": [{
-              "created": 1551297053,
-              "ups": 2,
-              "body": "Happy cake",
-              "replies": []
-            }]
-          }]
-        }, {
-          "created": 1551306986,
-          "ups": 3,
-          "body": "happy cake day ",
-          "replies": []
-        }, {
-          "created": 1551290228,
-          "ups": 5,
-          "body": "Yeah, at this point the Android port is probably better, controls are decent and it supports higher resolutions (and even 19:9) and enhanced graphics (even reflections)",
-          "replies": [{
-            "created": 1551307950,
-            "ups": 1,
-            "body": "That's a no dawg, sound is totally messed up.",
-            "replies": []
-          }]
-        }, {
-          "created": 1551317029,
-          "ups": 2,
-          "body": ">san andreas is a bad port tho :/ tried playing it without a controller and it wasnt bearable\n\nHappy cake day good sir!",
-          "replies": []
-        }, {
-          "created": 1551318106,
-          "ups": 2,
-          "body": "Happy hour day. ",
-          "replies": []
-        }, {
-          "created": 1551303544,
-          "ups": 1,
-          "body": "Even worse is trying to play it without pressure sensitive face buttons.",
-          "replies": []
-        }, {
-          "created": 1551309756,
-          "ups": 1,
-          "body": "Everything works fine except flying the plane, which is literally impossible.",
-          "replies": []
-        }, {
-          "created": 1551313653,
-          "ups": 1,
-          "body": "But it's so easy to blow up cars that way!\n\nMade the game way too easy, but I still had fun replaying it that way a few years ago.  I may have used a controller when I wasn't shooting at gas tanks, though.",
-          "replies": []
-        }, {
-          "created": 1551314207,
-          "ups": 1,
-          "body": "Really? I beat it with keyboard and mouse years ago and I dont remember any issues. ",
-          "replies": []
-        }, {
-          "created": 1551315474,
-          "ups": 1,
-          "body": "I heard it has improved; but I know exactly what you're talking about. Last I tried it, it was really bad.",
-          "replies": []
-        }, {
-          "created": 1551315887,
-          "ups": 1,
-          "body": "yeah when i first downloaded it i had to get a controller to play ",
-          "replies": []
-        }, {
-          "created": 1551316155,
-          "ups": 1,
-          "body": "If you think that was bad, try playing GTA 3",
-          "replies": []
-        }, {
-          "created": 1551316170,
-          "ups": 1,
-          "body": "If you think that was bad, try playing GTA 3",
-          "replies": []
-        }, {
-          "created": 1551317707,
-          "ups": 1,
-          "body": "Didn't they remove some songs from the PC port?",
-          "replies": [{
-            "created": 1551334255,
-            "ups": 1,
-            "body": "Only in a much later version. Not the one released in 2005 or thereabout.",
-            "replies": []
-          }]
-        }, {
-          "created": 1551323921,
-          "ups": 1,
-          "body": "Happy Cake Day!",
-          "replies": [{
-            "created": 1551328468,
-            "ups": 1,
-            "body": "yay me ^^ thx guys",
-            "replies": []
-          }]
-        }, {
-          "created": 1551313650,
-          "ups": 0,
-          "body": "Shut the fuck up. Did you even play the port? I'd argue it's better on keyboard than controller.",
-          "replies": [{
-            "created": 1551316216,
-            "ups": 1,
-            "body": "Calm down kiddo, go play some fortnite or something lol",
-            "replies": [{
-              "created": 1551316954,
-              "ups": -1,
-              "body": "Ay sick burn bro",
+              "body": "There's like 4 colors, most of the image is static so it's probably easy to compress. You could have a million by million pixels video of just pure black and it would just be a few bytes I bet.",
               "replies": [{
-                "created": 1551330659,
-                "ups": 0,
-                "body": "Better than getting butthurt over someone's opinion of a video game buddy",
+                "created": "26-07-2019 3:53:59",
+                "ups": 1,
+                "body": "So why was the gif so large by contrast?",
+                "replies": [{
+                  "created": "26-07-2019 3:57:36",
+                  "ups": 1,
+                  "body": "Because gifs are an ancient form of image format. They almost copy the entire image per second or something like that. webm is a very young format by like Google or something, so that they can deliver videos quickly.\n\nFrom what I understand, a gif is basically a single image repeated each frame, which can get big. I have a very limited technical understanding though, so maybe it's worth getting someone else to weigh in.",
+                  "replies": [{
+                    "created": "26-07-2019 5:32:31",
+                    "ups": 1,
+                    "body": "Perfect. Thanks!",
+                    "replies": []
+                  }]
+                }]
+              }]
+            }, {
+              "created": "26-07-2019 4:37:18",
+              "ups": 1,
+              "body": "Because he's wrong. It's 350 kilobytes.",
+              "replies": [{
+                "created": "26-07-2019 4:50:18",
+                "ups": 1,
+                "body": "That makes more sense",
                 "replies": []
               }]
             }]
           }]
         }]
-      }, {
-        "created": 1551300587,
-        "ups": 2,
-        "body": "Trigonometry! I wish I can gild u !",
-        "replies": []
-      }, {
-        "created": 1551301369,
-        "ups": 1,
-        "body": "ALL YOU HAD T- ALL YOU HAD TO DO W- ALL YO- ALL YOU HAD TO DO WAS FOLLOW TUE DAMN TRIG, CJ. ",
-        "replies": []
-      }, {
-        "created": 1551317097,
-        "ups": 1,
-        "body": "Did he find her 1/Cos C?",
-        "replies": []
       }]
     }, {
-      "created": 1551305202,
-      "ups": 2,
-      "body": "Hey im 9.",
-      "replies": [{
-        "created": 1551325928,
-        "ups": 2,
-        "body": "Hello.",
-        "replies": []
-      }]
-    }, {
-      "created": 1551313235,
-      "ups": 2,
-      "body": "You have no idea how much bullshitting teachers get into. There's a limited amount of work we can do while you're working in class so when it runs out (or earlier, some of us are lazy) we get to do some other stuff. I use my free time to check Reddit (shameless plug to my sub, /r/SapphoAndHerFriend) or plan my D&D campaign, which is technically a class activity for the Saturday class so I can get away with it if someone checks. Sometimes I just look at Tumblr screenshots all class while the kids are doing an exam though.\n\nSource: I teach ESL.",
-      "replies": []
-    }, {
-      "created": 1551321980,
+      "created": "26-07-2019 3:06:52",
       "ups": 1,
-      "body": "Man how the hell did you get nearly 4k points for this simple comment...? XD",
+      "body": "I think the still image from [that same article](https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/) does a better job of quickly explaining what sensitivity actually is.\n\nhttps://d2r55xnwy6nx47.cloudfront.net/uploads/2019/07/Boolean_Sensitivity_FINAL560-1068x1720.jpg",
       "replies": [{
-        "created": 1551326123,
+        "created": "26-07-2019 3:58:26",
         "ups": 1,
-        "body": "No idea.  He said it...",
-        "replies": []
-      }]
-    }]
-  }, {
-    "created": 1551306672,
-    "ups": 4105,
-    "body": "I’ve been on the student side of this.\n\nThere was this cute girl in my physics class in high school who was struggling with the material, and I was pretty good at it. We were friendly and knew each other through classes and band, but never really got to know each other outside class. I think the teacher thought we would be good together though, because one day he went out of his way to pair me with her when we were going over the homework. He did this a few times, and eventually it turned into tutor sessions after class where we got to know each other really well.\n\nLong story short, we just celebrated our 5th anniversary together. \n\nThanks Mr. R!",
-    "replies": [{
-      "created": 1551311713,
-      "ups": 828,
-      "body": "Did he get an invite to the wedding?",
-      "replies": [{
-        "created": 1551318764,
-        "ups": 280,
-        "body": "I really hope he does, this was heart warming tbh.",
+        "body": "So essentially what I'm getting here is that solving this conjecture wasn't *necessary* for much of anything, as these systems are used all the time, it was just a simple matter of clarifying a grey area in categorization?\n\nIn other words, it doesn't change much of anything going forward. We didn't just unlock a entire new branch on the Mathmatics/Computer Science talent tree. Is that about it?",
         "replies": [{
-          "created": 1551331794,
-          "ups": 190,
-          "body": "To clarify I meant 5 years since we started dating, not married yet! Very happy though and likely getting married some day down the line. We haven’t had any contact with that teacher since we graduated so probably won’t invite him tbh, but he will always have a special place in our hearts for bringing us together :)",
-          "replies": [{
-            "created": 1551363582,
-            "ups": 11,
-            "body": "Invite him anyway. Worst case he shows up and gets you a gift. ",
-            "replies": []
-          }, {
-            "created": 1551351701,
-            "ups": 17,
-            "body": "I HATE YOU INVITE HIM TO YOUR WEDDING NAWWWWW",
-            "replies": []
-          }]
-        }, {
-          "created": 1551322256,
-          "ups": -67,
-          "body": ">Long story short, we just celebrated our 5th anniversary together.\n\n\nDo you view all stories as happening right now, and they don't end until you hear the conclusion, or did you miss that the wedding was 5 years ago?",
-          "replies": [{
-            "created": 1551322549,
-            "ups": 38,
-            "body": "Could be their dating anniversary instead of wedding. They might not even be married yet!",
-            "replies": []
-          }, {
-            "created": 1551322443,
-            "ups": 25,
-            "body": "Could be dating for 5 years tbf",
-            "replies": []
-          }, {
-            "created": 1551336044,
-            "ups": 11,
-            "body": "Imagine responding in a dickheaded manner because you're convinced your own perception of a comment is the right one and \"god other people must be so stupid for not understanding this\", only for you to look like an imbecile  because you were completely wrong\n\n&#x200B;\n\ngood job embarrassing yourself, try to be less of a dick next time",
-            "replies": []
-          }, {
-            "created": 1551322402,
-            "ups": 33,
-            "body": "Are you always a jerk, or just usually? ",
-            "replies": [{
-              "created": 1551329535,
-              "ups": -19,
-              "body": "Well, insulting someone is mean. Let me know if what I said actually hurt Kevin the Sea Pickle, because that's not my goal, but my guess is that he doesn't have skin so thin that he was hurt by my jab at his conjugation.",
-              "replies": []
-            }]
-          }, {
-            "created": 1551322608,
-            "ups": 12,
-            "body": "If you ask nicely he might write slower so you can don't get confused. Just sayin",
-            "replies": []
-          }]
-        }]
-      }]
-    }, {
-      "created": 1551314574,
-      "ups": 239,
-      "body": "I'm going to jump on this train too. \n\nSo neither of us were struggling but my AP biology teacher was probably trying to get this girl and I together. Somehow, despite assigned seating being determined by random drawlings (before class by the teacher herself), this girl and I were always seated next to each other. The teacher told me that our two personalities were good together, and she made a point of talking about our plans for going to prom.\n\nI don't know for sure if she was trying to get us together but if she was I was too dumb to figure it out until after graduation. ",
-      "replies": [{
-        "created": 1551325131,
-        "ups": 12,
-        "body": "> So neither of us were struggling but my AP biology teacher was probably trying to get this girl and I together.\n\nthis seems really creepy =\\",
-        "replies": []
-      }, {
-        "created": 1551353512,
-        "ups": 5,
-        "body": "Eugenics experiment maybe?",
-        "replies": []
-      }]
-    }, {
-      "created": 1551310752,
-      "ups": 107,
-      "body": "That's adorable :)",
-      "replies": []
-    }, {
-      "created": 1551311159,
-      "ups": 10,
-      "body": "Congrats you guys ",
-      "replies": []
-    }, {
-      "created": 1551313689,
-      "ups": 9,
-      "body": "I was also on the student side of this, but it did not end up the same. Very similar, we helped each other with everything. We got to know each other pretty well, but then she went to college far away and I haven't talked to her since. Oh well, I'm happy where I'm at now.",
-      "replies": [{
-        "created": 1551316500,
-        "ups": 7,
-        "body": "> got to know each other pretty well\n\nDja smashed gennies wi’er, diddnja",
-        "replies": [{
-          "created": 1551316827,
-          "ups": 12,
-          "body": "I have no idea how I understood what you said, but I did.\n\nAnyways, no I did not, and nor did I care to. She was very nice and sweet, and that's what is important to me.",
+          "created": "26-07-2019 5:13:59",
+          "ups": 1,
+          "body": "Yes. This is not some groundbreaking new discovery like the internet, but it does prove that the sensitivity conjecture is not some wacky uncle that ignores the norms of mathematics , but is instead a well-behaved family member who just looks weird at first glance. But because the proof is so simple, it's now prompting people to look at the other family members and see if any of them are also more than meets the eye.",
           "replies": []
         }]
       }]
     }, {
-      "created": 1551312965,
-      "ups": 14,
-      "body": "damn i wish a teacher could get me girls like that, especially ones i like.",
-      "replies": []
-    }, {
-      "created": 1551318064,
-      "ups": 7,
-      "body": "did she let you smash during those tutor sessions",
-      "replies": []
-    }, {
-      "created": 1551319758,
-      "ups": 6,
-      "body": "I 100% put students who like each other next to each other so they can get to know one another. And then I have to separate them when they become obnoxious. ",
-      "replies": []
-    }, {
-      "created": 1551320077,
-      "ups": 5,
-      "body": "Me and my SO met in an AP world history class and sat together and her being a girl and me being a sophomore in high school I had a huge crush on her. This was early enough in HS where some teachers would incrementally assign seats. One day I went up to her and asked her if she planned on moving seats she said “yes, do you want that?” And I told her no, and she said “ok then we wont”. \n\nShe totally knew what was up but hey, whatever makes it work. ",
-      "replies": []
-    }, {
-      "created": 1551312544,
-      "ups": 3,
-      "body": "Wholesome!",
-      "replies": []
-    }, {
-      "created": 1551319971,
-      "ups": 5,
-      "body": "You're welcome but you probably meant a different Mr. R.\n\nI would never help my students",
-      "replies": []
-    }, {
-      "created": 1551329242,
-      "ups": 4,
-      "body": "You're still tutoring her 5 years in!!! Oh man, I hope she gets a husband as good as you someday. /s",
-      "replies": []
-    }, {
-      "created": 1551319197,
-      "ups": 3,
-      "body": "This post made me wonder if my biology teacher did the same for me in high school! If so, it's even better because his name was Mr. Love. Anyway, we sat at 2-person desks and I remember a seat assignment change a few weeks into the school year and the boy I had a major crush on was moved to sit next to me. I never had the nerve to talk to him until we had to work on assignments together and we totally hit it off. While we didn't end up together, the boy and I ended up being good friends all throughout high school, he took me to my senior homecoming dance, and we have remained friends many years post high school. Thanks Mr. Love!",
-      "replies": []
-    }, {
-      "created": 1551349353,
-      "ups": 2,
-      "body": "Man! That's awesome. I really hope I get to meet my one person. Unfortunately, I don't think that is in the cards for me anymore.\n\n&#x200B;\n\nSo I will say that if that is the case, you can have what I have left!  Take care!  I love your story!",
-      "replies": []
-    }, {
-      "created": 1551320639,
+      "created": "26-07-2019 1:46:39",
       "ups": 1,
-      "body": "Shake bake it booty quake it",
-      "replies": []
-    }, {
-      "created": 1551325105,
-      "ups": 1,
-      "body": "> Long story short, we just celebrated our 5th anniversary together. \n\nanniversary of what? taking physics?",
-      "replies": []
-    }, {
-      "created": 1551330319,
-      "ups": 1,
-      "body": "This really got me wondering if a teacher was doing this to me when I was in a group with my crush.",
-      "replies": []
-    }, {
-      "created": 1551331119,
-      "ups": 1,
-      "body": "That's adorable. Congratulations!",
-      "replies": []
-    }, {
-      "created": 1551338501,
-      "ups": 1,
-      "body": "She solved to find D.",
-      "replies": []
-    }, {
-      "created": 1551338983,
-      "ups": 1,
-      "body": "Oh my heart. I can't that's too frickin cute! You guys should go say hi to him or something lol.",
-      "replies": []
-    }, {
-      "created": 1551342121,
-      "ups": 1,
-      "body": "Aww .congrats on your anniversary😄",
-      "replies": []
-    }, {
-      "created": 1551350813,
-      "ups": 1,
-      "body": "No way man, if you're getting married, your priority should be locating Mr. R so you could invite him to the wedding. ",
-      "replies": []
-    }, {
-      "created": 1551378524,
-      "ups": 1,
-      "body": "Goddamn you lucky bastard. I wish my teacher was like this.",
-      "replies": []
-    }]
-  }, {
-    "created": 1551298978,
-    "ups": 321,
-    "body": "> I'd ask them to solve the problems together\n\nYou awesome wingman, you.\n",
-    "replies": [{
-      "created": 1551308639,
-      "ups": 7,
-      "body": "Lazy and awesome haha",
-      "replies": []
-    }]
-  }, {
-    "created": 1551293708,
-    "ups": 67,
-    "body": "Don't feel bad, I'd play Serious Sam and PlanetSide 2 in lectures. ",
-    "replies": [{
-      "created": 1551300798,
-      "ups": 14,
-      "body": "I watched someone in front of me start a new Skyrim playthrough in my physics lecture last week.",
+      "body": "So in that .gif, what would the sensitivity of the system be?",
       "replies": [{
-        "created": 1551309481,
-        "ups": 6,
-        "body": "Skyrim is the best game to learn physics from to be fair",
+        "created": "26-07-2019 1:49:12",
+        "ups": 1,
+        "body": "The \"middle\" gate I'm guessing.",
         "replies": [{
-          "created": 1551316185,
-          "ups": 3,
-          "body": "How much energy does a giant produce in order to send the Dragonborn into low earth orbit?\n\nWhat is the coefficient of friction necessary for a 500kg horse to stand on an 80 degree slope while mountain climbing?\n\nWhat is the entropy of a 12x15m room filled with 300 cheese wheels after being fus-roh-dahed?",
+          "created": "26-07-2019 2:54:30",
+          "ups": 1,
+          "body": "Actually, 2. It takes at least two of the inputs to be on to turn on the output.",
+          "replies": []
+        }, {
+          "created": "26-07-2019 2:32:55",
+          "ups": 1,
+          "body": "It didn't show the 2 end ones lighting up though",
           "replies": [{
-            "created": 1551317286,
-            "ups": 2,
-            "body": "A lot. To all of those things. ",
+            "created": "26-07-2019 2:53:23",
+            "ups": 1,
+            "body": "That's because that would do nothing.\n\nNotice how one of them is only feeding into an AND gate? Doing that without the other input (the middle gate) does nothing. So the right input does nothing without the middle gate.\n\nAnd then you can just see from the animation that the left input does nothing on its own as well. It's also feeding into two AND gates that require the middle gate to be on to do anything.",
             "replies": []
           }]
         }]
+      }, {
+        "created": "26-07-2019 3:13:17",
+        "ups": 1,
+        "body": "The sensitivity of a system is the highest sensitivity of any possible input.\n\nIf you have the middle gate on and the others off, switching either of them will flip the output, so the sensitivity is 2.",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 12:46:57",
+    "ups": 1,
+    "body": "Can you start your own sub of fun pop culture reference ELI5s?",
+    "replies": []
+  }, {
+    "created": "26-07-2019 12:35:41",
+    "ups": 1,
+    "body": "> If you want to get particular about it, what was proved was that 'every 2n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n'\n\nr/explainlikeimstephenhawking",
+    "replies": [{
+      "created": "26-07-2019 12:42:26",
+      "ups": 1,
+      "body": "The thing is, while it looks pretty menacing, the proof is [actually pretty simple](https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/) (by comparison to what was expected).\n\n>But the proof was simple enough for Mathieu [Claire Mathieu, of the French National Center for Scientific Research] and many other researchers to digest in one sitting. “**I expect that this fall it will be taught — in a single lecture — in every master’s-level combinatorics course**,” she messaged over Skype.\n\nThat's part of the reason why this is such a big deal. There are proofs to unsolved problems that require the invention of *entirely new* forms of mathematics. This isn't one of them. People were expecting the solution to be almost book length, but in actual fact, someone [quite literally put the entire proof in a tweet](https://twitter.com/BooleanAnalysis/status/1145837576487612416).",
+      "replies": [{
+        "created": "26-07-2019 12:51:38",
+        "ups": 1,
+        "body": "Nobody: \n\nRedstone youtubers: It's actually pretty simple.",
+        "replies": [{
+          "created": "26-07-2019 1:30:17",
+          "ups": 1,
+          "body": "basic redstone *is* simple.  The problem is the conflation of 'simple' and 'easy'.  in general usage, they mean the same thing, but in harder sciences, 'easy' means 'an amateur could do it' and 'simple' means 'this expression covers even the edge cases'.\n\nEasy: a^2 +b^2 =c^2 .  (requires specific conditions about the state of the 2-dimensional triangle in question--specifically a and b being sides surrounding a right angle)\n\nSimple: c^2 = a^2 +b^2 +2ab*cos θ  (This covers the length of any triangle side on a Euclidean two-dimensional plane, if you know the length of the other two sides and the spread of the angle between them.  In the specific case of finding the length of the hypotenuse of a right triangle, it simplifies to the 'easy' version because cos (π/2) is equal to 0.)\n\nThe simple version of the Pythagorean Theorem is clearly more advanced than the easy one, and Pythagoras and his many disciples probably didn't know it (though it's possible some of them did).  Even the Simple version had some important limiting factors--it would be worthless on a curved two-dimensional surface except as a good approximation at the very small level (noticeable errors creep in on city level surveying, for instance, though anything under, say, 500 feet might be off by less than the width of whatever you're using to mark the points of interest with, on Earth)\n\nRedstone is a very simple, straightforward way to make specific simulations of electronics.  It has rules that are easy to understand, and can be used to make logic gates (allowing for things like in-game video game consoles to be built).  Easy redstone contraptions are just that: easy.  Press this button beside the door and the door opens.  That piston pair that pushes you down so you can crawl into your 1-block-high hidden house is simple.  I could tell you what you need for it, and how, and why, and you could puzzle it out fairly easily, even without an instructional video or someone telling you.  Advanced things like LUA computers are well beyond that level, but are possible, if you study long enough and practice.",
+          "replies": []
+        }, {
+          "created": "26-07-2019 1:19:58",
+          "ups": 1,
+          "body": "If nobody says nothing, doesn't that mean that everyone is saying something?",
+          "replies": [{
+            "created": "26-07-2019 1:28:22",
+            "ups": 1,
+            "body": "🤔",
+            "replies": []
+          }, {
+            "created": "26-07-2019 1:40:26",
+            "ups": 1,
+            "body": "It’s anything, not nothing.",
+            "replies": []
+          }, {
+            "created": "26-07-2019 1:43:11",
+            "ups": 1,
+            "body": "That would be the exact opposite of that.",
+            "replies": []
+          }, {
+            "created": "26-07-2019 5:16:12",
+            "ups": 1,
+            "body": "No. And atheism is not a religion, either.",
+            "replies": []
+          }]
+        }, {
+          "created": "26-07-2019 4:03:37",
+          "ups": 1,
+          "body": "For graduate level computer science and above, it’s simple enough to understand. \n\nGraduate level computer science is not generally simple.",
+          "replies": []
+        }, {
+          "created": "26-07-2019 5:26:31",
+          "ups": 1,
+          "body": "[Here is a peer reviewed study/video where it explains how the infinities might cancel each other out](https://www.youtube.com/watch?v=EI2T5KdEqTM#t=13s)",
+          "replies": []
+        }]
+      }, {
+        "created": "26-07-2019 3:36:25",
+        "ups": 1,
+        "body": "I always hear about how someone 'made a new math', but how do you do that? Like, what does a 'new math' even look like?",
+        "replies": [{
+          "created": "26-07-2019 3:59:21",
+          "ups": 1,
+          "body": "There are a bunch of different examples, but the most famous one is probably non-Euclidian geometry.\n\nSo way back when -- 300 BCE, ish -- a smart Greek fellow named Euclid set out five postulates about geometry. The first four are pretty simple, often to the point that it seems as though they didn't even need to be stated:\n\n* You can draw a straight line between any two points.\n\n* Once you've got a straight line, you can extend it onwards to infinity.\n\n* If you've got a straight line segment, you can use it to draw a circle where one end of that segment is in the centre and the other one is at the edge; basically, you can use it as a radius.\n\n* One right angle is the same as every other right angle.\n\nThere's also the fifth, which is... trickier.\n\n* If you get two straight lines that are crossed by a third line, and the sum of the angles between those two lines and the line that crosses them have an angle of less than 180 degrees, [those lines *must* cross at some point on that side](https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Parallel_Postulate.svg/1280px-Parallel_Postulate.svg.png), no matter how far away it is. This is also called the [parallel postulate](https://en.wikipedia.org/wiki/Parallel_postulate), and a lot of people spent a long-ass time trying to prove it's true in the same way you can prove the others to be true, but never quite managed it.\n\nNow these rules all seemed to work, and Euclid wrote what was basically the OG book on geometry -- *The Elements* -- that set out all the cool shit you could do. The first 28 of these only used the first four postulates... but then there's [number 29](https://mathcs.clarku.edu/~djoyce/java/elements/bookI/propI29.html). He couldn't make it work using the first four postulates, and so had to bring in the fifth -- the one he couldn't prove. Still, it seemed to work OK. All of the rules held firm. There were no contradictions in it. Everything was great.\n\nThat is, until 1823. That's when two other mathematicians, Janos Bolyai and Nicolai Lobachevsky, both separately realised that you didn't *need* the fifth postulate to be true. If you treated it as though it wasn't, you could form mathematical systems that were still internally consistent; they just didn't look like Euclid's version of geometry. The maths held up, with no inherent contradictions, but it didn't look like what we see in 'real life'. (Think about it in terms of drawing lines on a sphere, like lines of latitude: two lines that are parallel at the equator will meet at the poles, even though they have interior angles of 180 degrees exactly.)\n\nBehold: new maths.",
+          "replies": []
+        }, {
+          "created": "26-07-2019 4:41:27",
+          "ups": 1,
+          "body": "The simplest example for that is the concept of complex numbers. For centuries, mathematicians would encounter a unique problem, the square root of a negative number.\n\nSquare roots are simple concept, but the square root of a negative number was baffling to many brilliant mathematicians. \n\nUntil some of them came with a simple concept: What happens if you represent √-1 as i?\n\nThis opened up a whole realm of possibilities and a entirely new number system. Not to mention the importance of it as a mathematical and enginnering tool. One application that fascinates me the most is its use to identify the power lost during transmission of electricity.",
+          "replies": []
+        }]
+      }, {
+        "created": "26-07-2019 2:54:49",
+        "ups": 1,
+        "body": "It’d make a great student seminar too!",
+        "replies": []
       }]
     }, {
-      "created": 1551296283,
-      "ups": 5,
-      "body": "TF2 got me through some insanely boring lectures Freshman year.",
+      "created": "26-07-2019 2:34:55",
+      "ups": 1,
+      "body": "I'll take a crack at it. I'm no Hawking, however. I'm just a dude who's wicked smaht and has read his share of Gordon Wood. I.e. I might be wrong but I try hard.\n\nTake a basic cube. It's three-dimensional. It has eight points, also known as vertices, which is the plural of vertex. So you've got eight points across three dimensions. A \"vertex induced subgraph\" is basically what you get if you remove some number of points and draw lines connecting those that are remaining.\n\nFor example, wherever you're imagining points 1, 2, 3, 4, 5, 6, 7, and 8 on the cube, imagine that three of the points are removed. What you have is a 5-vertex induced subgraph of a 3-dimensional cube (and yes, cubes can exist in higher dimensions; a tesseract is what it's called in the 4th dimension, for instance, and it has 16 vertices; but let's stick with the standard cube).\n\nA 2^**n**-1 +1-vertex induced subgraph in this case (where the dimension of the graph is **n** and **n**=**3**) would be a subgraph with (2^(**3**-1) +1=2^2 +1=4+1=) 5 vertices. So in the case of the cube, the conjecture makes a statement about all \"5-vertex induced subgraphs\" (i.e. all possible combinations of five points on the cube, including the lines that join them). And this conjecture is saying that the maximum \"degree\" of such a subgraph is at least √n (which is √3 in this case, which is a little more than 1.7). Degree means the number of lines by which one point in the subgraph is connected to other points. In our example, the degree of each vertex is 4 because each vertex (point) connects to four others, all in different directions. (I don't know if maximum degree is ever different from degree, but in this case, they are the same since all vertices have the same degree.) 4 is more than √n=√3 (which, again, is a little more than 1.7). So the prediction of the conjecture is satisfied in the case of the 3-dimensional cube.\n\nI can't begin to imagine a fourth spacial dimension, so I won't go too far into it, but, as mentioned earlier, the **4**-D cube has 16 vertices, and the 2^n-1 +1-vertex induced subgraphs of that cube (the tesseract) are all the groupings of (2^**4**-1 +1=2^3 +1=8+1=) 9 of its vertices. And the conjecture states that all such subgraphs will have a maximum degree of at least √4, which equals 2, meaning that the vertex with the highest number of lines connecting to other vertices will have at least 2 such lines, which frankly seems a little obvious.\n\nThe conjecture states that this follows for all dimensions of \"cubes\". I do not know if that includes the 2-dimensional \"cube\" -- i.e. the square -- but some quick math says that the conjecture is satisfied in that case. Nor am I sure whether the number of dimensions can be a non-integer, like 3.6 or 22.1. \n\nI hope I'm right about this.",
       "replies": [{
-        "created": 1551311293,
+        "created": "26-07-2019 2:53:54",
         "ups": 1,
-        "body": "This one I don't understand, this game is very chaotic at times so it seems it would be really hard to hide.",
+        "body": ">yes, cubes can exist in higher dimensions; a tesseract is what it's called in the 4th dimension, for instance, and it has 16 vertices\n\nIf we're going into [tesseracts](https://www.reddit.com/r/explainlikeimfive/comments/85c2jn/eli5_what_exactly_is_a_tesseract/dvw9oit/) and [higher dimensions](https://www.reddit.com/r/explainlikeimfive/comments/85e0ou/eli5_the_fourth_dimension_4d/dvwtoiz/), I've ELI5-ed those too.",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 12:46:51",
+    "ups": 1,
+    "body": "Dammit I read Chupacabra as Chewbacca.\n\nDammit 5 AM.",
+    "replies": [{
+      "created": "26-07-2019 2:36:05",
+      "ups": 1,
+      "body": "CHEWBACCABRA.",
+      "replies": [{
+        "created": "26-07-2019 6:37:25",
+        "ups": 1,
+        "body": "https://i.imgur.com/tW8A2bd.png",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 1:09:48",
+    "ups": 1,
+    "body": "I love the cryptozoology analogy. Good analogy to explain the significance of the solution. Good ELI5.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:19:49",
+    "ups": 1,
+    "body": "Write. A. Book. Now!",
+    "replies": [{
+      "created": "26-07-2019 1:21:41",
+      "ups": 1,
+      "body": "[Funny you should mention that...](https://reddit.com/r/Portarossa)",
+      "replies": [{
+        "created": "26-07-2019 1:23:36",
+        "ups": 1,
+        "body": "Nice!",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 2:56:53",
+    "ups": 1,
+    "body": "ELI4?",
+    "replies": [{
+      "created": "26-07-2019 2:58:58",
+      "ups": 1,
+      "body": "There's a specific question in computer science that's been bugging people for thirty years -- namely, does this one thing (sensitivity) follow the same rules as other things similar to it? This guy Huang just answered it, and he did it in a way that's so damn elegant that people are very, very impressed.",
+      "replies": [{
+        "created": "26-07-2019 2:59:27",
+        "ups": 1,
+        "body": "Thanks!",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 12:31:13",
+    "ups": 1,
+    "body": "As a Slytherin I approve of this message. Also hands down best ELI5 iv read in a long time.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:01:52",
+    "ups": 1,
+    "body": "This is my favourite ELI5. Relatable examples. Impressive. I still don’t understand of course, but that’s because I’m not Ravenclaw.",
+    "replies": [{
+      "created": "26-07-2019 2:03:44",
+      "ups": 1,
+      "body": "'There's a specific question in computer science that's been bugging people for thirty years -- namely, does this one thing (sensitivity) follow the same rules as other things similar to it. This guy just answered it, and he did it in a way that's so damn elegant that people are very, very impressed.'",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 12:38:40",
+    "ups": 1,
+    "body": "This is maybe the most interesting and fun piece of text I've read in a very, very long time.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 12:45:55",
+    "ups": 1,
+    "body": "Amazing explanation!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:11:16",
+    "ups": 1,
+    "body": "That mathy bit is actually much easier than it looks, could be like ELI16:  First think of what an n-dimensional cube is, it's a square for n=2, a cube for n=3, and then just higher order cubes. Next think of how many corners that cube will have, a square has 4, a cube has 8, so that starts to look like 2^n. Then realize that 2^n divided by 2 can be rewritten as 2^(n-1). Now you can see that the first expression there, 2^(n-1)+1 is just a way of saying \"half the number of corners plus one\". Now imagine you color every corner red or blue, if you think about that for a bit you realize that you can have up to half the corners be red while having no red corner touch another red corner. (On a square, you could have two corners diagonal to each other be red, so they don't touch. Add a third red corner and you can see how then the red corners will have to be touching at some point.)  The proof then says that when you add that extra red corner, the \"half+1\" corner, that you can decide the minimum number of other red corners it has to touch. It proves that this number is equal to √n.  With the square example you can see it's true, adding a third red corner would make it touch two others, and 2>√2.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 12:36:13",
+    "ups": 1,
+    "body": "Damn this 5 year old skipped 7 grades",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:04:48",
+    "ups": 1,
+    "body": "That was an amazing ride",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:10:45",
+    "ups": 1,
+    "body": "Dammm!!!  an ELI5 if there ever was one...\nMost of what you said didn't even register to me but good job.\n\n\nSomebody nominate this for best comment or something....",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:28:25",
+    "ups": 1,
+    "body": "This was a beautiful explanation for someone who had no idea what any of this was about!! Thank you so much for your time :D",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:55:54",
+    "ups": 1,
+    "body": "I had absolutely no interest in this topic but your writing kept me reading till the end. Amazing.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:58:11",
+    "ups": 1,
+    "body": "So even in theory when some one creates something new everyone goes..huh...why didnt I think of that",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:04:28",
+    "ups": 1,
+    "body": "Honestly the best ELI5 answer I have ever seen. Much respect to you! I'd give you gold of I have any, you truly deserve it.",
+    "replies": [{
+      "created": "26-07-2019 2:06:19",
+      "ups": 1,
+      "body": "I'm flattered, but honestly, I've got gold for something like eleven years at this point. I'm good, really.\n\nI'm just happy if people learn some stuff.",
+      "replies": [{
+        "created": "26-07-2019 2:07:26",
+        "ups": 1,
+        "body": "Damn! Just goes to show really.",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 2:13:13",
+    "ups": 1,
+    "body": "Sounds to me like Harry Dresden is your cryptozoologist ;-)",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:14:10",
+    "ups": 1,
+    "body": "Great answer. I’m not only stupid but really uninterested in this type of stuff and you not only gave me a glimmer of understanding but a modicum of interest. Well played!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:06:52",
+    "ups": 1,
+    "body": "</thread>\n\nWell written!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 12:49:01",
+    "ups": 1,
+    "body": "Wow, what a fantastic read!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:21:16",
+    "ups": 1,
+    "body": "You sound like a very clever person.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:25:49",
+    "ups": 1,
+    "body": "Dude I'm impressed your Darkseid/anti-life Equation game is strong. Thanks",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:41:25",
+    "ups": 1,
+    "body": "This is an amazing answer, maybe the best one i ever saw here! Good job!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:55:11",
+    "ups": 1,
+    "body": "Based on your example at the end about the Lochness monster and the Chupacabra, is the implication that Huang comes from a field utterly outside the normal field(s) where this is used?\n\nOr, rather, is it that his proof is so elegant and significant that this proof can be used to unify other questions in other fields that seem unrelated but are actually, through this article, being unified?",
+    "replies": [{
+      "created": "26-07-2019 1:59:51",
+      "ups": 1,
+      "body": "The latter, sort of. The idea was that in solving this problem so elegantly, he [added to the toolkit of people thinking about similar problems](https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/):\n\n>Huang’s result is even stronger than necessary to prove the sensitivity conjecture, and this power should yield new insights about complexity measures. “It adds to our toolkit for maybe trying to answer other questions in the analysis of Boolean functions,” [Rocco Servedio, chair of the Department of Computer Science at Columbia University](http://www.cs.columbia.edu/~rocco/) said.\n\nIn short, he didn't just solve *this* problem; he may have opened the door to solving other problems in the future.",
+      "replies": [{
+        "created": "26-07-2019 2:14:13",
+        "ups": 1,
+        "body": "This is fascinating! Thank you :)\n\nIt's happening in cosmological physics and quantum computing/cryptography as well and I find that to be so exciting... It feels like they're at the crux of an enlightenment, a breakthrough, some new viewpoint that opens up some vistas and makes for the next big scientific breakthrough.... X fingers I can't wait!",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 1:55:45",
+    "ups": 1,
+    "body": "So, are you a Ravenclaw?",
+    "replies": [{
+      "created": "26-07-2019 2:01:48",
+      "ups": 1,
+      "body": "You know it.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 2:04:09",
+    "ups": 1,
+    "body": ">every 2\\^n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n\n\nwhat in oblivion is that",
+    "replies": [{
+      "created": "26-07-2019 3:38:16",
+      "ups": 1,
+      "body": "We take a cube and consider its equivalent in n-dimensions instead of 3. Let's do 2-dimensional, since that is easy to visualize.\n\nA 2-dimensional cube is a square. A graph (in this context) is a set of nodes and edges that connect those nodes. A 2-dimensional cube graph is a graph representing a square, in a well defined manner. The nodes of the graph are the corners - so there are four. The edges off the graph are the edges of the square - so there are also four and each node has two edges:\n\n    A --- B\n    |     |\n    |     |\n    C --- D\n\n\nA vertex induced subgraph means we take a graph and pick some of the nodes from it. We also get all the edges that connect nodes that are in our selection. \n\nSo in our square we could make a vertex induces subgraph by picking A and B, we would get two nodes and one edge:\n\n    A --- B\n\nWe could instead pick A and D, we would get two nodes and no edges:\n\n    A\n    \n    \n          D\n\n\nSo a 2^n-1 + 1-vertex induced subgraph of the n-dimensional cube graph means we take such a graph and pick that many nodes (called vertices). In our square example n=2, so 2^(2-1) + 1 is 3. So we pick three vertices. We could pick A, B, and C and get:\n\n    A --- B\n    |\n    |\n    C\n\n\nThe degree of a node in a graph is the number of edges it has. The maximal degree of a graph is the maximum of the degrees of all the nodes. So our square graph has a maximal degree of two. The subgraph in which we picked A and B has a maximal degree of one. The subgraph in which we picked A and D has a maximum degree of zero. And the subgraph in which we picked A, B, and C has a maximal degree of two.\n\nSo the claim is that no matter which vertices you pick to create your subgraph the maximal degree will always be at least √n when you pick 2^(n-1) + 1 vertices.\n\nAgain for our square 2^(n-1) + 1 is three, and √n is about 1.4. Since degree is always an integer, the claim is that no matter which three vertices you pick you will always have a maximal degree of at least 2. We can see that is true - we have to pick both neighbors of one node, there's no other way to choose 3 out of 4, and that vertex will have a degree of 2.\n\nIf we think about 3 dimensions. The graph has 8 vertices and 12 edges (look at a six sided die and count them...). It has a maximal degree of 3 - since each corner of the cube has an edge to three other corners. 2^(n-1) + 1 is 2^(3-1) + 1 which is 5.  √n is about 1.7. So the claim is no matter which 5 vertices you pick you will always have at least one vertex with two or more edges.\n\nWe pick our first corner. There are only 2 corners of a cube that don't have an edge to the corner we picked, so we have to pick 2 other corners to make 5, both of which will have an edge to our first corner. So no matter how we do it we get a degree of at least 2.\n\nI'll leave 4 dimensions as an exercise...\n\nI'm sure that cleared it right up and you couldn't have less understanding than before I typed that :)",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 2:26:00",
+    "ups": 1,
+    "body": "Absolutely superb. Here is a (virtual) platinum, in the absence of real cash. And my upvote of course. You have a gift for explanation.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:26:47",
+    "ups": 1,
+    "body": "I didn't even know I wanted to understand this, but now I do, I like it.",
+    "replies": [{
+      "created": "26-07-2019 2:31:59",
+      "ups": 1,
+      "body": "That's what I'm here for :p",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 2:28:45",
+    "ups": 1,
+    "body": "You have explained this so elegantly. Very ELI5. Especially love the Bigfoot metaphor. Well done!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:31:40",
+    "ups": 1,
+    "body": "I've often wondered if/how often people like mathematicians, scientists, etc tend to, perhaps, overthink the problems they may be working to solve when the solution is relatively simple. Of course I'm hilariously far from qualified to make such a judgment so the idea is nothing more than an amusing musing for me.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:37:28",
+    "ups": 1,
+    "body": "I know nothing about the subject whatsoever but your explanation was absolutely a delight to read, and even explained the problem a bit more too. \n\nThank you.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:40:06",
+    "ups": 1,
+    "body": "This is the best ELI5 I’ve ever read. By far. I salute you.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:42:05",
+    "ups": 1,
+    "body": "My gosh I don't even know what most of this is about -- I can barely do algebra, haha -- but this was one of *THE BEST* ELI5 I have ever seen. Thank you so much for this explanation!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:35:26",
+    "ups": 1,
+    "body": ">self-respecting Hufflepuff\n\nLaughs in Slytherin",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:52:47",
+    "ups": 1,
+    "body": "I would like to read your book... once you have written it. Which you will, because, that was excellent.",
+    "replies": [{
+      "created": "26-07-2019 4:00:50",
+      "ups": 1,
+      "body": "I do [write books for a living](https://reddit.com/r/Portarossa), but they are much more focused on people kissing than doing maths.\n\nGlad you enjoyed it!",
+      "replies": [{
+        "created": "26-07-2019 4:18:38",
+        "ups": 1,
+        "body": "Well, ain't that something!\n\nI'm into historical fiction and sci-fi because I am super cool like that (ha), but I read at least one book per year that takes me well out of my comfort zone.\n\nI made a promise, I'm going to keep it. I will have to read Reckless on my kindle though! That cover makes me want to hit the gym.\n\n&#x200B;\n\n [https://i.imgur.com/B2JJWzs.png](https://i.imgur.com/B2JJWzs.png)",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 4:03:27",
+    "ups": 1,
+    "body": "> Along comes Huang, and produces a proof that's two pages long -- that is to say, extremely elegant.\n\nOut of curiosity, what's a normal length for a proof like this? My field's philosophy and the closest analogue I can think of is the Gettier paper (about 3 pages but had a massive impact on Epistemology as a field).",
+    "replies": [{
+      "created": "26-07-2019 4:08:04",
+      "ups": 1,
+      "body": "I'm not a mathematician, so I can't really comment. The answer seems to be 'much, *much* longer', though. I can only really quote from Claire Mathieu, of the French National Center for Scientific Research, in [this article](https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/) about Huang's discovery:\n\n>When Huang’s paper landed in Mathieu’s inbox, her first reaction was “uh-oh,” she said. “When a problem has been around 30 years and everybody has heard about it, probably the proof is either very long and tedious and complicated, or it’s very deep.” She opened the paper expecting to understand nothing.\n\n>But the proof was simple enough for Mathieu and many other researchers to digest in one sitting. “I expect that this fall it will be taught — in a single lecture — in every master’s-level combinatorics course,” she messaged over Skype.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 4:04:00",
+    "ups": 1,
+    "body": "I will see you in a r/bestof thread soon. This is fantastic.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:21:07",
+    "ups": 1,
+    "body": "I'm assuming you probably got 200 messages saying this same thing, but that was genuinely the best ELI5 I've ever read",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:25:16",
+    "ups": 1,
+    "body": "Could you explain what was \"preventing\" other people (if there even is a reason for that) from solving the problem? If there was such an elegant solution to the problem why didn't other people get close or solve it before him? Did Huang just base his solution off the decades of research prior or did he just look in a different direction (out of the box if you will) and found the solution that way?",
+    "replies": [{
+      "created": "26-07-2019 4:31:32",
+      "ups": 1,
+      "body": "[It seems to have been the latter:](https://www.quantamagazine.org/mathematician-solves-computer-science-conjecture-in-two-pages-20190725/)\n\n>Then in 2018, it occurred to Huang to use a 200-year-old piece of mathematics called the Cauchy interlace theorem, which relates a matrix’s eigenvalues to those of a submatrix, making it potentially the perfect tool to study the relationship between a cube and a subset of its corners. Huang decided to request a grant from the National Science Foundation to explore this idea further.\n\n>Then last month, as he sat in a Madrid hotel writing his grant proposal, he suddenly realized that he could push this approach all the way to fruition simply by switching the signs of some of the numbers in his matrix. In this way, he was able to prove that in any collection of more than half the points in an n-dimensional cube, there will be some point that is connected to at least √n of the other points — and the sensitivity conjecture instantly followed from this result.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 4:27:05",
+    "ups": 1,
+    "body": "sweet fucking hell, this was one helpful eli5. thank you very much",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:27:10",
+    "ups": 1,
+    "body": "Man, I am terrible at math. I don’t even know much about Harry Potter. These concepts generally fly over my head, but I learned something from your post.   Thank you.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:30:59",
+    "ups": 1,
+    "body": "That was quite eloquent. Thank you.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:34:08",
+    "ups": 1,
+    "body": "Someone who understands math *and* can explain it? Who are you?",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:04:26",
+    "ups": 1,
+    "body": "Have to say, you do some really well written explanations :)",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:45:08",
+    "ups": 1,
+    "body": "I think I'm going to have to re-read this comment here anytime I'm wanting to explain something complex to anyone. Perfect example of how to do it.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 12:53:01",
+    "ups": 1,
+    "body": "It sounds like you're saying they proved it's P and not NP?",
+    "replies": [{
+      "created": "26-07-2019 3:33:56",
+      "ups": 1,
+      "body": "No. Instead, every boolean function has two different numbers associated with it: \"height\" and \"sort of height\".\n\nIt was know that height is always bigger than sort of height. The question is then the following:\n\n> is sort of height always pretty close to height?\n\nThe answer *could* have been know (if there was an exponential relationship between them), but instead the answer is yes.",
+      "replies": [{
+        "created": "26-07-2019 4:01:02",
+        "ups": 1,
+        "body": "I don’t understand how people mix up “no” and “know”",
         "replies": [{
-          "created": 1551317447,
-          "ups": 2,
-          "body": "Combination of a really large class, sitting in the back, and having a large amount of contempt for the professor so I didn't particularly care if he knew.",
-          "replies": [{
-            "created": 1551320512,
-            "ups": 1,
-            "body": "Ah, I see, I'm guessing part of your grade depended on showing up?",
-            "replies": [{
-              "created": 1551323314,
-              "ups": 1,
-              "body": "Yup, and the other part of it was based on multiple choice quizzes that were middle school level, at best. Easiest A I ever got.",
-              "replies": []
-            }]
-          }]
+          "created": "26-07-2019 4:46:14",
+          "ups": 1,
+          "body": "Mostly from writing this on my phone, immediately after waking up.",
+          "replies": []
         }]
       }]
-    }, {
-      "created": 1551308184,
-      "ups": 5,
-      "body": ">planetside 2\n\nDid you bring a really powerful PC or did your laptop fan sound like a jet engine?",
+    }]
+  }, {
+    "created": "26-07-2019 12:44:39",
+    "ups": 1,
+    "body": "AMAZING answer! One question, does his help solve P vs NP? (it sounds related but I can't tell)",
+    "replies": [{
+      "created": "26-07-2019 12:47:35",
+      "ups": 1,
+      "body": "From what I can gather, not in itself; I think if it did it would be MUCH bigger news. You'd have to get someone more mathematically-inclined to answer that more definitively, though.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 1:56:05",
+    "ups": 1,
+    "body": "Fascinating, and well explained. Thank you!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:07:02",
+    "ups": 1,
+    "body": "How would one post this to r/ELI5math?",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:18:08",
+    "ups": 1,
+    "body": "Is this somewhat the process used by the guy who figured out the match.com algorithm and had him be a 100% match for like 75% of women. He found out which inputs mattered to change the outcome.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:36:28",
+    "ups": 1,
+    "body": "Love how the abstract states \"we show\" and it's just a single dude",
+    "replies": [{
+      "created": "26-07-2019 2:49:41",
+      "ups": 1,
+      "body": "For math and science paper it is common practice to use \"we\" in the paper. See \n\nhttps://academia.stackexchange.com/questions/2945/choice-of-personal-pronoun-in-single-author-papers",
       "replies": [{
-        "created": 1551311364,
-        "ups": 3,
-        "body": "It was a gaming laptop at the time",
-        "replies": []
-      }, {
-        "created": 1551315135,
-        "ups": 3,
-        "body": "When the game first came out I played on a shitty laptop that had an i3-3217u and intel hd graphics on 40 fps so you didn’t really need a good computer to run it back then",
+        "created": "26-07-2019 2:53:15",
+        "ups": 1,
+        "body": "I'm well aware, it just adds to how incredible Huang's feat is.",
         "replies": []
       }]
-    }, {
-      "created": 1551303463,
-      "ups": 3,
-      "body": "Planetside 2 is pretty good, my mum plays it all day long heh",
-      "replies": []
     }]
   }, {
-    "created": 1551301473,
-    "ups": 46,
-    "body": "I have to ask... Which GTA was it?",
+    "created": "26-07-2019 2:42:34",
+    "ups": 1,
+    "body": "Awesome explanation, thanks!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 2:59:32",
+    "ups": 1,
+    "body": "This is extremely well written and engaging.  Your witting is excellent.  Do you write for a living?",
     "replies": [{
-      "created": 1551310625,
-      "ups": 17,
-      "body": "Hot coffee ",
-      "replies": []
-    }, {
-      "created": 1551316144,
-      "ups": 15,
-      "body": "Graduate Teaching Assistant ",
-      "replies": []
-    }, {
-      "created": 1551313153,
-      "ups": 10,
-      "body": "Greater Toronto Area",
+      "created": "26-07-2019 3:01:01",
+      "ups": 1,
+      "body": "I [do indeed](https://reddit.com/r/Portarossa), but there's a lot less maths and a lot more wistful sighing in what I normally write.\n\nGlad you enjoyed it!",
       "replies": []
     }]
   }, {
-    "created": 1551299553,
-    "ups": 73,
-    "body": "This teacher was sent down from heaven",
+    "created": "26-07-2019 3:00:21",
+    "ups": 1,
+    "body": "I conject that this was masterfully written.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:01:12",
+    "ups": 1,
+    "body": "!remindme 3 hours",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:25:42",
+    "ups": 1,
+    "body": "This is the best ELI5 I've read in ages. You are the boss, boss.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:25:42",
+    "ups": 1,
+    "body": "Wow you nailed the ELI5.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:29:20",
+    "ups": 1,
+    "body": "What's the most complex buzzfeed quiz of size 5? For whatever definition of size.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:33:24",
+    "ups": 1,
+    "body": "Aren't true-false statements more a matter for logicists? I didn't realize people were doing math with them, lol",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:36:47",
+    "ups": 1,
+    "body": "ELI5ed it outta the park!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:41:00",
+    "ups": 1,
+    "body": "I award you one poor mans gold star.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:45:07",
+    "ups": 1,
+    "body": "You're awesome. I'm a researcher and I just modified my life goal from becoming a professor to writing ELI5s as good as yours.\n\nHere's a whole hypermarket of cookies.",
     "replies": [{
-      "created": 1551304743,
-      "ups": 7,
-      "body": "That’s because they were a TA not a teacher. Which also means they were in hell. ",
+      "created": "26-07-2019 6:28:42",
+      "ups": 1,
+      "body": "!remindme 3 months",
       "replies": []
     }]
   }, {
-    "created": 1551305603,
-    "ups": 9,
-    "body": ">When they needed homework help, I'd ask them to solve the problems together and come to me if they had any questions\n\nYou the real MVP.",
-    "replies": []
-  }, {
-    "created": 1551305654,
-    "ups": 6,
-    "body": "But did it work out for him?",
-    "replies": []
-  }, {
-    "created": 1551306036,
-    "ups": 3,
-    "body": "Upvoting for pretending to work while posting gta",
-    "replies": []
-  }, {
-    "created": 1551311614,
-    "ups": 2,
-    "body": "My best friend's mom is a teacher. I was in her AP bio class as a Junior and had a major crush on this girl in my grade. The next year I had a free hour and she asked me to be a student helper in the class since I did so well on the AP test and in the class.\n\nThe girl I had a crush on was in that class, I just helped the other students out with homework but got to interact with her a lot more than I would have. I found out a few years after graduation that she knew I had a crush because she overheard her son and me talking about her when we were hanging playing videogames. The only reason I was I her class as a student helper was because of that. Honestly one of the coolest things a teacher has done for me.",
-    "replies": []
-  }, {
-    "created": 1551316520,
-    "ups": 2,
-    "body": "Why work on GPA when you can work on GTA ",
-    "replies": []
-  }, {
-    "created": 1551306568,
-    "ups": 4,
-    "body": "\"but actually played GTA on my laptop.\" \n\nThis, this is an epic gamer.",
-    "replies": []
-  }, {
-    "created": 1551310404,
+    "created": "26-07-2019 3:46:50",
     "ups": 1,
-    "body": "Did they end up going out?",
+    "body": "This was a baller answer. Thank you so much. \n\nWhat an interesting topic, don't you love decision mathematics?",
     "replies": []
   }, {
-    "created": 1551311860,
+    "created": "26-07-2019 3:58:22",
     "ups": 1,
-    "body": "Hey, whatever gets the kids wanting to actually do well in your class, right? ",
+    "body": "I was totally waiting for undertaker to throw mankind off hell in a cell in 1998",
     "replies": []
   }, {
-    "created": 1551315346,
+    "created": "26-07-2019 4:00:40",
     "ups": 1,
-    "body": "That was a win win situation, for the students and for you.",
+    "body": "> 'every 2n-1 + 1-vertex induced subgraph of the n-dimensional cube graph has maximum degree at least √n'\n\n[Ah, yes.  Quite.](https://media3.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif)",
     "replies": []
   }, {
-    "created": 1551318969,
+    "created": "26-07-2019 4:04:50",
     "ups": 1,
-    "body": "Careful, he's a hero.",
+    "body": "> The conjecture, and I'm really ELI5ing it here, is about whether or not the rules for sensitivity follow the same rules as other measures of complexity, or whether it's a weird outlier. The short version is yes, it follows the same rules.\n\nCan we say if a system is more complex, then it would be more sensitive to the inputs?",
+    "replies": [{
+      "created": "26-07-2019 4:11:11",
+      "ups": 1,
+      "body": "Not necessarily, at least as I understand it. (And I'm not a mathematician, so take this with a grain of salt.)\n\nThere are other ways for a system to be more complex rather than just having more sensitivity. All other things being equal, a more sensitive system is more complex than a less sensitive system, but it doesn't necessarily hold -- at least, as far as I understand it -- that a more complex system is necessarily more sensitive.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 4:15:29",
+    "ups": 1,
+    "body": "This is the best ELI5 I have ever read, honestly.",
     "replies": []
   }, {
-    "created": 1551322267,
+    "created": "26-07-2019 4:18:46",
     "ups": 1,
-    "body": "I coulda done this but i was struggling too",
+    "body": "The numbers, Mason, what do they mean?!",
     "replies": []
   }, {
-    "created": 1551325229,
+    "created": "26-07-2019 4:31:46",
     "ups": 1,
-    "body": "Well yeah, if a smart kid has a big crush on a classmate he will always try everything to help her, from homework to explaining her all the lessons she doesn't knos and giving her all of the notes from the days she missed.\n\nThis is basically my case right now.",
+    "body": "Is this related in any way to neurons in machine learning?",
     "replies": []
   }, {
-    "created": 1551328645,
+    "created": "26-07-2019 4:34:31",
     "ups": 1,
-    "body": "Exploiting young love so that you can play more GTA. I can respect that.",
+    "body": "I took a graph theory class recently and can I just personally say you are my hero. This is exactly the stuff that gets people into the field :)",
     "replies": []
   }, {
-    "created": 1551344884,
+    "created": "26-07-2019 4:36:42",
     "ups": 1,
-    "body": "\"actually played GTA on my laptop\" LOL\n\n(Anyone know how to do that quote thing where you actually select and quote someone else's comment in your comment?",
+    "body": "Holy shit, that last paragraph about big foot is amazing.",
     "replies": []
   }, {
-    "created": 1551348412,
+    "created": "26-07-2019 4:37:01",
     "ups": 1,
-    "body": "I’m almost convinced my freshman year math teacher rigged his partner picking system to set me and my guy friend up. End of freshman year, we had our first date.\n\n\nIt was awkward. We decided to stay just friends after that.",
+    "body": "\"we went out for tacos\" killed me 🤣\n\nThanks for your explanation",
     "replies": []
   }, {
-    "created": 1551365280,
+    "created": "26-07-2019 4:37:27",
     "ups": 1,
-    "body": "Awww this is so cute",
+    "body": "You should be a teacher.  If you make more than teachers and thus aren't interested in being a teacher, you are the reason teachers should be paid more.",
     "replies": []
-  }]
+  }, {
+    "created": "26-07-2019 4:46:21",
+    "ups": 1,
+    "body": "I don't know any 5 year olds who would understand that.  I am 50 and barely understood it.  That being said,  I doubt that it is possible to dumb it down any more.",
+    "replies": [{
+      "created": "26-07-2019 4:47:20",
+      "ups": 1,
+      "body": ">LI5 means friendly, simplified and layperson-accessible explanations - not responses aimed at literal five-year-olds.",
+      "replies": []
+    }]
+  }, {
+    "created": "26-07-2019 4:54:01",
+    "ups": 1,
+    "body": ">Along comes Huang, and produces a proof that's two pages long -- that is to say, extremely elegant.\n\nOccam's Razor strikes again!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:54:41",
+    "ups": 1,
+    "body": "/r/bestof",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:01:14",
+    "ups": 1,
+    "body": "r/confusedupvote kudos friend! This, like the apparent proof (the heck am I checking for myself!), was nice and elegant!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:01:41",
+    "ups": 1,
+    "body": "Glorious! Thank you.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:10:39",
+    "ups": 1,
+    "body": "Reading all this, I feel like I'm in the shit-seat upper bowl, luke warm hotdog in hand, making hard eye contact with a dude in a catered skybox. I can't fathom how he got to that place, but know I'm never getting in.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:17:06",
+    "ups": 1,
+    "body": "I wonder how “obvious” the missing information was to other mathematicians when they saw it in Huangs proof. Did they look at his proof and go, “ohhhhhh yeah. I knew that.”? It’s always interesting when something so complicated ends up clicking together in an individuals brain.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:04:45",
+    "ups": 1,
+    "body": "That reply was effing elegant. I explained this to my cat and he nodded. Have a great weekend sir/madame!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:25:09",
+    "ups": 1,
+    "body": "What a fantastically well-written answer. Take your gold.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:25:40",
+    "ups": 1,
+    "body": "Just what kind of 5 year olds do you interact with?\n\nSensitivity better be about feelings because I'm crying.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:26:40",
+    "ups": 1,
+    "body": "Practical question: What does this mean for Huang's career? Do they jump him up to full professor at Emory right quick? Does he get offered tenured positions at even better Universities? Or does it not really alter much?",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:47:31",
+    "ups": 1,
+    "body": "*Hem Hem* A quiz to sort you into your Hogwarts House? What a ridiculous idea! Five points from Ravenclaw. Detention This Friday.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 1:13:49",
+    "ups": 1,
+    "body": "Enjoy my silver sir",
+    "replies": []
+  }, {
+    "created": "26-07-2019 12:43:43",
+    "ups": 1,
+    "body": "This group of crazies sounds like the mates from the big lez show!  \n\n\nThey're nice but they'll dose you with drugs that might kill you!  \n\n\nVery awesome to have a large progression in our lifetime :)",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:05:48",
+    "ups": 1,
+    "body": "can you ELI3 this for me?",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:44:19",
+    "ups": 1,
+    "body": "Makes me feel old when I realize people that read Harry Potter are getting old and smarter than me lol",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:08:56",
+    "ups": 1,
+    "body": "Having never read or seen harry potter, wtf have you assaulted my eyes with?",
+    "replies": []
+  }, {
+    "created": "26-07-2019 4:14:02",
+    "ups": 1,
+    "body": "That was also r/readanotherbook worthy",
+    "replies": [{
+      "created": "26-07-2019 4:18:32",
+      "ups": 1,
+      "body": "I'll cope, I'm sure.",
+      "replies": [{
+        "created": "26-07-2019 4:22:49",
+        "ups": 1,
+        "body": "Lmao chill, wasn't trying to personally offend you. You have to understand harry potter comparisons are super cringeworthy. It has nothing to do with what topic you used it to explain.",
+        "replies": []
+      }]
+    }]
+  }, {
+    "created": "26-07-2019 4:48:52",
+    "ups": 1,
+    "body": "TLDR for those of us who don't give a fuck but want to know anyways because our brain demands useless information to waste time as a form of entertainment please.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 3:30:38",
+    "ups": 1,
+    "body": "what the fuck is a hufflepuff",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:19:07",
+    "ups": 1,
+    "body": "I'm an undergrad getting a mathematics degree and this is, of course, nonsense. What kind of education do you need to 'understand vertex induced subgraphs?'",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:23:47",
+    "ups": 1,
+    "body": "This is amazing. Thank you!",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:29:16",
+    "ups": 1,
+    "body": "[relevant to my comedy...](https://youtu.be/0eg-4dp68RQ)",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:35:44",
+    "ups": 1,
+    "body": "Could someone ELI-ComputerScience undergraduate?",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:46:01",
+    "ups": 1,
+    "body": "Fuck I still don't get it :(",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:52:08",
+    "ups": 1,
+    "body": "I can’t even...my brain just exploded.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:04:46",
+    "ups": 1,
+    "body": "Reading this made my hair stand on end. The perfect ELI5",
+    "replies": []
+  }, {
+    "created": "26-07-2019 6:17:03",
+    "ups": 1,
+    "body": "When do you release your first popular science book? I will buy it.",
+    "replies": []
+  }, {
+    "created": "26-07-2019 5:27:08",
+    "ups": 1,
+    "body": "This guy thinks five year olds can read Harry potter",
+    "replies": []
+  }],
+  "count": 251
 }

@@ -47,6 +47,7 @@ export default async function getPostByIdExpanded(
       return TopComment;
     })
     .catch(err => {
+      console.log(err);
       return null;
     });
 }
