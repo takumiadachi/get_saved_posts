@@ -3,6 +3,12 @@ import moment from "moment";
 import { Comment, Listing } from "snoowrap";
 import { rMe } from "../config/r";
 
+/**
+ * Get post by Id and expand every comment. Requires alot of requests to Reddit API.
+ *
+ * @param id
+ * @param upVotes
+ */
 export default async function getPostByIdExpanded(
   id: string,
   upVotes: number

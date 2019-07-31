@@ -1,4 +1,4 @@
-# Size Limit [![Cult Of Martians][cult-img]][cult]
+# Get Saved Posts
 
 get_saved_posts is an api that lets you get posts you've saved or posts online in an easy to digest format with alot of uneeded meta-data trimmed.
 

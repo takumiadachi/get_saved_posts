@@ -16,10 +16,3 @@ export class TrimmedComment extends Content<TrimmedComment> {
     this.replies = replies;
   }
 }
-
-// export interface TrimmedComment {
-//   ups: number;
-//   body: string;
-//   created?: number;
-//   replies?: Listing<Comment> | TrimmedComment[];
-// }
