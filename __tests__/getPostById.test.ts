@@ -8,8 +8,8 @@ describe("getPostById async works", () => {
     expect(data).toBe(null);
   });
 
-  test("comment body should containt 'sinus infection'", async () => {
-    const data = await getPostById("ehdz2uj");
+  test("comment body should contain 'sinus infection'", async () => {
+    const data = await getPostById("evkxj13");
     expect(data.body).toContain("sinus infection");
   });
 });

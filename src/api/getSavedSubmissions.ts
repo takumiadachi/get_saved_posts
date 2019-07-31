@@ -20,6 +20,7 @@ async function getSavedSubmissions(
     );
     return filteredContent;
   } catch (err) {
+    console.log(err);
     return null;
   }
 }

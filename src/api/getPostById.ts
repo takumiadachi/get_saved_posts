@@ -22,7 +22,6 @@ export default async function getPostById(id: string): Promise<TrimmedComment> {
         comment.replies
       );
 
-      console.log(trimmedComment);
       return trimmedComment;
     })
     .catch(err => {

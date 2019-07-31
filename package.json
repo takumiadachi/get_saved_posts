@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "dev": "nodemon",
-    "test": "jest"
+    "test": "jest --silent"
   },
   "author": "Takumi Adachi",
   "license": "ISC",
