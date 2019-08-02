@@ -2,6 +2,17 @@
 
 get_saved_posts is an api that lets you get posts you've saved or posts online in an easy to digest format with alot of uneeded meta-data trimmed.
 
+## Develop
+
+```
+npm install
+npm run dev
+```
+
+## Example JSON Output
+
+[example.json](example.json)
+
 ```
 {
   "created": "26-07-2019 10:57:06",
@@ -20,4 +31,8 @@ get_saved_posts is an api that lets you get posts you've saved or posts online i
         "ups": score hidden,
         "body": "You sir are the true spirit of ELI5. I was 5 when I started reading that and now I’m definitely 6 at least.",
         "replies": [{..More Replies}]
+      }]
+    }]
+    ...
+  }
 ```
