@@ -2,8 +2,10 @@ require("dotenv").config();
 import path from "path";
 // Express
 import express from "express";
+import bodyParser from "body-parser";
 // Routers
 import redditRouter from "../routers/reddit/router";
+import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthURL";
 // Start the server with port.
 const PORT: number = parseInt(process.env.PORT) || 4201;
 // Initialize express.
@@ -11,17 +13,32 @@ const app = express();
 
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
 
-// express middleware
+/**
+ * Express Middleware
+ */
+// Body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // Use pug as our templating engine. It is built into express.
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
+/**
+ * Routes
+ */
 app.get("/", async (req, res) => {
-  res.render(path.join(__dirname, "views/login/index.pug"), { title: "hi" });
+  res.render(path.join(__dirname, "views/login/index.pug"), {
+    authURL: generateRedditOAuthURL()
+  });
 });
 
 app.use("/reddit", redditRouter);
+
+app.get("/success", async (req, res) => {
+  res.send("success");
+});
+
 // 404
 app.get("*", function(req, res) {
   res
