@@ -9,6 +9,31 @@ npm install
 npm run dev
 ```
 
+## Run the Code
+
+Find the id of a comment in a reddit URL like this: https://www.reddit.com/r/bestof/comments/cl210q/the_truth_about_medicare_for_all/evsqjhn?utm_source=share&utm_medium=web2x
+
+_cl210q_ is the comment id wwe want.
+
+in [index.ts](index.ts) file, uncomment some of the code and place the id in one of the functions. Look for this code:
+
+```
+const content = await getPostByIdExpanded("ev0azy2", 0); // Replace ev0azy2 with another comment id
+const json = JSON.stringify(content);
+fs.writeFile("reddit_me.json", json, (err, result) => {
+  if (err) console.log("error", err);
+});
+```
+
+Then run
+
+```
+npx ts-node src/index.ts
+// Outputs reddit_me.json
+```
+
+You can use something like a JSON Formatter to clean the reddit_me.json file. Try [https://jsonformatter.curiousconcept.com/](https://jsonformatter.curiousconcept.com/).
+
 ## Example JSON Output
 
 [example.json](example.json)

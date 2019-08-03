@@ -19,8 +19,8 @@ const rMe = new snoowrap({
   password: process.env.REDDIT_PASSWORD
 });
 
-// rMe.config({
-//   requestDelay: 1000
-// });
+rMe.config({
+  requestDelay: 1000
+});
 
 export { rMe, r };
