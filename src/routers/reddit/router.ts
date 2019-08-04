@@ -2,7 +2,7 @@ require("dotenv").config();
 import express from "express";
 import _ from "lodash";
 import retrieveAccessToken from "./retrieveAccessToken";
-
+import path from "path";
 let redditRouter = express.Router();
 
 /**
@@ -12,7 +12,9 @@ const REDIRECT_URL = "http://localhost:4201/reddit";
 
 // http://[address]/reddit
 redditRouter.get("/", (req, res) => {
-  res.send("/reddit");
+  res.render(path.join(__dirname, "views/index.pug"), {
+    test: "test"
+  });
 });
 
 redditRouter.get("/success", async (req, res) => {
@@ -31,8 +33,6 @@ redditRouter.get("/success", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-
-  // (async () => {})();
 });
 
 export default redditRouter;

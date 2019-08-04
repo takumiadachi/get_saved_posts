@@ -1,6 +1,6 @@
-import getPostByIdExpanded from "./api/getPostByIdExpanded";
-import getSavedSubmissions from "./api/getSavedSubmissions";
-import getPostById from "./api/getPostById";
+import getPostByIdExpanded from "./api/v1/getPostByIdExpanded";
+import getSavedSubmissions from "./api/v1/getSavedSubmissions";
+import getPostById from "./api/v1/getPostById";
 const fs = require("fs");
 
 (async () => {

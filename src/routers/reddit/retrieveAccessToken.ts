@@ -1,10 +1,10 @@
 import axios from "axios";
 import { btoa } from "../../utility/btoa";
+import { REDDIT_API_V1 } from "./Constants/reddit_api_v1";
 
 const REDDIT_CLIENT_ID = process.env.REDDIT_CLIENT_ID;
 const REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
 const REDDIT_REDIRECT_URI = process.env.REDDIT_REDIRECT_URI;
-import { REDDIT_API_V1 } from "./Constants/API_V1";
 
 export default async function retrieveAccessToken(code) {
   const response = await axios({

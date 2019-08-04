@@ -8,6 +8,9 @@ import redditRouter from "../routers/reddit/router";
 import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthURL";
 // Start the server with port.
 const PORT: number = parseInt(process.env.PORT) || 4201;
+// CouchDB
+const nano = require('nano')('http://localhost:5984');
+nano.db.create('alice')
 // Initialize express.
 const app = express();
 

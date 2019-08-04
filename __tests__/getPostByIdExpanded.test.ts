@@ -1,4 +1,4 @@
-import getPostByIdExpanded from "../src/api/getPostByIdExpanded";
+import getPostByIdExpanded from "../src/api/v1/getPostByIdExpanded";
 
 describe("getPostByIdExpanded async works", () => {
   beforeAll(async () => {});
