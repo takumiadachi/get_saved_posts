@@ -9,9 +9,10 @@ import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthUR
 // Start the server with port.
 const PORT: number = parseInt(process.env.PORT) || 4201;
 // CouchDB
-import { initializeCouch } from "../db/couchdb";
+import { createUserDB } from "../db/couchdb";
 (async () => {
-  const response = await initializeCouch();
+  const response = await createUserDB("UniqueUser");
+  console.log(response);
 })();
 
 // Initialize express.
