@@ -31,6 +31,7 @@ export default async function getPostByIdExpanded(
               comment.ups,
               comment.body,
               moment.unix(comment.created).format("DD-MM-YYYY h:mm:ss"),
+              comment.permalink,
               comment.replies ? trim(comment.replies, upVotes) : null
             );
             if (trimmedComment.ups > upVotes) {
@@ -46,6 +47,7 @@ export default async function getPostByIdExpanded(
         expanded.ups,
         expanded.body,
         moment.unix(expanded.created).format("DD-MM-YYYY h:mm:ss"),
+        expanded.permalink,
         trim(expanded.replies, upVotes)
       );
       // Add one for the top level comment

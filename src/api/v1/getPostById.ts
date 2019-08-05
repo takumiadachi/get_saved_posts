@@ -19,6 +19,7 @@ export default async function getPostById(id: string): Promise<TrimmedComment> {
         comment.ups,
         comment.body,
         moment.unix(comment.created).format("DD-MM-YYYY h:mm:ss"),
+        comment.permalink,
         comment.replies
       );
 
