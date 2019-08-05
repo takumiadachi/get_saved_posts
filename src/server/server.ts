@@ -12,7 +12,6 @@ const PORT: number = parseInt(process.env.PORT) || 4201;
 import { initializeCouch } from "../db/couchdb";
 (async () => {
   const response = await initializeCouch();
-  console.log(response);
 })();
 
 // Initialize express.

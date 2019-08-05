@@ -1,8 +1,17 @@
-const nano = require("nano")("http://localhost:5984");
+import Nano from "nano";
+let nano = Nano("http://localhost:5984");
 export async function initializeCouch() {
-  await nano.db.destroy("alice");
-  await nano.db.create("alice");
-  const alice = nano.use("alice");
-  const response = await alice.insert({ happy: true }, "rabbit");
-  return response;
+  try {
+    await nano.db.get("get_saved_posts");
+    await nano.db.destroy("get_saved_posts");
+    const created = await nano.db.create("get_saved_posts");
+    console.log(created);
+    const use = await nano.db.use("get_saved_posts");
+  } catch (e) {
+    if (e.error === "not_found") {
+      const created = await nano.db.create("get_saved_posts");
+      console.log(created);
+      await nano.db.use("get_saved_posts");
+    }
+  }
 }
