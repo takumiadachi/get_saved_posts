@@ -3,6 +3,8 @@ import path from "path";
 // Express
 import express from "express";
 import bodyParser from "body-parser";
+import session from "express-session";
+
 // Routers
 import redditRouter from "../routers/reddit/router";
 import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthURL";
@@ -23,6 +25,20 @@ app.listen(PORT, () => console.log(`Server started on ${PORT}`));
 /**
  * Express Middleware
  */
+// Session
+app.set("trust proxy", true); // trust first proxy
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 2 * 60 * 60 * 1000 // 2hours
+    }
+  })
+);
 // Body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,6 +54,20 @@ app.get("/", async (req, res) => {
   res.render(path.join(__dirname, "views/login/index.pug"), {
     authURL: generateRedditOAuthURL()
   });
+});
+
+app.get("/test", async (req, res) => {
+  console.log(req.session);
+  if (req.session.views) {
+    req.session.views++;
+    res.setHeader("Content-Type", "text/html");
+    res.write("<p>views: " + req.session.views + "</p>");
+    res.write("<p>expires in: " + req.session.cookie.maxAge / 1000 + "s</p>");
+    res.end();
+  } else {
+    req.session.views = 1;
+    res.end("welcome to the session demo. refresh!");
+  }
 });
 
 app.use("/reddit", redditRouter);

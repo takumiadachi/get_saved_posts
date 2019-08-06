@@ -29,6 +29,7 @@ redditRouter.get("/success", async (req, res) => {
   try {
     const accessToken = await retrieveAccessToken(code);
     console.log(accessToken);
+
     res.redirect(REDIRECT_URL);
   } catch (error) {
     console.log(error);

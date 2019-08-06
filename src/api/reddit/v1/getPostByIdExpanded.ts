@@ -1,7 +1,7 @@
-import { TrimmedComment } from "../../models/TrimmedComment";
+import { TrimmedComment } from "../../../models/TrimmedComment";
 import moment from "moment";
 import { Comment, Listing } from "snoowrap";
-import { rMe } from "../../config/r";
+import { rMe } from "../../../config/r";
 
 /**
  * Get post by Id and expand every comment. Requires alot of requests to Reddit API.
@@ -11,7 +11,7 @@ import { rMe } from "../../config/r";
  */
 export default async function getPostByIdExpanded(
   id: string,
-  upVotes: number
+  upVotes: number = -10
 ): Promise<TrimmedComment> {
   // Change this to async await in the future
   let total = 0;

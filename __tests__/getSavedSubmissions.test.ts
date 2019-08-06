@@ -1,4 +1,4 @@
-import getSavedSubmissions from "../src/api/v1/getSavedSubmissions";
+import getSavedSubmissions from "../src/api/reddit/v1/getSavedSubmissions";
 
 describe("getPostByIdExpanded async works", () => {
   beforeAll(async () => {});

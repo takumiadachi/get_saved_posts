@@ -1,4 +1,4 @@
-import getPostById from "../src/api/v1/getPostById";
+import getPostById from "../src/api/reddit/v1/getPostById";
 
 describe("getPostById async works", () => {
   beforeAll(async () => {});

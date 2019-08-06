@@ -1,5 +1,7 @@
 import Nano from "nano";
+
 let nano = Nano("http://localhost:5984");
+
 export async function initializeCouch() {
   let info = {};
   try {

@@ -1,6 +1,6 @@
-import getPostByIdExpanded from "./api/v1/getPostByIdExpanded";
-import getSavedSubmissions from "./api/v1/getSavedSubmissions";
-import getPostById from "./api/v1/getPostById";
+import getPostByIdExpanded from "./api/reddit/v1/getPostByIdExpanded";
+import getSavedSubmissions from "./api/reddit/v1/getSavedSubmissions";
+import getPostById from "./api/reddit/v1/getPostById";
 const fs = require("fs");
 
 (async () => {
@@ -16,7 +16,7 @@ const fs = require("fs");
   // fs.writeFile("reddit_me.json", json, (err, result) => {
   //   if (err) console.log("error", err);
   // });
-  const content = await getPostById("evkxj13");
+  const content = await getPostByIdExpanded("evkxj13");
   const json = JSON.stringify(content);
   fs.writeFile("reddit_me.json", json, (err, result) => {
     if (err) console.log("error", err);

@@ -1,7 +1,7 @@
-import { TrimmedComment } from "../../models/TrimmedComment";
+import { TrimmedComment } from "../../../models/TrimmedComment";
 import moment from "moment";
 import { Comment, Listing } from "snoowrap";
-import { rMe } from "../../config/r";
+import { rMe } from "../../../config/r";
 
 /**
  * Get post by Id and expand every comment. Requires alot of requests to Reddit API.
