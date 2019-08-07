@@ -25,10 +25,13 @@ app.listen(PORT, () => console.log(`Server started on ${PORT}`));
 /**
  * Express Middleware
  */
-// Session
+// Session & session-file-store
+var FileStore = require("session-file-store")(session);
+var fileStoreOptions = {};
 app.set("trust proxy", true); // trust first proxy
 app.use(
   session({
+    store: new FileStore(fileStoreOptions),
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
@@ -54,20 +57,6 @@ app.get("/", async (req, res) => {
   res.render(path.join(__dirname, "views/login/index.pug"), {
     authURL: generateRedditOAuthURL()
   });
-});
-
-app.get("/test", async (req, res) => {
-  console.log(req.session);
-  if (req.session.views) {
-    req.session.views++;
-    res.setHeader("Content-Type", "text/html");
-    res.write("<p>views: " + req.session.views + "</p>");
-    res.write("<p>expires in: " + req.session.cookie.maxAge / 1000 + "s</p>");
-    res.end();
-  } else {
-    req.session.views = 1;
-    res.end("welcome to the session demo. refresh!");
-  }
 });
 
 app.use("/reddit", redditRouter);
