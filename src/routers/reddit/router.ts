@@ -3,6 +3,7 @@ import express from "express";
 import _ from "lodash";
 import retrieveAccessToken from "./retrieveAccessToken";
 import path from "path";
+import uuidv1 from "uuid/v1";
 let redditRouter = express.Router();
 
 /**
@@ -12,13 +13,18 @@ const REDIRECT_URL = "http://localhost:4201/reddit";
 
 // http://[address]/reddit
 redditRouter.get("/", (req, res) => {
+  console.log(req.session);
   if (req.session.authenticated) {
     res.render(path.join(__dirname, "views/index.pug"), {
-      test: "authed"
+      authenticated: true,
+      sessionID: req.session.sessionID,
+      state: req.session.state
     });
   } else {
     res.render(path.join(__dirname, "views/index.pug"), {
-      test: "not authed"
+      authenticated: false,
+      sessionID: null,
+      state: null
     });
   }
 });
@@ -35,25 +41,15 @@ redditRouter.get("/success", async (req, res) => {
   try {
     const accessToken = await retrieveAccessToken(code);
     console.log(accessToken);
+    // Set authentication stuff up.
     req.session.authenticated = true;
+    req.session.sessionID = uuidv1();
+    req.session.state = req.query.state;
+    // Redirect to authenticated route.
     res.redirect(REDIRECT_URL);
   } catch (error) {
     console.log(error);
   }
 });
-
-// app.get("/test", async (req, res) => {
-//   console.log(req.session);
-//   if (req.session.views) {
-//     req.session.views++;
-//     res.setHeader("Content-Type", "text/html");
-//     res.write("<p>views: " + req.session.views + "</p>");
-//     res.write("<p>expires in: " + req.session.cookie.maxAge / 1000 + "s</p>");
-//     res.end();
-//   } else {
-//     req.session.views = 1;
-//     res.end("welcome to the session demo. refresh!");
-//   }
-// });
 
 export default redditRouter;
