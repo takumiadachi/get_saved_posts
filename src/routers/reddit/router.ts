@@ -4,6 +4,7 @@ import _ from "lodash";
 import retrieveAccessToken from "./retrieveAccessToken";
 import path from "path";
 import uuidv1 from "uuid/v1";
+import getPostById from "../../api/reddit/v1/getPostById";
 let redditRouter = express.Router();
 
 /**
@@ -27,6 +28,12 @@ redditRouter.get("/", (req, res) => {
       state: null
     });
   }
+});
+
+redditRouter.get("/getPost/:id/", async (req, res) => {
+  const id = req.params.id;
+  const json = await getPostById(id);
+  res.json(json);
 });
 
 redditRouter.get("/success", async (req, res) => {

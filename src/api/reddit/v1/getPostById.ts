@@ -1,6 +1,5 @@
 import { TrimmedComment } from "../../../models/TrimmedComment";
 import moment from "moment";
-import { Comment, Listing } from "snoowrap";
 import { rMe } from "../../../config/r";
 
 /**
