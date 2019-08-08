@@ -9,7 +9,21 @@ npm install
 npm run dev
 ```
 
-## Run the Code
+## Run as Web API
+
+```
+npm run dev
+# visit http://localhost:4201/reddit/getPost/evsqjhn
+```
+
+## Tests
+
+```
+npm run test
+```
+
+<!--
+## Run as code
 
 Find the id of a comment in a reddit URL like this: https://www.reddit.com/r/bestof/comments/cl210q/the_truth_about_medicare_for_all/evsqjhn?utm_source=share&utm_medium=web2x
 
@@ -31,8 +45,7 @@ Then run
 npx ts-node src/index.ts
 // Outputs reddit_me.json
 ```
-
-You can use something like a JSON Formatter to clean the reddit_me.json file. Try [https://jsonformatter.curiousconcept.com/](https://jsonformatter.curiousconcept.com/).
+-->
 
 ## Example JSON Output
 
