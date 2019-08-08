@@ -20,7 +20,8 @@ const rMe = new snoowrap({
 });
 
 rMe.config({
-  requestDelay: 1000
+  requestDelay: 100,
+  warnings: true
 });
 
 export { rMe, r };
