@@ -1,27 +1,6 @@
 import Nano from "nano";
 
-let nano = Nano("http://localhost:5984");
-
-export async function initializeCouch() {
-  let info = {};
-  try {
-    await nano.db.get("get_saved_posts");
-    await nano.db.destroy("get_saved_posts");
-    const created = await nano.db.create("get_saved_posts");
-    await nano.db.use("get_saved_posts");
-    info["created"] = created;
-    return info;
-  } catch (e) {
-    if (e.error === "not_found") {
-      const created = await nano.db.create("get_saved_posts");
-      console.log(created);
-      await nano.db.use("get_saved_posts");
-      info["created"] = created;
-      return info;
-    }
-    return null;
-  }
-}
+export let nano = Nano("http://localhost:5984");
 
 /**
  * Returns dbName if a db with that name is found else creates one.

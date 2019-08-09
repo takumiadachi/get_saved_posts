@@ -14,10 +14,10 @@ export default class Details {
   scope: string;
 
   constructor(
-    access_token,
-    expires_in,
-    refresh_token,
-    scope,
+    access_token = null,
+    expires_in = null,
+    refresh_token = null,
+    scope = null,
     token_type = null
   ) {
     this.access_token = access_token;

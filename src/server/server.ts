@@ -12,9 +12,37 @@ import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthUR
 const PORT: number = parseInt(process.env.PORT) || 4201;
 // CouchDB
 import { createUserDB } from "../db/couchdb";
+import { addRedditPost } from "../db/methods/addPost";
+import { TrimmedComment } from "../models/TrimmedComment";
 (async () => {
   const response = await createUserDB("UniqueUser");
+  const json = {
+    created: "31-07-2019 4:42:51",
+    ups: 10,
+    body:
+      "Got a sinus infection at the end of deload week for 531, so this week has been hell. But you’re fucking mistaken if you think I’m not going to deadlift with snot pouring out of every orifice until I likely pass out. Also just broke up with a girlfriend of six years and my grandfather died, idk if that’s really relevant though",
+    permalink: "/r/Fitness/comments/ck6f4v/rant_wednesday/evkxj13/",
+    replies: [
+      {
+        created: "31-07-2019 6:23:11",
+        ups: 1,
+        body:
+          "I'm in sinus infection no2 in the last Three months, I can't even go to the gym with the pressure headaches and I'm afraid I'll fall over from the dizzyness. Feels bad.",
+        permalink: "/r/Fitness/comments/ck6f4v/rant_wednesday/evlepre/",
+        replies: []
+      }
+    ]
+  };
+  const tc = new TrimmedComment(
+    json.ups,
+    json.body,
+    json.created,
+    json.permalink,
+    json.replies
+  );
+  const inserted = await addRedditPost("uniqueuser", tc);
   console.log(response);
+  console.log(inserted);
 })();
 
 // Initialize express.
