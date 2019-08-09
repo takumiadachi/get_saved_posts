@@ -9,7 +9,7 @@ export async function addRedditPost(dbName: string, post: TrimmedComment) {
     post.processAPIResponse(inserted);
     return post;
   } catch (error) {
-    console.log(error);
+    console.log(error.reason);
     return null;
   }
 }

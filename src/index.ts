@@ -4,6 +4,9 @@ import getPostById from "./api/reddit/v1/getPostById";
 const fs = require("fs");
 
 (async () => {
+  const data = await getPostById("evkxj13");
+  const json = JSON.stringify(data);
+  console.log(json);
   // const content = await getPostByIdExpanded("ev0azy2", 0); // Replace ev0azy2 with another comment id
   // const json = JSON.stringify(content);
   // fs.writeFile("reddit_me.json", json, (err, result) => {
@@ -16,9 +19,9 @@ const fs = require("fs");
   // fs.writeFile("reddit_me.json", json, (err, result) => {
   //   if (err) console.log("error", err);
   // });
-  const content = await getPostByIdExpanded("evkxj13");
-  const json = JSON.stringify(content);
-  fs.writeFile("reddit_me.json", json, (err, result) => {
-    if (err) console.log("error", err);
-  });
+  // const content = await getPostByIdExpanded("evkxj13");
+  // const json = JSON.stringify(content);
+  // fs.writeFile("reddit_me.json", json, (err, result) => {
+  //   if (err) console.log("error", err);
+  // });
 })();

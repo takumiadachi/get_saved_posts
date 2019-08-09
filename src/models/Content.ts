@@ -1,6 +1,4 @@
 export default class Content<T> {
-  _rev;
-  _id;
   count;
 
   setCount(count) {
