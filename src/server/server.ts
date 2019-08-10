@@ -14,6 +14,7 @@ const PORT: number = parseInt(process.env.PORT) || 4201;
 import { createUserDB } from "../db/couchdb";
 import { addRedditPost } from "../db/methods/addRedditPost";
 import { TrimmedComment } from "../models/TrimmedComment";
+import { getRedditPost } from "../db/methods/getRedditPost";
 (async () => {
   const response = await createUserDB("UniqueUser");
   console.log("dbName: ", response);
@@ -41,9 +42,9 @@ import { TrimmedComment } from "../models/TrimmedComment";
     json.permalink,
     json.replies
   );
-  const inserted = await addRedditPost("uniqueuser", tc);
-
-  console.log("inserted: ", inserted);
+  // const inserted = await addRedditPost("uniqueuser", tc);
+  // console.log("inserted: ", inserted);
+  const view = await getRedditPost("uniqueuser");
 })();
 
 // Initialize express.
