@@ -1,5 +1,7 @@
 import { nano } from "../couchdb/index";
 import * as Nano from "nano";
+import { EventEmitter } from "events";
+import { emit } from "cluster";
 
 export async function addDesignDoc(dbName: string) {
   try {
@@ -33,15 +35,15 @@ class Residence implements Nano.Document {
     }
   }
 }
-
+// "function(doc) { console.log(doc); emit([doc.name, doc.city], doc); }"
 class ResidenceView implements Nano.ViewDocument<Residence> {
   _id: string;
-  views: { [name: string]: Nano.View<Residence> };
+  views: any; // FIGURE OUT THIS TYPE
   constructor() {
     this.views = {
-      by_city: {
+      all: {
         map: doc => {
-          emit([doc.name, doc.city], doc._id);
+          emit(doc.name, doc._id);
         }
       }
     };
@@ -56,7 +58,12 @@ class ResidenceView implements Nano.ViewDocument<Residence> {
   // await db.insert(new Residence("Ange", "Fukuoka"));
   // await db.insert(new Residence("Shelly", "Macao"));
   const newView = await new ResidenceView();
-  const insertDesign = await db.insert(newView);
-  const view = await db.view("body_view", "body", { key: "sinus" });
+  // const insertDesign = await db.insert(newView, "_design/people");
+  const tryView = await db.view("people", "all", {
+    key: "Jule"
+  });
+  console.log(tryView.rows[0].value);
+  // const view = await db.view("body_view", "body", { key: "sinus" });
+  // const useView = db.view();
   await addDesignDoc("uniqueuser");
 })();
