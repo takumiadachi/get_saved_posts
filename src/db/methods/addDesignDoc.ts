@@ -19,39 +19,41 @@ export async function addDesignDoc(dbName: string) {
 class PostView implements Nano.ViewDocument<TrimmedComment> {
   _id: string;
   views: { [name: string]: Nano.View<TrimmedComment> };
-  // views: any;
   constructor() {
+    // Does not like ES6 => arrows, use function(doc) {}
     this.views = {
-      ups: {
+      all: {
         map: function(doc) {
-          // if (doc.ups > 0) {
-          // Ignore until this gets fixed by couchdb-nano devs
-          // @ts-ignore
-          emit(doc.body, doc.ups, doc._id);
-          // }
+          if (doc.body && doc.ups) {
+            // ts-ignore until a solution is found
+            // @ts-ignore
+            // Emit is key/value
+            emit(doc.permalink, {
+              body: doc.body,
+              ups: doc.ups,
+              replies: doc.replies
+            });
+          }
         }
       }
-      // search_body: {
-      //   map: doc => {
-      //     // Check if lowercase uppercase matters.
-      //     if (doc.body.indexOf(doc.value)) {
-      //       // Value is the search term
-      //       emit(doc.ups, doc.body, doc.created, doc.permalink);
-      //     }
-      //   }
-      // }
     };
   }
 }
 
 (async () => {
   const db = await nano.use("uniqueuser");
-  // const newView = await new PostView();
-  // const insertDesign = await db.insert(newView, "_design/posts");
-  const tryView = await db.view("posts", "ups");
-  console.log(tryView);
+  const getView = await db.get("_design/posts", { revs_info: true });
+  const lastRevView = getView._rev;
+  // console.log(getView._rev);
+  const destroyDesign = await db.destroy("_design/posts", getView._rev);
+  const newView = await new PostView();
+  const insertDesign = await db.insert(newView, "_design/posts");
+  const tryView = await db.view("posts", "all", {
+    key: "/r/Fitness/comments/ck6f4v/rant_wednesday/evkxj14/"
+  });
+  console.log(tryView.rows);
   // console.log(tryView.rows[0].value);
   // const view = await db.view("body_view", "body", { key: "sinus" });
   // const useView = db.view();
-  await addDesignDoc("uniqueuser");
+  // await addDesignDoc("uniqueuser");
 })();
