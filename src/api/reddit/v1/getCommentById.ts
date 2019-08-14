@@ -8,7 +8,9 @@ import { rMe } from "../../../config/r";
  * @param id
  * @param upVotes
  */
-export default async function getPostById(id: string): Promise<TrimmedComment> {
+export default async function getCommentById(
+  id: string
+): Promise<TrimmedComment> {
   // Change this to async await in the future
   return rMe
     .getComment(id)

@@ -5,8 +5,8 @@ import retrieveAccessToken from "./auth/retrieveAccessToken";
 import path from "path";
 import uuidv1 from "uuid/v1";
 import refreshToken from "./auth/refreshToken";
-import getPostById from "../../api/reddit/v1/getPostById";
-import getPostByIdExpanded from "../../api/reddit/v1/getPostByIdExpanded";
+import getCommentById from "../../api/reddit/v1/getCommentById";
+import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
 import Details from "./auth/model/details";
 let redditRouter = express.Router();
 
@@ -38,14 +38,14 @@ redditRouter.get("/", (req, res) => {
 
 redditRouter.get("/getPost/:id/", async (req, res) => {
   const id = req.params.id;
-  const json = await getPostById(id);
+  const json = await getCommentById(id);
   res.json(json);
 });
 
 redditRouter.get("/getPost/expanded/:id/:upvotes", async (req, res) => {
   const id = req.params.id;
   const upvotes: number = req.params.upvotes ? req.params.upvotes : -20;
-  const json = await getPostByIdExpanded(id, upvotes);
+  const json = await getCommentByIdExpanded(id, upvotes);
   res.json(json);
 });
 

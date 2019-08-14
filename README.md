@@ -74,3 +74,13 @@ npx ts-node src/index.ts
     ...
   }
 ```
+
+## Terminology
+
+https://www.reddit.com/r/AskWomen/comments/[cq8yop]/how_do_you_maximise_your_time_in_the_evening/[ewunlr7]
+
+**Posts**: All submissions and comments are posts.
+
+**Submissions**: A _Submission_ has _Comments_. 'cq8yop' is a unique submission id.
+
+**Comments**: This has the main body of text the reddit poster makes. 'ewunlr7' is a unique comment id.

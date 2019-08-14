@@ -1,10 +1,10 @@
-import getPostByIdExpanded from "./api/reddit/v1/getPostByIdExpanded";
+import getCommentByIdExpanded from "./api/reddit/v1/getCommentByIdExpanded";
 import getSavedSubmissions from "./api/reddit/v1/getSavedSubmissions";
-import getPostById from "./api/reddit/v1/getPostById";
+import getCommentById from "./api/reddit/v1/getCommentById";
 const fs = require("fs");
 
 (async () => {
-  const data = await getPostById("evkxj13");
+  const data = await getCommentById("ewunlr7");
   const json = JSON.stringify(data);
   console.log(json);
   // const content = await getPostByIdExpanded("ev0azy2", 0); // Replace ev0azy2 with another comment id

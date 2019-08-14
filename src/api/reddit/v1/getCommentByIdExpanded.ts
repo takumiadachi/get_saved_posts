@@ -9,7 +9,7 @@ import { rMe } from "../../../config/r";
  * @param id
  * @param upVotes
  */
-export default async function getPostByIdExpanded(
+export default async function getCommentByIdExpanded(
   id: string,
   upVotes: number = -10
 ): Promise<TrimmedComment> {
