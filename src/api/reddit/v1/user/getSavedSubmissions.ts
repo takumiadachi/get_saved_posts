@@ -1,5 +1,5 @@
 import { Comment, Submission } from "snoowrap";
-import { rMe } from "../../../config/r";
+import { rMe } from "../../../../config/r";
 
 // Get saved user posts
 async function getSavedSubmissions(

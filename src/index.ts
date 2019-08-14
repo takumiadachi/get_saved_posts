@@ -1,5 +1,5 @@
 import getCommentByIdExpanded from "./api/reddit/v1/getCommentByIdExpanded";
-import getSavedSubmissions from "./api/reddit/v1/getSavedSubmissions";
+import getSavedSubmissions from "./api/reddit/v1/user/getSavedSubmissions";
 import getCommentById from "./api/reddit/v1/getCommentById";
 const fs = require("fs");
 

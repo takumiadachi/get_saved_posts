@@ -3,7 +3,7 @@ import moment from "moment";
 import { rMe } from "../../../config/r";
 
 /**
- * Get post by Id and expand every comment. Requires alot of requests to Reddit API.
+ * Get comment by id
  *
  * @param id
  * @param upVotes

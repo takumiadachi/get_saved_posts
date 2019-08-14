@@ -77,10 +77,10 @@ npx ts-node src/index.ts
 
 ## Terminology
 
-https://www.reddit.com/r/AskWomen/comments/[cq8yop]/how_do_you_maximise_your_time_in_the_evening/[ewunlr7]
+https://www.reddit.com/r/AskReddit/comments/cq6xft/what_do_you_like_most_about_yourself/ewuczoy
 
 **Posts**: All submissions and comments are posts.
 
-**Submissions**: A _Submission_ has _Comments_. 'cq8yop' is a unique submission id.
+**Submissions**: A _Submission_ has _Comments_. It has the main topic where everyone posts comments discussing the topic. 'cq6xft' is a unique submission id.
 
-**Comments**: This has the main body of text the reddit poster makes. 'ewunlr7' is a unique comment id.
+**Comments**: This has the main body of text the reddit poster makes. 'ewuczoy' is a unique comment id.
