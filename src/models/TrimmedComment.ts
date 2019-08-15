@@ -11,6 +11,7 @@ export class TrimmedComment extends Content<TrimmedComment>
   body: string;
   created: string;
   permalink: string;
+  username: string;
   replies?: Listing<Comment> | TrimmedComment[]; // Note: replies should always be last
 
   // Note: replies should always be last because when it uses a function, the next property will not be saved.
@@ -19,6 +20,7 @@ export class TrimmedComment extends Content<TrimmedComment>
     body: string,
     created: string,
     permalink: string,
+    username: string,
     replies
   ) {
     super();
@@ -27,8 +29,12 @@ export class TrimmedComment extends Content<TrimmedComment>
     this.created = created;
     this.permalink = permalink;
     this.replies = replies;
+    this.username = username;
     this._id = uuhash(this.permalink);
   }
+
+  // OVERLOAD CONSTRUCTOR MULTIPLE CONSTRUCTORS FIGURE OUT
+  // constructor(comment: Comment) {}
 
   processAPIResponse(response: Nano.DocumentInsertResponse) {
     if (response.ok === true) {

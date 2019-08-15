@@ -21,6 +21,7 @@ export default async function getCommentById(
         comment.body,
         moment.unix(comment.created).format("DD-MM-YYYY h:mm:ss"),
         comment.permalink,
+        comment.name,
         comment.replies
       );
 
