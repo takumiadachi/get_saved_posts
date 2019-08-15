@@ -1,5 +1,4 @@
 import { TrimmedComment } from "../../../models/TrimmedComment";
-import moment from "moment";
 import { rMe } from "../../../config/r";
 
 /**
@@ -19,7 +18,7 @@ export default async function getCommentById(
       const trimmedComment = new TrimmedComment(
         comment.ups,
         comment.body,
-        moment.unix(comment.created).format("DD-MM-YYYY h:mm:ss"),
+        comment.created,
         comment.permalink,
         comment.name,
         comment.replies

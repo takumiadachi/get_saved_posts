@@ -1,7 +1,8 @@
-import { Listing } from "snoowrap";
+import { Listing, Comment } from "snoowrap";
 import Content from "./Content";
 import * as Nano from "nano";
 import uuhash from "../db/methods/uuhash";
+import moment from "moment";
 
 export class TrimmedComment extends Content<TrimmedComment>
   implements Nano.MaybeDocument {
@@ -11,30 +12,38 @@ export class TrimmedComment extends Content<TrimmedComment>
   body: string;
   created: string;
   permalink: string;
-  username: string;
+  author: string;
   replies?: Listing<Comment> | TrimmedComment[]; // Note: replies should always be last
 
   // Note: replies should always be last because when it uses a function, the next property will not be saved.
   constructor(
     ups: number,
     body: string,
-    created: string,
+    created: number,
     permalink: string,
-    username: string,
+    author: string,
     replies
   ) {
     super();
     this.ups = ups;
     this.body = body;
-    this.created = created;
+    this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");
     this.permalink = permalink;
     this.replies = replies;
-    this.username = username;
+    this.author = author;
     this._id = uuhash(this.permalink);
   }
 
-  // OVERLOAD CONSTRUCTOR MULTIPLE CONSTRUCTORS FIGURE OUT
-  // constructor(comment: Comment) {}
+  public static fromComment(comm: Comment): TrimmedComment {
+    return new TrimmedComment(
+      comm.ups,
+      comm.body,
+      comm.created,
+      comm.permalink,
+      comm.author.name,
+      comm.replies
+    );
+  }
 
   processAPIResponse(response: Nano.DocumentInsertResponse) {
     if (response.ok === true) {

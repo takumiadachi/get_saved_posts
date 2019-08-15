@@ -1,7 +1,8 @@
-import { Listing, Submission } from "snoowrap";
+import { Submission, RedditUser, Subreddit } from "snoowrap";
 import Content from "./Content";
 import * as Nano from "nano";
 import uuhash from "../db/methods/uuhash";
+import moment from "moment";
 
 export class TrimmedSubmission extends Content<TrimmedSubmission>
   implements Nano.MaybeDocument {
@@ -10,22 +11,51 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   subreddit: string;
   title: string;
   ups: number;
-  username: string;
+  author: string;
+  over_18: boolean;
+  rId: string; // reddit submission id
+  created: string;
+  permalink: string;
+
   // Note: replies should always be last because when it uses a function, the next property will not be saved.
-  constructor(subreddit, title, ups, username) {
+  constructor(
+    subreddit: Subreddit,
+    title,
+    ups,
+    author: RedditUser,
+    over_18,
+    rId,
+    created,
+    permalink
+  ) {
     super();
-    this.subreddit = subreddit;
+    this.subreddit = subreddit.name;
     this.title = title;
     this.ups = ups;
-    this.username = username;
-    this._id = uuhash(this.permalink);
+    this.author = author.name;
+    this.over_18 = over_18;
+    this.rId = rId;
+    this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");
+    this.permalink = permalink;
+    this._id = uuhash(permalink);
   }
 
   /**
    * An alternative way to create a TrimmedSubmission from reddit's Submission class.
    * @param Submission
    */
-  public static fromSubmission(Submission: Submission): TrimmedSubmission {}
+  public static fromSubmission(sub: Submission): TrimmedSubmission {
+    return new TrimmedSubmission(
+      sub.subreddit,
+      sub.title,
+      sub.ups,
+      sub.author,
+      sub.over_18,
+      sub.id,
+      sub.created,
+      sub.permalink
+    );
+  }
 
   processAPIResponse(response: Nano.DocumentInsertResponse) {
     if (response.ok === true) {

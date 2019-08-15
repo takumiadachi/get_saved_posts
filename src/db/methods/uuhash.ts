@@ -1,7 +1,7 @@
 import crypto from "crypto";
 
 /**
- * Produces a the same hash with the same string.
+ * Produces the same hash with the same string.
  * @param str
  */
 export default function uuhash(str: string) {

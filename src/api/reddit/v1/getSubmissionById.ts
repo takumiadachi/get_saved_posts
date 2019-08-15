@@ -1,7 +1,5 @@
-import { TrimmedComment } from "../../../models/TrimmedComment";
-import moment from "moment";
-import { Comment, Listing } from "snoowrap";
 import { rMe } from "../../../config/r";
+import { TrimmedSubmission } from "../../../models/TrimmedSubmission";
 const fs = require("fs");
 /**
  * Get comment by id and expand every comment. Requires alot of requests to Reddit API.
@@ -9,13 +7,15 @@ const fs = require("fs");
  * @param id
  * @param upVotes
  */
-export default async function getSubmissionById(id: string) {
+export default async function getSubmissionById(
+  id: string
+): Promise<TrimmedSubmission> {
   return rMe
     .getSubmission(id)
     .fetch()
     .then(submission => {
-      // console.log(submission);
-      return submission;
+      const trimmedSubmission = TrimmedSubmission.fromSubmission(submission);
+      return trimmedSubmission;
     })
     .catch(err => {
       console.log(err);
@@ -25,8 +25,9 @@ export default async function getSubmissionById(id: string) {
 
 (async () => {
   const data = await getSubmissionById("2np694");
-  const json = JSON.stringify(data);
-  fs.writeFile("./reddit_me.json", json, (err, result) => {
-    if (err) console.log("error", err);
-  });
+  console.log(data);
+  // const json = JSON.stringify(data);
+  // fs.writeFile("./reddit_me.json", json, (err, result) => {
+  //   if (err) console.log("error", err);
+  // });
 })();
