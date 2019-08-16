@@ -1,7 +1,7 @@
 import { Listing, Comment, RedditUser } from "snoowrap";
 import Content from "./Content";
 import * as Nano from "nano";
-import uuhash from "../db/methods/uuhash";
+import uuhash from "../db/couchdb/methods/uuhash";
 import moment from "moment";
 
 export class TrimmedComment extends Content<TrimmedComment>

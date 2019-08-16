@@ -1,5 +1,5 @@
-import { nano } from "../couchdb/index";
-import { TrimmedComment } from "../../models/TrimmedComment";
+import { nano } from "../../connect";
+import { TrimmedComment } from "../../../../models/TrimmedComment";
 
 export async function addRedditPost(dbName: string, post: TrimmedComment) {
   try {

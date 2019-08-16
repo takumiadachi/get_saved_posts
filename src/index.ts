@@ -2,7 +2,13 @@ import getCommentByIdExpanded from "./api/reddit/v1/getCommentByIdExpanded";
 import getSavedSubmissions from "./api/reddit/v1/user/getSavedSubmissions";
 import getCommentById from "./api/reddit/v1/getCommentById";
 const fs = require("fs");
+// CouchDB
+import { createUserDb } from "./db/couchdb/methods/createUserDb";
+import { addRedditPost } from "./db/couchdb/methods/reddit/addRedditPost";
+import { TrimmedComment } from "./models/TrimmedComment";
+import { getRedditPost } from "./db/couchdb/methods/reddit/getRedditPost";
 
+// API
 (async () => {
   // const data = await getCommentById("ewunlr7");
   // const json = JSON.stringify(data);
@@ -13,9 +19,15 @@ const fs = require("fs");
   // fs.writeFile("reddit_me.json", json, (err, result) => {
   //   if (err) console.log("error", err);
   // });
-  const content = await getSavedSubmissions("crush"); // Replace ev0azy2 with another comment id
-  const json = JSON.stringify(content);
-  fs.writeFile("reddit_me.json", json, (err, result) => {
-    if (err) console.log("error", err);
-  });
+  // const content = await getSavedSubmissions("crush"); // Replace ev0azy2 with another comment id
+  // const json = JSON.stringify(content);
+  // fs.writeFile("reddit_me.json", json, (err, result) => {
+  //   if (err) console.log("error", err);
+  // });
+})();
+
+// DB
+(async () => {
+  const response = await createUserDb("UniqueUser");
+  // const view = await getRedditPost("uniqueuser");
 })();

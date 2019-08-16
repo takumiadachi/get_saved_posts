@@ -1,6 +1,6 @@
-import { nano } from "../couchdb/index";
+import { nano } from "../connect";
 import * as Nano from "nano";
-import { TrimmedComment } from "../../models/TrimmedComment";
+import { TrimmedComment } from "../../../models/TrimmedComment";
 
 export async function addDesignDoc(dbName: string) {
   try {
