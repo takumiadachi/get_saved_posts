@@ -4,12 +4,12 @@ describe("getPostById async works", () => {
   beforeAll(async () => {});
 
   test("should return null", async () => {
-    const data = await getCommentById("this is a bad id");
-    expect(data).toBe(null);
+    const comment = await getCommentById("this is a bad id");
+    expect(comment).toBe(null);
   });
 
   test("comment body should contain 'sinus infection'", async () => {
-    const data = await getCommentById("evkxj13");
-    expect(data.body).toContain("sinus infection");
+    const comment = await getCommentById("evkxj13");
+    expect(comment.body).toContain("sinus infection");
   });
 });

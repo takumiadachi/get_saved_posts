@@ -1,4 +1,4 @@
-import { r } from "../../../config/r";
+import { rMe } from "../../../config/r";
 import { TrimmedSubmission } from "../../../models/TrimmedSubmission";
 const fs = require("fs");
 /**
@@ -10,7 +10,7 @@ const fs = require("fs");
 export default async function getSubmissionById(
   id: string
 ): Promise<TrimmedSubmission> {
-  return r
+  return rMe
     .getSubmission(id)
     .fetch()
     .then(submission => {
@@ -22,12 +22,3 @@ export default async function getSubmissionById(
       return null;
     });
 }
-
-(async () => {
-  const data = await getSubmissionById("2np694");
-  console.log(data);
-  // const json = JSON.stringify(data);
-  // fs.writeFile("./reddit_me.json", json, (err, result) => {
-  //   if (err) console.log("error", err);
-  // });
-})();

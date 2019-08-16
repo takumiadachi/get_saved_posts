@@ -1,6 +1,6 @@
 import { TrimmedComment } from "../../../models/TrimmedComment";
 import { Comment, Listing } from "snoowrap";
-import { r } from "../../../config/r";
+import { rMe2 } from "../../../config/r";
 
 /**
  * Get comment by id and expand every comment. Requires alot of requests to Reddit API.
@@ -14,7 +14,7 @@ export default async function getCommentByIdExpanded(
 ): Promise<TrimmedComment> {
   // Change this to async await in the future
   let total = 0;
-  return r
+  return rMe2
     .getComment(id)
     .fetch()
     .then(comment => comment.expandReplies())

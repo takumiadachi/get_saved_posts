@@ -37,7 +37,7 @@ const r2 = new snoowrap({
 });
 
 r2.config({
-  requestDelay: 100
+  requestDelay: 1000
   // warnings: true
 });
 
@@ -55,7 +55,7 @@ const rMe = new snoowrap({
 });
 
 rMe.config({
-  requestDelay: 100
+  requestDelay: 25
   // warnings: true
 });
 
