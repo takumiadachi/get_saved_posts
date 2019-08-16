@@ -1,5 +1,5 @@
 import { Comment, Submission } from "snoowrap";
-import { rMe } from "../../../../config/r";
+import { rMe2 } from "../../../../config/r";
 import { TrimmedSubmission } from "../../../../models/TrimmedSubmission";
 
 // Get saved user posts
@@ -14,10 +14,10 @@ async function getSavedSubmissions(
   search: string
 ): Promise<(Comment | Submission | TrimmedSubmission)[]> {
   try {
-    const savedContent = await rMe.getMe().getSavedContent();
+    const savedContent = await rMe2.getMe().getSavedContent();
     const allSavedContent = await savedContent.fetchAll();
-    // Get all saved content urls
-    const filteredContent: (any)[] = allSavedContent.filter(
+    // Map all saved content urls based on search query.
+    const filteredContent: (TrimmedSubmission)[] = allSavedContent.map(
       (submission: Submission) => {
         if (submission.title) {
           if (submission.title.includes(search)) {
@@ -29,7 +29,13 @@ async function getSavedSubmissions(
         }
       }
     );
-    return filteredContent;
+    // Remove nulls
+    const endResultContent: (TrimmedSubmission)[] = filteredContent.filter(
+      submission => {
+        return submission != null;
+      }
+    );
+    return endResultContent;
   } catch (err) {
     console.log(err);
     return null;
