@@ -1,4 +1,4 @@
-import { Listing, Comment } from "snoowrap";
+import { Listing, Comment, RedditUser } from "snoowrap";
 import Content from "./Content";
 import * as Nano from "nano";
 import uuhash from "../db/methods/uuhash";
@@ -21,17 +21,17 @@ export class TrimmedComment extends Content<TrimmedComment>
     body: string,
     created: number,
     permalink: string,
-    author: string,
+    author: RedditUser,
     replies
   ) {
     super();
+    this._id = uuhash(permalink);
     this.ups = ups;
     this.body = body;
     this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");
     this.permalink = permalink;
+    this.author = author.name;
     this.replies = replies;
-    this.author = author;
-    this._id = uuhash(this.permalink);
   }
 
   public static fromComment(comm: Comment): TrimmedComment {
@@ -40,7 +40,7 @@ export class TrimmedComment extends Content<TrimmedComment>
       comm.body,
       comm.created,
       comm.permalink,
-      comm.author.name,
+      comm.author,
       comm.replies
     );
   }

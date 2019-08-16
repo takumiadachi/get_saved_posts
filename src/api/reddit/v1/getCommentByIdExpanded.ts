@@ -1,7 +1,6 @@
 import { TrimmedComment } from "../../../models/TrimmedComment";
-import moment from "moment";
 import { Comment, Listing } from "snoowrap";
-import { rMe } from "../../../config/r";
+import { r } from "../../../config/r";
 
 /**
  * Get comment by id and expand every comment. Requires alot of requests to Reddit API.
@@ -15,7 +14,7 @@ export default async function getCommentByIdExpanded(
 ): Promise<TrimmedComment> {
   // Change this to async await in the future
   let total = 0;
-  return rMe
+  return r
     .getComment(id)
     .fetch()
     .then(comment => comment.expandReplies())
@@ -30,8 +29,9 @@ export default async function getCommentByIdExpanded(
             const trimmedComment = new TrimmedComment(
               comment.ups,
               comment.body,
-              moment.unix(comment.created).format("DD-MM-YYYY h:mm:ss"),
+              comment.created,
               comment.permalink,
+              comment.author,
               comment.replies ? trim(comment.replies, upVotes) : null
             );
             if (trimmedComment.ups > upVotes) {
@@ -46,8 +46,9 @@ export default async function getCommentByIdExpanded(
       const TopComment: TrimmedComment = new TrimmedComment(
         expanded.ups,
         expanded.body,
-        moment.unix(expanded.created).format("DD-MM-YYYY h:mm:ss"),
+        expanded.created,
         expanded.permalink,
+        expanded.author,
         trim(expanded.replies, upVotes)
       );
       // Add one for the top level comment

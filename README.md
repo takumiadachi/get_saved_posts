@@ -2,6 +2,12 @@
 
 get_saved_posts is an api that lets you get posts you've saved or posts online in an easy to digest format with alot of uneeded meta-data trimmed.
 
+## Technologies
+
+Typescript >= 3.x.x
+CouchDB >= 7.x.x
+Express >= 4.x.x
+
 ## Develop
 
 ```
@@ -79,7 +85,7 @@ npx ts-node src/index.ts
 
 https://www.reddit.com/r/AskReddit/comments/cq6xft/what_do_you_like_most_about_yourself/ewuczoy
 
-**Posts**: All submissions and comments are posts.
+**Posts**: All submissions and comments are _posts_.
 
 **Submissions**: A _Submission_ has _Comments_. It has the main topic where everyone posts comments discussing the topic. 'cq6xft' is a unique submission id.
 

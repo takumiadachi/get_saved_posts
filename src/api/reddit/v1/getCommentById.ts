@@ -1,5 +1,5 @@
 import { TrimmedComment } from "../../../models/TrimmedComment";
-import { rMe } from "../../../config/r";
+import { r } from "../../../config/r";
 
 /**
  * Get comment by id
@@ -11,7 +11,7 @@ export default async function getCommentById(
   id: string
 ): Promise<TrimmedComment> {
   // Change this to async await in the future
-  return rMe
+  return r
     .getComment(id)
     .fetch()
     .then(comment => {
@@ -20,7 +20,7 @@ export default async function getCommentById(
         comment.body,
         comment.created,
         comment.permalink,
-        comment.name,
+        comment.author,
         comment.replies
       );
 

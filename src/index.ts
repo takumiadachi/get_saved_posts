@@ -4,24 +4,18 @@ import getCommentById from "./api/reddit/v1/getCommentById";
 const fs = require("fs");
 
 (async () => {
-  const data = await getCommentById("ewunlr7");
-  const json = JSON.stringify(data);
-  console.log(json);
-  // const content = await getPostByIdExpanded("ev0azy2", 0); // Replace ev0azy2 with another comment id
+  // const data = await getCommentById("ewunlr7");
+  // const json = JSON.stringify(data);
+  // console.log(json);
+  // https://www.reddit.com/r/Fitness/comments/cqqdk8/are_there_any_benefits_to_being_in_ketosis_vs/ewye3if?utm_source=share&utm_medium=web2x
+  // const content = await getCommentByIdExpanded("ewye3if", -40); // Replace ev0azy2 with another comment id
   // const json = JSON.stringify(content);
   // fs.writeFile("reddit_me.json", json, (err, result) => {
   //   if (err) console.log("error", err);
   // });
-  // const savedSubmissions = await getSavedSubmissions("");
-  // console.log(savedSubmissions);
-  // const content = await getPostByIdExpanded("evkxj13", -20);
-  // const json = JSON.stringify(content);
-  // fs.writeFile("reddit_me.json", json, (err, result) => {
-  //   if (err) console.log("error", err);
-  // });
-  // const content = await getPostByIdExpanded("evkxj13");
-  // const json = JSON.stringify(content);
-  // fs.writeFile("reddit_me.json", json, (err, result) => {
-  //   if (err) console.log("error", err);
-  // });
+  const content = await getSavedSubmissions("crush"); // Replace ev0azy2 with another comment id
+  const json = JSON.stringify(content);
+  fs.writeFile("reddit_me.json", json, (err, result) => {
+    if (err) console.log("error", err);
+  });
 })();

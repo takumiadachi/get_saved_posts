@@ -10,6 +10,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   _rev;
   subreddit: string;
   title: string;
+  selftext: string;
   ups: number;
   author: string;
   over_18: boolean;
@@ -21,6 +22,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   constructor(
     subreddit: Subreddit,
     title,
+    selftext,
     ups,
     author: RedditUser,
     over_18,
@@ -31,6 +33,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
     super();
     this.subreddit = subreddit.name;
     this.title = title;
+    this.selftext = selftext;
     this.ups = ups;
     this.author = author.name;
     this.over_18 = over_18;
@@ -48,6 +51,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
     return new TrimmedSubmission(
       sub.subreddit,
       sub.title,
+      sub.selftext,
       sub.ups,
       sub.author,
       sub.over_18,

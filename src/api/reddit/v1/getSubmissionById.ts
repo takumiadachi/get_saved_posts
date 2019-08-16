@@ -1,4 +1,4 @@
-import { rMe } from "../../../config/r";
+import { r } from "../../../config/r";
 import { TrimmedSubmission } from "../../../models/TrimmedSubmission";
 const fs = require("fs");
 /**
@@ -10,7 +10,7 @@ const fs = require("fs");
 export default async function getSubmissionById(
   id: string
 ): Promise<TrimmedSubmission> {
-  return rMe
+  return r
     .getSubmission(id)
     .fetch()
     .then(submission => {
