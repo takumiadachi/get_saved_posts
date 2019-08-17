@@ -5,9 +5,8 @@ const fs = require("fs");
 // CouchDB
 import { createUserDb } from "./db/couchdb/methods/createUserDb";
 import { removeUserDb } from "./db/couchdb/methods/removeUserDb";
-import { addRedditPost } from "./db/couchdb/methods/reddit/addRedditPost";
+import { addPost } from "./db/couchdb/methods/reddit/addPost";
 import { TrimmedComment } from "./models/TrimmedComment";
-import { getRedditPost } from "./db/couchdb/methods/reddit/getRedditPost";
 
 // API
 (async () => {
@@ -33,5 +32,8 @@ import { getRedditPost } from "./db/couchdb/methods/reddit/getRedditPost";
   console.log(destroyed);
   const created = await createUserDb("UniqueUser");
   console.log(created);
+  const comment = await getCommentById("ewunlr7");
+  const added = await addPost("uniqueuser", comment);
+  console.log(added);
   // const view = await getRedditPost("uniqueuser");
 })();

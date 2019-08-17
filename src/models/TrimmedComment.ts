@@ -8,6 +8,7 @@ export class TrimmedComment extends Content<TrimmedComment>
   implements Nano.MaybeDocument {
   _id: string;
   _rev;
+  type: string = "comment";
   ups: number;
   body: string;
   created: string;

@@ -8,6 +8,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   implements Nano.MaybeDocument {
   _id: string;
   _rev;
+  type: string = "submission";
   subreddit: string;
   title: string;
   selftext: string;

@@ -2,7 +2,7 @@ import { nano } from "../../connect";
 import * as Nano from "nano";
 import { TrimmedComment } from "../../../../models/TrimmedComment";
 
-export async function getRedditPost(dbName: string) {
+export async function getPost(dbName: string) {
   try {
     const db = nano.use(dbName);
     // const view = await db.view("body_view", "body", { key: "sinus" });
