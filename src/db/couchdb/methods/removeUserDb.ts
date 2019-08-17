@@ -1,22 +1,21 @@
 import { nano } from "../connect";
 /**
- * Finds db or creates couch db with dbName if it doesn't exist. Returns dbName if successful.
+ * Destroys/removes couchdb db with dbName. Returns dbName if successful else returns null.
  * @param dbName
  */
-export async function createUserDb(dbName: string) {
+export async function removeUserDb(dbName: string) {
   let info = {};
   // Set to lowercase because CouchDB only accepts lowercase letters.
   dbName = dbName.toLocaleLowerCase();
   try {
     await nano.db.get(dbName);
+    const destroyed = await nano.db.destroy(dbName);
+    info["destroyed"] = destroyed.ok;
     info["name"] = dbName;
-    return dbName;
+    return info;
   } catch (e) {
     if (e.error === "not_found") {
-      const created = await nano.db.create(dbName);
-      info["created"] = created.ok;
-      info["name"] = dbName;
-      return info;
+      return null;
     }
     return null;
   }

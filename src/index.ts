@@ -4,6 +4,7 @@ import getCommentById from "./api/reddit/v1/getCommentById";
 const fs = require("fs");
 // CouchDB
 import { createUserDb } from "./db/couchdb/methods/createUserDb";
+import { removeUserDb } from "./db/couchdb/methods/removeUserDb";
 import { addRedditPost } from "./db/couchdb/methods/reddit/addRedditPost";
 import { TrimmedComment } from "./models/TrimmedComment";
 import { getRedditPost } from "./db/couchdb/methods/reddit/getRedditPost";
@@ -28,6 +29,9 @@ import { getRedditPost } from "./db/couchdb/methods/reddit/getRedditPost";
 
 // DB
 (async () => {
-  const response = await createUserDb("UniqueUser");
+  const destroyed = await removeUserDb("UniqueUser");
+  console.log(destroyed);
+  const created = await createUserDb("UniqueUser");
+  console.log(created);
   // const view = await getRedditPost("uniqueuser");
 })();

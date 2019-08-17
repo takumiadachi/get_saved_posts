@@ -26,8 +26,8 @@ class PostView implements Nano.ViewDocument<TrimmedComment> {
         map: function(doc) {
           if (doc.body && doc.ups) {
             // ts-ignore until a solution is found
-            // @ts-ignore
             // Emit is key/value
+            // @ts-ignore
             emit(doc.permalink, {
               body: doc.body,
               ups: doc.ups,
