@@ -5,7 +5,9 @@ get_saved_posts is an api that lets you get posts you've saved or posts online i
 ## Technologies
 
 Typescript >= 3.x.x
-CouchDB >= 7.x.x
+
+CouchDB >= 2.3.x
+
 Express >= 4.x.x
 
 ## Develop

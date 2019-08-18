@@ -7,6 +7,8 @@ import { createUserDb } from "./db/couchdb/methods/createUserDb";
 import { removeUserDb } from "./db/couchdb/methods/removeUserDb";
 import { addPost } from "./db/couchdb/methods/reddit/addPost";
 import { TrimmedComment } from "./models/TrimmedComment";
+import { nano } from "./db/couchdb/connect";
+import PostView from "./db/couchdb/views/reddit/postView";
 
 // API
 (async () => {
@@ -28,12 +30,18 @@ import { TrimmedComment } from "./models/TrimmedComment";
 
 // DB
 (async () => {
-  const destroyed = await removeUserDb("UniqueUser");
-  console.log(destroyed);
-  const created = await createUserDb("UniqueUser");
-  console.log(created);
-  const comment = await getCommentById("ewunlr7");
-  const added = await addPost("uniqueuser", comment);
-  console.log(added);
-  // const view = await getRedditPost("uniqueuser");
+  // const destroyed = await removeUserDb("UniqueUser");
+  // console.log(destroyed);
+  // const created = await createUserDb("UniqueUser");
+  // console.log(created);
+  // const comment = await getCommentById("ewunlr7");
+  // const added = await addPost("uniqueuser", comment);
+  // console.log(added);
+  const db = nano.use("uniqueuser");
+  // const addView = await db.insert(new PostView(), "_design/post_view");
+  const tryView = await db.view("post_view", "all", {
+    key:
+      "/r/AskWomen/comments/cq8yop/how_do_you_maximise_your_time_in_the_evening/ewunlr7/"
+  });
+  console.log(tryView);
 })();
