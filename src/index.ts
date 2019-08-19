@@ -6,7 +6,7 @@ const fs = require("fs");
 import { createUserDb } from "./db/couchdb/methods/createUserDb";
 import { removeUserDb } from "./db/couchdb/methods/removeUserDb";
 import { addPost } from "./db/couchdb/methods/reddit/addPost";
-import { TrimmedComment } from "./models/TrimmedComment";
+import { TrimmedComment } from "./models/reddit/TrimmedComment";
 import { nano } from "./db/couchdb/connect";
 import PostView from "./db/couchdb/views/reddit/postView";
 

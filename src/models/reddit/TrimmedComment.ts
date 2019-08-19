@@ -1,14 +1,14 @@
 import { Listing, Comment, RedditUser } from "snoowrap";
 import Content from "./Content";
 import * as Nano from "nano";
-import uuhash from "../db/couchdb/methods/uuhash";
+import uuhash from "../../db/couchdb/methods/uuhash";
 import moment from "moment";
 
 export class TrimmedComment extends Content<TrimmedComment>
   implements Nano.MaybeDocument {
   _id: string;
   _rev;
-  type: string = "comment";
+  type: string;
   ups: number;
   body: string;
   created: string;
@@ -27,6 +27,7 @@ export class TrimmedComment extends Content<TrimmedComment>
   ) {
     super();
     this._id = uuhash(permalink);
+    this.type = "comment";
     this.ups = ups;
     this.body = body;
     this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");

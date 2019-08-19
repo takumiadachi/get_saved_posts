@@ -1,6 +1,6 @@
 import { nano } from "../connect";
 import * as Nano from "nano";
-import { TrimmedComment } from "../../../models/TrimmedComment";
+import { TrimmedComment } from "../../../models/reddit/TrimmedComment";
 
 export async function addDesignDoc(dbName: string) {
   try {

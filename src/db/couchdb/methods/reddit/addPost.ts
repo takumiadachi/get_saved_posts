@@ -1,5 +1,5 @@
 import { nano } from "../../connect";
-import { TrimmedComment } from "../../../../models/TrimmedComment";
+import { TrimmedComment } from "../../../../models/reddit/TrimmedComment";
 
 export async function addPost(dbName: string, post: TrimmedComment) {
   try {

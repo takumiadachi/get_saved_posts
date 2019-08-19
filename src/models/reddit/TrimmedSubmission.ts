@@ -1,14 +1,14 @@
 import { Submission, RedditUser, Subreddit } from "snoowrap";
 import Content from "./Content";
 import * as Nano from "nano";
-import uuhash from "../db/couchdb/methods/uuhash";
+import uuhash from "../../db/couchdb/methods/uuhash";
 import moment from "moment";
 
 export class TrimmedSubmission extends Content<TrimmedSubmission>
   implements Nano.MaybeDocument {
   _id: string;
   _rev;
-  type: string = "submission";
+  type: string;
   subreddit: string;
   title: string;
   selftext: string;
@@ -33,6 +33,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   ) {
     super();
     this.subreddit = subreddit.name;
+    this.type = "submission";
     this.title = title;
     this.selftext = selftext;
     this.ups = ups;

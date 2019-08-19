@@ -1,6 +1,6 @@
 import { Comment, Submission } from "snoowrap";
 import { rMe2 } from "../../../../config/r";
-import { TrimmedSubmission } from "../../../../models/TrimmedSubmission";
+import { TrimmedSubmission } from "../../../../models/reddit/TrimmedSubmission";
 
 // Get saved user posts
 /**

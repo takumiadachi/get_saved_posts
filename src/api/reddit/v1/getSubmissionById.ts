@@ -1,5 +1,5 @@
 import { rMe } from "../../../config/r";
-import { TrimmedSubmission } from "../../../models/TrimmedSubmission";
+import { TrimmedSubmission } from "../../../models/reddit/TrimmedSubmission";
 const fs = require("fs");
 /**
  * Get comment by id and expand every comment. Requires alot of requests to Reddit API.

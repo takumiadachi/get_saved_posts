@@ -1,7 +1,7 @@
 import { nano } from "../../connect";
 import * as Nano from "nano";
-import { TrimmedSubmission } from "../../../../models/TrimmedSubmission";
-import { TrimmedComment } from "../../../../models/TrimmedComment";
+import { TrimmedSubmission } from "../../../../models/reddit/TrimmedSubmission";
+import { TrimmedComment } from "../../../../models/reddit/TrimmedComment";
 
 /**
  * CouchDB Views for TrimmedComments and TrimmedSubmissions
