@@ -3,6 +3,7 @@ import Content from "./Content";
 import * as Nano from "nano";
 import uuhash from "../../db/couchdb/methods/uuhash";
 import moment from "moment";
+import { TrimmedComment } from "./TrimmedComment";
 
 export class TrimmedSubmission extends Content<TrimmedSubmission>
   implements Nano.MaybeDocument {
@@ -18,9 +19,11 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   rId: string; // reddit submission id
   created: string;
   permalink: string;
+  comments: Array<TrimmedComment>;
 
   // Note: replies should always be last because when it uses a function, the next property will not be saved.
   constructor(
+    submission_id,
     subreddit: Subreddit,
     title,
     selftext,
@@ -32,6 +35,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
     permalink
   ) {
     super();
+    this._id = submission_id;
     this.subreddit = subreddit.name;
     this.type = "submission";
     this.title = title;
@@ -42,7 +46,6 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
     this.rId = rId;
     this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");
     this.permalink = permalink;
-    this._id = uuhash(permalink);
   }
 
   /**
@@ -51,6 +54,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
    */
   public static fromSubmission(sub: Submission): TrimmedSubmission {
     return new TrimmedSubmission(
+      sub.id,
       sub.subreddit,
       sub.title,
       sub.selftext,
@@ -74,5 +78,13 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
       // We only need to update rev which changes whenever document is updated
       this._rev = response.rev;
     }
+  }
+
+  getId() {
+    return this._id;
+  }
+
+  getRev() {
+    return this._rev;
   }
 }

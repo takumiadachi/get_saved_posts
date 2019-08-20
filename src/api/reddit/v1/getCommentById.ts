@@ -15,14 +15,7 @@ export default async function getCommentById(
     .getComment(id)
     .fetch()
     .then(comment => {
-      const trimmedComment = new TrimmedComment(
-        comment.ups,
-        comment.body,
-        comment.created,
-        comment.permalink,
-        comment.author,
-        comment.replies
-      );
+      const trimmedComment = TrimmedComment.fromComment(comment);
 
       return trimmedComment;
     })

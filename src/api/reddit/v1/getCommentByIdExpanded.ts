@@ -27,11 +27,13 @@ export default async function getCommentByIdExpanded(
           let trimmedComments = new Array<TrimmedComment>();
           for (const comment of expanded) {
             const trimmedComment = new TrimmedComment(
+              comment.id,
               comment.ups,
               comment.body,
               comment.created,
               comment.permalink,
               comment.author,
+              comment.parent_id,
               comment.replies ? trim(comment.replies, upVotes) : null
             );
             if (trimmedComment.ups > upVotes) {
@@ -44,11 +46,13 @@ export default async function getCommentByIdExpanded(
       }
 
       const TopComment: TrimmedComment = new TrimmedComment(
+        expanded.id,
         expanded.ups,
         expanded.body,
         expanded.created,
         expanded.permalink,
         expanded.author,
+        expanded.parent_id,
         trim(expanded.replies, upVotes)
       );
       // Add one for the top level comment

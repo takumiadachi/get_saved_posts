@@ -14,35 +14,41 @@ export class TrimmedComment extends Content<TrimmedComment>
   created: string;
   permalink: string;
   author: string;
+  parent_id: string;
   replies?: Listing<Comment> | TrimmedComment[]; // Note: replies should always be last
 
   // Note: replies should always be last because when it uses a function, the next property will not be saved.
   constructor(
+    comment_id: string,
     ups: number,
     body: string,
     created: number,
     permalink: string,
     author: RedditUser,
+    parent_id: string,
     replies
   ) {
     super();
-    this._id = uuhash(permalink);
+    this._id = comment_id;
     this.type = "comment";
     this.ups = ups;
     this.body = body;
     this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");
     this.permalink = permalink;
     this.author = author.name;
+    this.parent_id = parent_id;
     this.replies = replies;
   }
 
-  public static fromComment(comm: Comment): TrimmedComment {
+  public static fromComment(comm: Comment, func?: Function): TrimmedComment {
     return new TrimmedComment(
+      comm.id,
       comm.ups,
       comm.body,
       comm.created,
       comm.permalink,
       comm.author,
+      comm.parent_id,
       comm.replies
     );
   }
@@ -58,5 +64,13 @@ export class TrimmedComment extends Content<TrimmedComment>
       // We only need to update rev which changes whenever document is updated
       this._rev = response.rev;
     }
+  }
+
+  getId() {
+    return this._id;
+  }
+
+  getRev() {
+    return this._rev;
   }
 }
