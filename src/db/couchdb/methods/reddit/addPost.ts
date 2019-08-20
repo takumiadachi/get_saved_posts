@@ -1,7 +1,11 @@
 import { nano } from "../../connect";
 import { TrimmedComment } from "../../../../models/reddit/TrimmedComment";
+import { TrimmedSubmission } from "../../../../models/reddit/TrimmedSubmission";
 
-export async function addPost(dbName: string, post: TrimmedComment) {
+export async function addPost(
+  dbName: string,
+  post: TrimmedComment | TrimmedSubmission
+) {
   try {
     const db = nano.use(dbName);
     // const uuid = await await nano.uuids(1);

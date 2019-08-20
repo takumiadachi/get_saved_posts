@@ -36,7 +36,7 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   ) {
     super();
     this._id = submission_id;
-    this.subreddit = subreddit.name;
+    this.subreddit = subreddit.display_name;
     this.type = "submission";
     this.title = title;
     this.selftext = selftext;

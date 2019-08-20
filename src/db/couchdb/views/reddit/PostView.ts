@@ -14,16 +14,10 @@ export default class PostView
   views: { [name: string]: Nano.View<TrimmedComment & TrimmedSubmission> };
   constructor() {
     this.views = {
-      all_submissions: {
+      all: {
         map: function(doc) {
           // @ts-ignore
-          if (doc.title) {
-            emit(doc.title);
-          }
-          // @ts-ignore
-          if (doc.body) {
-            emit(doc.body);
-          }
+          emit(doc._id);
         }
       }
     };

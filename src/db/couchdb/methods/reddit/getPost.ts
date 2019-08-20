@@ -1,16 +1,18 @@
 import { nano } from "../../connect";
-import * as Nano from "nano";
 import { TrimmedComment } from "../../../../models/reddit/TrimmedComment";
+import { TrimmedSubmission } from "../../../../models/reddit/TrimmedSubmission";
 
-export async function getPost(dbName: string) {
+export async function getPost(dbName: string, _id) {
   try {
     const db = nano.use(dbName);
-    // const view = await db.view("body_view", "body", { key: "sinus" });
-    // console.log(view);
-    console.log("test");
-    // const view = await db.search("");
-    return null;
+    // const uuid = await await nano.uuids(1);
+    const aView = await db.view("post_view", "all", {
+      key: _id,
+      include_docs: true
+    });
+    return aView;
   } catch (error) {
+    console.log(error.reason);
     return null;
   }
 }
