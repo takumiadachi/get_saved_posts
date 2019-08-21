@@ -8,6 +8,7 @@ import refreshToken from "./auth/refreshToken";
 import getCommentById from "../../api/reddit/v1/getCommentById";
 import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
 import Details from "./auth/model/details";
+import { nano } from "../../db/couchdb/connect";
 let redditRouter = express.Router();
 
 /**
@@ -36,7 +37,15 @@ redditRouter.get("/", (req, res) => {
   }
 });
 
-redditRouter.get("/all", async (req, res) => {});
+redditRouter.get("/all/:id", async (req, res) => {
+  const id = req.params.id;
+  const db = nano.use("uniqueuser");
+  const json = await db.view("post_view", "all", {
+    key: id,
+    include_docs: true
+  });
+  res.json(json);
+});
 
 redditRouter.get("/getPost/:id/", async (req, res) => {
   const id = req.params.id;

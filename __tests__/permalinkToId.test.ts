@@ -1,4 +1,4 @@
-import permalinkToId from "../../../src/api/reddit/helpers/permalinkToId";
+import permalinkToId from "../src/api/reddit/helpers/permalinkToId";
 
 describe("permalinkToId works", () => {
   beforeAll(async () => {});
