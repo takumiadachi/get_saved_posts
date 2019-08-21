@@ -21,6 +21,7 @@ export default async function getCommentByIdExpanded(
     .then(expanded => {
       // Trims Snoowrap.comment to have less properties and uses upvote threshold
       function trim(expanded: Listing<Comment>, upVotes: number) {
+        // Base case
         if (!expanded) {
           return null;
         } else {
@@ -32,7 +33,7 @@ export default async function getCommentByIdExpanded(
               comment.body,
               comment.created,
               comment.permalink,
-              comment.author,
+              comment.author.name,
               comment.parent_id,
               comment.replies ? trim(comment.replies, upVotes) : null
             );
@@ -45,13 +46,14 @@ export default async function getCommentByIdExpanded(
         }
       }
 
+      // Root to trim function on
       const TopComment: TrimmedComment = new TrimmedComment(
         expanded.id,
         expanded.ups,
         expanded.body,
         expanded.created,
         expanded.permalink,
-        expanded.author,
+        expanded.author.name,
         expanded.parent_id,
         trim(expanded.replies, upVotes)
       );
