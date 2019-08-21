@@ -1,4 +1,4 @@
-import getCommentByIdExpanded from "../src/api/reddit/v1/getCommentByIdExpanded";
+import getCommentByIdExpanded from "../../../src/api/reddit/v1/getCommentByIdExpanded";
 
 describe("getPostByIdExpanded async works", () => {
   beforeAll(async () => {});

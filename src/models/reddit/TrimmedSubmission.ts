@@ -4,6 +4,7 @@ import * as Nano from "nano";
 import uuhash from "../../db/couchdb/methods/uuhash";
 import moment from "moment";
 import { TrimmedComment } from "./TrimmedComment";
+import { isNumber } from "lodash";
 
 export class TrimmedSubmission extends Content<TrimmedSubmission>
   implements Nano.MaybeDocument {
@@ -24,28 +25,32 @@ export class TrimmedSubmission extends Content<TrimmedSubmission>
   // Note: replies should always be last because when it uses a function, the next property will not be saved.
   constructor(
     submission_id,
-    subreddit: Subreddit,
+    subreddit,
     title,
     selftext,
     ups,
-    author: RedditUser,
+    author,
     over_18,
     rId,
     created,
-    permalink
+    permalink,
+    comments?
   ) {
     super();
     this._id = submission_id;
-    this.subreddit = subreddit.display_name;
+    this.subreddit = subreddit;
     this.type = "submission";
     this.title = title;
     this.selftext = selftext;
     this.ups = ups;
-    this.author = author.name;
+    this.author = author;
     this.over_18 = over_18;
     this.rId = rId;
-    this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");
+    this.created = isNumber(created)
+      ? moment.unix(created).format("DD-MM-YYYY h:mm:ss")
+      : created;
     this.permalink = permalink;
+    this.comments = comments;
   }
 
   /**

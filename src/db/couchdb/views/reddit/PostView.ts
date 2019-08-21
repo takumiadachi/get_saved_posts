@@ -17,7 +17,7 @@ export default class PostView
       all: {
         map: function(doc) {
           // @ts-ignore
-          emit(doc._id);
+          emit(doc._id, doc.title);
         }
       }
     };

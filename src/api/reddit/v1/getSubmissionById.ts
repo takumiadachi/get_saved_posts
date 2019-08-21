@@ -28,7 +28,7 @@ export default async function getSubmissionById(
               comment.body,
               comment.created,
               comment.permalink,
-              comment.author,
+              comment.author.name,
               comment.parent_id,
               comment.replies ? trim(comment.replies) : null
             );
@@ -38,7 +38,6 @@ export default async function getSubmissionById(
         }
       }
       const comments = trim(submission.comments);
-      console.log(comments);
       const trimmedSubmission = TrimmedSubmission.fromSubmission(submission);
       trimmedSubmission.comments = comments;
 

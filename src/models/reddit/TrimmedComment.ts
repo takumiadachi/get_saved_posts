@@ -3,6 +3,7 @@ import Content from "./Content";
 import * as Nano from "nano";
 import uuhash from "../../db/couchdb/methods/uuhash";
 import moment from "moment";
+import { isNumber } from "lodash";
 
 export class TrimmedComment extends Content<TrimmedComment>
   implements Nano.MaybeDocument {
@@ -24,7 +25,7 @@ export class TrimmedComment extends Content<TrimmedComment>
     body: string,
     created: number,
     permalink: string,
-    author: RedditUser,
+    author: string,
     parent_id: string,
     replies
   ) {
@@ -33,9 +34,11 @@ export class TrimmedComment extends Content<TrimmedComment>
     this.type = "comment";
     this.ups = ups;
     this.body = body;
-    this.created = moment.unix(created).format("DD-MM-YYYY h:mm:ss");
+    this.created = isNumber(created)
+      ? moment.unix(created).format("DD-MM-YYYY h:mm:ss")
+      : created;
     this.permalink = permalink;
-    this.author = author.name;
+    this.author = author;
     this.parent_id = parent_id;
     this.replies = replies;
   }
@@ -47,7 +50,7 @@ export class TrimmedComment extends Content<TrimmedComment>
       comm.body,
       comm.created,
       comm.permalink,
-      comm.author,
+      comm.author.name,
       comm.parent_id,
       comm.replies
     );

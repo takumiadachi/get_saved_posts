@@ -36,6 +36,8 @@ redditRouter.get("/", (req, res) => {
   }
 });
 
+redditRouter.get("/all", async (req, res) => {});
+
 redditRouter.get("/getPost/:id/", async (req, res) => {
   const id = req.params.id;
   const json = await getCommentById(id);
