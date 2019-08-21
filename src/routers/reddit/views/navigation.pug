@@ -1,10 +1,23 @@
-<div>
-  <ul style="list-style-type:none">
-      <li><a href="http://localhost:4201">http://localhost:4201/</a></li>
-      <li><a href="http://localhost:4201/reddit">http://localhost:4201/reddit</a></li>
-      <li><a href="http://localhost:4201/reddit/getPost/evsqjhn">http://localhost:4201/reddit/getPost/evsqjhn</a></li>
-      <li><a href="http://localhost:4201/reddit/getPost/c7bqbji">http://localhost:4201/reddit/getPost/c7bqbji</a></li>
-      <li><a href="http://localhost:4201/reddit/refresh">http://localhost:4201/reddit/refresh</a></li>
-      <li><a href="http://localhost:4201/reddit/all/cstxi8">http://localhost:4201/reddit/all/cstxi8</a></li>
-  </ul>
-</div>
+//- <div>
+//-   <ul style="list-style-type:none">
+//-       <li><a href=${#{BASEURL}}>#{BASEURL}</a></li>
+//-       <li><a href="http://localhost:4201/reddit">http://localhost:4201/reddit</a></li>
+//-       <li><a href="http://localhost:4201/reddit/getPost/evsqjhn">http://localhost:4201/reddit/getPost/evsqjhn</a></li>
+//-       <li><a href="http://localhost:4201/reddit/getPost/c7bqbji">http://localhost:4201/reddit/getPost/c7bqbji</a></li>
+//-       <li><a href="http://localhost:4201/reddit/refresh">http://localhost:4201/reddit/refresh</a></li>
+//-       <li><a href="http://localhost:4201/reddit/views/all/cstxi8">http://localhost:4201/reddit/all/cstxi8</a></li>
+//-   </ul>
+//- </div>
+div
+  ul(style="list-style-type:none")
+    li 
+      a(href=`${BASEURL}/reddit`) #{BASEURL}/reddit
+    li
+      a(href=`${BASEURL}/reddit/refresh`) #{BASEURL}/reddit/refresh
+    li
+     a(href=`${BASEURL}/reddit/getPost/c7bqbji`) #{BASEURL}/reddit/getPost/c7bqbj
+    li
+      a(href=`${BASEURL}/reddit/getPost/expanded/evsqjhn/ups/20`) #{BASEURL}/reddit/getPost/expanded/evsqjhn/ups/20
+    li
+    a(href=`${BASEURL}/reddit/views/all/cstxi8`) #{BASEURL}/reddit/all/cstxi8
+    li

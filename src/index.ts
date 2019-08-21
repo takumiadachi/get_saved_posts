@@ -18,11 +18,11 @@ import { getPost } from "./db/couchdb/methods/reddit/getPost";
   // const data = await getCommentById("ewunlr7");
   // const json = JSON.stringify(data);
   // console.log(json);
-  // const content = await getCommentByIdExpanded("ewye3if", -40); // Replace ev0azy2 with another comment id
-  // const json = JSON.stringify(content);
-  // fs.writeFile("reddit_me.json", json, (err, result) => {
-  //   if (err) console.log("error", err);
-  // });
+  const content = await getCommentByIdExpanded("exkcima", -40); // Replace ev0azy2 with another comment id
+  const json = JSON.stringify(content);
+  fs.writeFile("reddit_me.json", json, (err, result) => {
+    if (err) console.log("error", err);
+  });
   // const content = await getSavedSubmissions("crush"); // Replace ev0azy2 with another comment id
   // const json = JSON.stringify(content);
   // fs.writeFile("reddit_me.json", json, (err, result) => {
@@ -36,21 +36,21 @@ import { getPost } from "./db/couchdb/methods/reddit/getPost";
 })();
 
 // DB
-(async () => {
-  const destroyed = await removeUserDb("UniqueUser");
-  console.log(destroyed);
-  const created = await createUserDb("UniqueUser");
-  console.log(created);
-  // const comment = await getCommentById("ewunlr7");
-  const submission = await getSubmissionById("cstxi8");
-  const added = await addPost("uniqueuser", submission);
-  // const got = await getPost("uniqueuser", "cstxi8");
-  // console.log(added);
-  const db = nano.use("uniqueuser");
-  const addView = await db.insert(new PostView(), "_design/post_view");
-  const tryView = await db.view("post_view", "all", {
-    key: "cstxi8",
-    include_docs: true
-  });
-  console.log(tryView);
-})();
+// (async () => {
+//   const destroyed = await removeUserDb("UniqueUser");
+//   console.log(destroyed);
+//   const created = await createUserDb("UniqueUser");
+//   console.log(created);
+//   // const comment = await getCommentById("ewunlr7");
+//   const submission = await getSubmissionById("cstxi8");
+//   const added = await addPost("uniqueuser", submission);
+//   // const got = await getPost("uniqueuser", "cstxi8");
+//   // console.log(added);
+//   const db = nano.use("uniqueuser");
+//   const addView = await db.insert(new PostView(), "_design/post_view");
+//   const tryView = await db.view("post_view", "all", {
+//     key: "cstxi8",
+//     include_docs: true
+//   });
+//   console.log(tryView);
+// })();

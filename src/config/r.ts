@@ -73,7 +73,7 @@ const rMe2 = new snoowrap({
 });
 
 rMe.config({
-  requestDelay: 1000
+  requestDelay: 1500
   // warnings: true
 });
 

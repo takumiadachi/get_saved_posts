@@ -8,12 +8,14 @@ import session from "express-session";
 // Routers
 import redditRouter from "../routers/reddit/router";
 import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthURL";
+import { assertForOfStatement } from "babel-types";
 // Start the server with port.
 const PORT: number = parseInt(process.env.PORT) || 4201;
 
 // Initialize express.
 const app = express();
 
+app.locals.BASEURL = process.env.BASEURL;
 app.listen(PORT, () => console.log(`Server started on ${PORT}`));
 
 /**

@@ -14,7 +14,7 @@ let redditRouter = express.Router();
 /**
  * REDDIT
  */
-const REDIRECT_URL = "http://localhost:4201/reddit";
+const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
 
 // DB
 let details: Details = new Details();
@@ -37,7 +37,7 @@ redditRouter.get("/", (req, res) => {
   }
 });
 
-redditRouter.get("/all/:id", async (req, res) => {
+redditRouter.get("/views/all/:id", async (req, res) => {
   const id = req.params.id;
   const db = nano.use("uniqueuser");
   const json = await db.view("post_view", "all", {
@@ -53,9 +53,18 @@ redditRouter.get("/getPost/:id/", async (req, res) => {
   res.json(json);
 });
 
-redditRouter.get("/getPost/expanded/:id/:upvotes", async (req, res) => {
+// ...:upvotes/* is optional
+redditRouter.get("/getPost/expanded/:id/", async (req, res) => {
   const id = req.params.id;
-  const upvotes: number = req.params.upvotes ? req.params.upvotes : -20;
+  console.log(req.params.id);
+  const json = await getCommentByIdExpanded(id, -100);
+  res.json(json);
+});
+
+redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
+  const id = req.params.id;
+  console.log(req.params.id);
+  const upvotes: number = req.params.ups;
   const json = await getCommentByIdExpanded(id, upvotes);
   res.json(json);
 });
