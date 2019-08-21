@@ -9,7 +9,8 @@ export default function permalinkToId(permalink: string) {
     const data = { submissionId: split[5], commentId: split[7] };
     return data;
   } else if (split[5]) {
-    return { submissionId: split[5] };
+    const data = { submissionId: split[5], commentId: null };
+    return data;
   } else {
     return null;
   }
