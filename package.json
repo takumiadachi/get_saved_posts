@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon",
     "dev": "nodemon",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "db": "ts-node ./src/db/script.ts"
   },
   "author": "Takumi Adachi",
   "license": "ISC",
