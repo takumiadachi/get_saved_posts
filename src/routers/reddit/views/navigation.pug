@@ -8,16 +8,35 @@
 //-       <li><a href="http://localhost:4201/reddit/views/all/cstxi8">http://localhost:4201/reddit/all/cstxi8</a></li>
 //-   </ul>
 //- </div>
+
 div
   ul(style="list-style-type:none")
     li 
+      a(href=`${BASEURL}`) #{BASEURL}
+    li 
       a(href=`${BASEURL}/reddit`) #{BASEURL}/reddit
+    li 
+      a(href=`${BASEURL}/reddit/views/all`) #{BASEURL}/reddit/views/all
     li
       a(href=`${BASEURL}/reddit/refresh`) #{BASEURL}/reddit/refresh
     li
-     a(href=`${BASEURL}/reddit/getPost/c7bqbji`) #{BASEURL}/reddit/getPost/c7bqbj
+      a(href=`${BASEURL}/reddit/getPost/c7bqbji`) #{BASEURL}/reddit/getPost/c7bqbj
     li
       a(href=`${BASEURL}/reddit/getPost/expanded/evsqjhn/ups/20`) #{BASEURL}/reddit/getPost/expanded/evsqjhn/ups/20
     li
     a(href=`${BASEURL}/reddit/views/all/cstxi8`) #{BASEURL}/reddit/all/cstxi8
     li
+
+
+//- - var list = [ `${BASEURL}/reddit`,`${BASEURL}/reddit/views/all`,`${BASEURL}/reddit/refresh`,`${BASEURL}/reddit/getPost/c7bqbji`,`${BASEURL}/reddit/getPost/expanded/evsqjhn/ups/20`,`${BASEURL}/reddit/views/all/cstxi8`]
+
+
+//- //- div #{list[0]}
+
+//- mixin aHref(href, name)
+//-   a(href=href)&attributes(attributes)= name
+
+//- ul(style="list-style-type:none")
+//-   each link in list
+//-     li=a(href=link)
+

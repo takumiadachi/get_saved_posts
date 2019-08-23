@@ -1,4 +1,4 @@
-import { TrimmedComment } from "../../../models/reddit/TrimmedComment";
+import TrimmedComment from "../../../models/reddit/TrimmedComment";
 import { Comment, Listing } from "snoowrap";
 import { rMe2 } from "../../../config/r";
 

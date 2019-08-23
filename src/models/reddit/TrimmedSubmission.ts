@@ -3,10 +3,10 @@ import Content from "./Content";
 import * as Nano from "nano";
 import uuhash from "../../db/couchdb/methods/uuhash";
 import moment from "moment";
-import { TrimmedComment } from "./TrimmedComment";
+import TrimmedComment from "./TrimmedComment";
 import { isNumber } from "lodash";
 
-export class TrimmedSubmission extends Content<TrimmedSubmission>
+export default class TrimmedSubmission extends Content<TrimmedSubmission>
   implements Nano.MaybeDocument {
   _id: string;
   _rev;

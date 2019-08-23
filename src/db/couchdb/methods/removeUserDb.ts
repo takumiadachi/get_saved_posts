@@ -1,9 +1,9 @@
-import { nano } from "../connect";
+import nano from "../connect";
 /**
  * Destroys/removes couchdb db with dbName. Returns dbName if successful else returns null.
  * @param dbName
  */
-export async function removeUserDb(dbName: string) {
+export default async function removeUserDb(dbName: string) {
   let info = {};
   // Set to lowercase because CouchDB only accepts lowercase letters.
   dbName = dbName.toLocaleLowerCase();

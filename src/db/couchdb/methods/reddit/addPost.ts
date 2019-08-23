@@ -1,8 +1,8 @@
-import { nano } from "../../connect";
-import { TrimmedComment } from "../../../../models/reddit/TrimmedComment";
-import { TrimmedSubmission } from "../../../../models/reddit/TrimmedSubmission";
+import nano from "../../connect";
+import TrimmedComment from "../../../../models/reddit/TrimmedComment";
+import TrimmedSubmission from "../../../../models/reddit/TrimmedSubmission";
 
-export async function addPost(
+export default async function addPost(
   dbName: string,
   post: TrimmedComment | TrimmedSubmission
 ) {

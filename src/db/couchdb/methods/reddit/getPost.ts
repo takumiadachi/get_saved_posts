@@ -1,9 +1,9 @@
-import { nano } from "../../connect";
-import { TrimmedComment } from "../../../../models/reddit/TrimmedComment";
-import { TrimmedSubmission } from "../../../../models/reddit/TrimmedSubmission";
-import { DocumentGetResponse } from "nano";
+import nano from "../../connect";
+import TrimmedComment from "../../../../models/reddit/TrimmedComment";
+import TrimmedSubmission from "../../../../models/reddit/TrimmedSubmission";
+import DocumentGetResponse from "nano";
 
-export async function getPost(dbName: string, _id) {
+export default async function getPost(dbName: string, _id) {
   try {
     const db = nano.use(dbName);
     const post = await db.get(_id);

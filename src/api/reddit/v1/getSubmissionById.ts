@@ -1,7 +1,7 @@
 import { rMe } from "../../../config/r";
-import { TrimmedSubmission } from "../../../models/reddit/TrimmedSubmission";
+import TrimmedSubmission from "../../../models/reddit/TrimmedSubmission";
 import { Listing, Comment } from "snoowrap";
-import { TrimmedComment } from "../../../models/reddit/TrimmedComment";
+import TrimmedComment from "../../../models/reddit/TrimmedComment";
 const fs = require("fs");
 /**
  * Get comment by id and expand every comment. Requires alot of requests to Reddit API.

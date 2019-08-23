@@ -1,9 +1,9 @@
-import { nano } from "../connect";
+import nano from "../connect";
 /**
  * Finds db or creates couch db with dbName if it doesn't exist. Returns dbName if successful.
  * @param dbName
  */
-export async function createUserDb(dbName: string) {
+export default async function createUserDb(dbName: string) {
   let info = {};
   // Set to lowercase because CouchDB only accepts lowercase letters.
   dbName = dbName.toLocaleLowerCase();

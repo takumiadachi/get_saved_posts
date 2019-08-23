@@ -5,10 +5,10 @@ import uuhash from "../../db/couchdb/methods/uuhash";
 import moment from "moment";
 import { isNumber } from "lodash";
 
-export class TrimmedComment extends Content<TrimmedComment>
+export default class TrimmedComment extends Content<TrimmedComment>
   implements Nano.MaybeDocument {
   _id: string;
-  _rev;
+  _rev: string;
   type: string;
   ups: number;
   body: string;

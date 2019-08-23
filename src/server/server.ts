@@ -8,7 +8,7 @@ import session from "express-session";
 // Routers
 import redditRouter from "../routers/reddit/router";
 import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthURL";
-import { assertForOfStatement } from "babel-types";
+
 // Start the server with port.
 const PORT: number = parseInt(process.env.PORT) || 4201;
 

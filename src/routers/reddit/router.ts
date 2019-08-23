@@ -4,11 +4,12 @@ import _ from "lodash";
 import retrieveAccessToken from "./auth/retrieveAccessToken";
 import path from "path";
 import uuidv1 from "uuid/v1";
-import refreshToken from "./auth/refreshToken";
+import refreshToken from "./auth/retrieveRefreshToken";
 import getCommentById from "../../api/reddit/v1/getCommentById";
 import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
 import Details from "./auth/model/details";
-import { nano } from "../../db/couchdb/connect";
+import nano from "../../db/couchdb/connect";
+import createAuth from "../../db/couchdb/auth/createAuth";
 let redditRouter = express.Router();
 
 /**
@@ -16,17 +17,14 @@ let redditRouter = express.Router();
  */
 const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
 
-// DB
-let details: Details = new Details();
-
 // http://[address]/reddit
-redditRouter.get("/", (req, res) => {
-  console.log(req.session);
+redditRouter.get("/", async (req, res) => {
   if (req.session.authenticated) {
     res.render(path.join(__dirname, "views/index.pug"), {
       authenticated: true,
       sessionID: req.session.sessionID,
       state: req.session.state
+      // Debug only
     });
   } else {
     res.render(path.join(__dirname, "views/index.pug"), {
@@ -37,40 +35,40 @@ redditRouter.get("/", (req, res) => {
   }
 });
 
-redditRouter.get("/views/all/:id", async (req, res) => {
-  const id = req.params.id;
+redditRouter.get("/views/all", async (req, res) => {
+  // const id = req.params.id;
   const db = nano.use("uniqueuser");
-  const json = await db.view("post_view", "all", {
-    key: id,
+  const data = await db.view("post_view", "all", {
     include_docs: true
   });
-  res.json(json);
+  console.log(data);
+  res.json(data);
 });
 
 redditRouter.get("/getPost/:id/", async (req, res) => {
   const id = req.params.id;
-  const json = await getCommentById(id);
-  res.json(json);
+  const data = await getCommentById(id);
+  res.json(data);
 });
 
 // ...:upvotes/* is optional
 redditRouter.get("/getPost/expanded/:id/", async (req, res) => {
   const id = req.params.id;
   console.log(req.params.id);
-  const json = await getCommentByIdExpanded(id, -100);
-  res.json(json);
+  const data = await getCommentByIdExpanded(id, -100);
+  res.json(data);
 });
 
 redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   const id = req.params.id;
   console.log(req.params.id);
   const upvotes: number = req.params.ups;
-  const json = await getCommentByIdExpanded(id, upvotes);
-  res.json(json);
+  const data = await getCommentByIdExpanded(id, upvotes);
+  res.json(data);
 });
 
 redditRouter.get("/success", async (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   if (_.isEmpty(req.query)) {
     res.redirect(REDIRECT_URL);
     return;
@@ -79,8 +77,16 @@ redditRouter.get("/success", async (req, res) => {
   const state = req.query.state;
 
   try {
-    details = await retrieveAccessToken(code);
+    const details = await retrieveAccessToken(code);
+    /**
+     * STORE THIS IN DB
+     */
+    // console.log(details);
+    // console.log(req.session);
+    console.log(req.session);
     console.log(details);
+    const createdAuth = await createAuth(req.session.sessionID, details);
+    // console.log(details);
     // Set authentication stuff up.
     req.session.authenticated = true;
     req.session.sessionID = uuidv1();
@@ -100,17 +106,17 @@ redditRouter.get("/destroy", (req, res) => {
 
 // http://[address]/reddit/refresh
 redditRouter.get("/refresh", async (req, res) => {
-  console.log(req.query);
-  if (_.isEmpty(req.query)) {
-    res.redirect(REDIRECT_URL);
-    return;
-  }
+  // console.log(details);
+  // if (!details.refresh_token) {
+  //   res.redirect(REDIRECT_URL);
+  //   return;
+  // }
   const code = req.query.code;
   const state = req.query.state;
 
   try {
-    const stuff = await refreshToken(details.refresh_token);
-    console.log(stuff);
+    // const stuff = await refreshToken(details.refresh_token);
+    // console.log(stuff);
     // Set authentication stuff up.
     req.session.authenticated = true;
     req.session.sessionID = uuidv1();

@@ -3,10 +3,10 @@
  */
 
 // CouchDB
-import { nano } from "../db/couchdb/connect";
-import { createUserDb } from "../db/couchdb/methods/createUserDb";
-import { removeUserDb } from "../db/couchdb/methods/removeUserDb";
-import { addPost } from "../db/couchdb/methods/reddit/addPost";
+import nano from "../db/couchdb/connect";
+import createUserDb from "../db/couchdb/methods/createUserDb";
+import removeUserDb from "../db/couchdb/methods/removeUserDb";
+import addPost from "../db/couchdb/methods/reddit/addPost";
 import PostView from "../db/couchdb/views/reddit/postView";
 import getSubmissionById from "../api/reddit/v1/getSubmissionById";
 

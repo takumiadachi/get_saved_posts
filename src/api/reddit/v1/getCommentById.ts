@@ -1,4 +1,4 @@
-import { TrimmedComment } from "../../../models/reddit/TrimmedComment";
+import TrimmedComment from "../../../models/reddit/TrimmedComment";
 import { rMe } from "../../../config/r";
 
 /**
