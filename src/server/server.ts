@@ -4,6 +4,7 @@ import path from "path";
 import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
+import uuidv1 from "uuid/v1";
 
 // Routers
 import redditRouter from "../routers/reddit/router";
@@ -27,14 +28,14 @@ var fileStoreOptions = {};
 app.set("trust proxy", true); // trust first proxy
 app.use(
   session({
-    store: new FileStore(fileStoreOptions),
+    // store: new FileStore(fileStoreOptions),
     secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: true,
+    resave: false, // default = false
+    saveUninitialized: false, // default = true
     cookie: {
       httpOnly: true,
-      secure: false,
-      maxAge: 2 * 60 * 60 * 1000 // 2hours
+      secure: false
+      // maxAge: 2 * 60 * 60 * 100000 // 2hours
     }
   })
 );
@@ -47,21 +48,34 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 // Send pretty json with this line
 app.set("json spaces", 2);
-
+app.use((req, res, next) => {
+  console.log("a request");
+  next();
+});
 /**
  * Routes
  */
+// Entry point
 app.get("/", async (req, res) => {
+  if (req.session.views) {
+    req.session.views++;
+  } else {
+    req.session.views = 1;
+  }
+  if (!req.session.sessionID) {
+    // req.session.sessionID = "gre-" + uuidv1();
+    req.session.sessionID = "gre-" + "uniqueid";
+    console.log(req.session.sessionID);
+  } else {
+    console.log(req.session.sessionID);
+  }
+
   res.render(path.join(__dirname, "views/login/index.pug"), {
     authURL: generateRedditOAuthURL()
   });
 });
 
 app.use("/reddit", redditRouter);
-
-app.get("/success", async (req, res) => {
-  res.send("success");
-});
 
 // 404
 app.get("*", function(req, res) {

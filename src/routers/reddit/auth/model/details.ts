@@ -26,13 +26,17 @@ export default class Details implements Nano.MaybeDocument {
       //   this._id = response.id; //
       // }
       // We only need to update rev which changes whenever document is updated
-      this._id = response.id;
+      // this._id = response.id;
       this._rev = response.rev;
     }
   }
 
   getId() {
     return this._id;
+  }
+
+  setId(_id) {
+    this._id = _id;
   }
 
   getRev() {

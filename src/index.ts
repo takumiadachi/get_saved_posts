@@ -2,7 +2,7 @@ import getCommentByIdExpanded from "./api/reddit/v1/getCommentByIdExpanded";
 import getSavedSubmissions from "./api/reddit/v1/user/getSavedSubmissions";
 import getCommentById from "./api/reddit/v1/getCommentById";
 const fs = require("fs");
-import { TrimmedComment } from "./models/reddit/TrimmedComment";
+import TrimmedComment from "./models/reddit/TrimmedComment";
 import PostView from "./db/couchdb/views/reddit/postView";
 import getSubmissionById from "./api/reddit/v1/getSubmissionById";
 

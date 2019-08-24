@@ -10,6 +10,7 @@ import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
 import Details from "./auth/model/details";
 import nano from "../../db/couchdb/connect";
 import createAuth from "../../db/couchdb/auth/createAuth";
+import { getAuth } from "../../db/couchdb/auth/getAuth";
 let redditRouter = express.Router();
 
 /**
@@ -19,19 +20,16 @@ const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
 
 // http://[address]/reddit
 redditRouter.get("/", async (req, res) => {
-  if (req.session.authenticated) {
+  const details = await getAuth(req.session.sessionID);
+  // console.log(details);
+  if (details) {
     res.render(path.join(__dirname, "views/index.pug"), {
       authenticated: true,
       sessionID: req.session.sessionID,
       state: req.session.state
-      // Debug only
     });
   } else {
-    res.render(path.join(__dirname, "views/index.pug"), {
-      authenticated: false,
-      sessionID: null,
-      state: null
-    });
+    res.redirect(process.env.BASEURL);
   }
 });
 
@@ -68,7 +66,7 @@ redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
 });
 
 redditRouter.get("/success", async (req, res) => {
-  // console.log(req.query);
+  // console.log("req.query", req.query);
   if (_.isEmpty(req.query)) {
     res.redirect(REDIRECT_URL);
     return;
@@ -77,23 +75,17 @@ redditRouter.get("/success", async (req, res) => {
   const state = req.query.state;
 
   try {
+    console.log("req.session", req.session.sessionID);
     const details = await retrieveAccessToken(code);
+    details.setId(req.session.sessionID);
     /**
      * STORE THIS IN DB
      */
-    // console.log(details);
-    // console.log(req.session);
-    console.log(req.session);
-    console.log(details);
     const createdAuth = await createAuth(req.session.sessionID, details);
-    // console.log(details);
-    // Set authentication stuff up.
     req.session.authenticated = true;
-    req.session.sessionID = uuidv1();
     req.session.state = req.query.state;
-    // req.session.details = details;
     // Redirect to authenticated route.
-    res.redirect(REDIRECT_URL);
+    await res.redirect(REDIRECT_URL);
   } catch (error) {
     console.log(error);
   }
@@ -119,7 +111,6 @@ redditRouter.get("/refresh", async (req, res) => {
     // console.log(stuff);
     // Set authentication stuff up.
     req.session.authenticated = true;
-    req.session.sessionID = uuidv1();
     req.session.state = req.query.state;
     // Redirect to authenticated route.
     res.redirect(REDIRECT_URL);
