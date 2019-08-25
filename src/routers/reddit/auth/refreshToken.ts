@@ -4,9 +4,9 @@ import { REDDIT_API_V1 } from "../Constants/reddit_api_v1";
 
 const REDDIT_CLIENT_ID = process.env.REDDIT_CLIENT_ID;
 const REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
-const REDDIT_REDIRECT_URI = process.env.REDDIT_REDIRECT_URI;
+// const REDDIT_REDIRECT_URI = process.env.REDDIT_REDIRECT_URI;
 
-export default async function retrieveRefreshToken(refresh_token) {
+export default async function refreshToken(refresh_token) {
   try {
     const response = await axios({
       method: "post",
@@ -22,7 +22,6 @@ export default async function retrieveRefreshToken(refresh_token) {
         "Content-Type": "application/x-www-form-urlencoded"
       }
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);

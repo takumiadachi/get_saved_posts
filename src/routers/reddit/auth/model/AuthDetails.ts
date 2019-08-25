@@ -1,6 +1,6 @@
 import * as Nano from "nano";
 
-export default class Details implements Nano.MaybeDocument {
+export default class AuthDetails implements Nano.MaybeDocument {
   _id: string;
   _rev: string;
   access_token: string;

@@ -4,5 +4,11 @@
     <div>/reddit</div>
     <div>Authenticated: #{authenticated}</div>
     <div>SessionID: #{sessionID}</div>
+    div
+      form(method="POST" action="/reddit/addPost/submission/")
+        div
+          label(for='submission') Reddit SubmissionID: 
+          input(type="text" placeholder="A Submission.." name="id")
+          input(type="submit")
   </body>
 </html>

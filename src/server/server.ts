@@ -49,7 +49,18 @@ app.use(express.static(path.join(__dirname, "public")));
 // Send pretty json with this line
 app.set("json spaces", 2);
 app.use((req, res, next) => {
-  console.log("a request");
+  if (req.session.views) {
+    req.session.views++;
+  } else {
+    req.session.views = 1;
+  }
+  if (req.session.sessionID) {
+    console.log(req.url, req.session.sessionID, req.session.views);
+  } else {
+    console.log(req.url, req.session.views);
+  }
+
+  console.log();
   next();
 });
 /**
@@ -57,17 +68,9 @@ app.use((req, res, next) => {
  */
 // Entry point
 app.get("/", async (req, res) => {
-  if (req.session.views) {
-    req.session.views++;
-  } else {
-    req.session.views = 1;
-  }
   if (!req.session.sessionID) {
     // req.session.sessionID = "gre-" + uuidv1();
     req.session.sessionID = "gre-" + "uniqueid";
-    console.log(req.session.sessionID);
-  } else {
-    console.log(req.session.sessionID);
   }
 
   res.render(path.join(__dirname, "views/login/index.pug"), {
@@ -79,7 +82,8 @@ app.use("/reddit", redditRouter);
 
 // 404
 app.get("*", function(req, res) {
-  res
-    .status(404) // HTTP status 404: NotFound
-    .send("Not found");
+  res.redirect("http://localhost:4201/reddit"); // change this back if in development
+  // res
+  //   .status(404) // HTTP status 404: NotFound
+  //   .send("Not found");
 });

@@ -1,6 +1,6 @@
 import nano from "../connect";
 import createUserDB from "../methods/createUserDb";
-import Details from "../../../routers/reddit/auth/model/details";
+import Details from "../../../routers/reddit/auth/model/AuthDetails";
 
 export default async function createAuth(dbName: string, details: Details) {
   try {

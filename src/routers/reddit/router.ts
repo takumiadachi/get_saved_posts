@@ -4,13 +4,15 @@ import _ from "lodash";
 import retrieveAccessToken from "./auth/retrieveAccessToken";
 import path from "path";
 import uuidv1 from "uuid/v1";
-import refreshToken from "./auth/retrieveRefreshToken";
+import refreshToken from "./auth/refreshToken";
 import getCommentById from "../../api/reddit/v1/getCommentById";
 import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
-import Details from "./auth/model/details";
+import Details from "./auth/model/AuthDetails";
 import nano from "../../db/couchdb/connect";
 import createAuth from "../../db/couchdb/auth/createAuth";
-import { getAuth } from "../../db/couchdb/auth/getAuth";
+import getAuth from "../../db/couchdb/auth/getAuth";
+import addPost from "../../db/couchdb/methods/reddit/addPost";
+import getSubmissionById from "../../api/reddit/v1/getSubmissionById";
 let redditRouter = express.Router();
 
 /**
@@ -52,17 +54,23 @@ redditRouter.get("/getPost/:id/", async (req, res) => {
 // ...:upvotes/* is optional
 redditRouter.get("/getPost/expanded/:id/", async (req, res) => {
   const id = req.params.id;
-  console.log(req.params.id);
   const data = await getCommentByIdExpanded(id, -100);
   res.json(data);
 });
 
 redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   const id = req.params.id;
-  console.log(req.params.id);
   const upvotes: number = req.params.ups;
   const data = await getCommentByIdExpanded(id, upvotes);
   res.json(data);
+});
+
+redditRouter.post("/addPost/submission/", async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  // const post = await getSubmissionById(id);
+  // const data = await addPost(req.session.sessionID, post);
+  // console.log(data);
 });
 
 redditRouter.get("/success", async (req, res) => {
@@ -97,26 +105,29 @@ redditRouter.get("/destroy", (req, res) => {
 });
 
 // http://[address]/reddit/refresh
-redditRouter.get("/refresh", async (req, res) => {
+redditRouter.post("/refresh", async (req, res) => {
   // console.log(details);
   // if (!details.refresh_token) {
   //   res.redirect(REDIRECT_URL);
   //   return;
   // }
-  const code = req.query.code;
-  const state = req.query.state;
+  // const code = req.query.code;
+  // const state = req.query.state;
 
   try {
-    // const stuff = await refreshToken(details.refresh_token);
-    // console.log(stuff);
-    // Set authentication stuff up.
-    req.session.authenticated = true;
-    req.session.state = req.query.state;
+    const authDetails = await getAuth(req.session.sessionID);
+    const rToken = await refreshToken(authDetails["refresh_token"]);
+    console.log(rToken);
+    // console.log("test");
     // Redirect to authenticated route.
-    res.redirect(REDIRECT_URL);
+    // res.redirect(REDIRECT_URL);
   } catch (error) {
     console.log(error);
   }
+});
+
+redditRouter.post("*", async (req, res) => {
+  res.redirect(REDIRECT_URL);
 });
 
 export default redditRouter;

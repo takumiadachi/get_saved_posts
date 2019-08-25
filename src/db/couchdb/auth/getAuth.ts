@@ -9,7 +9,7 @@ import nano from "../connect";
  *
  * @param dbName
  */
-export async function getAuth(dbName: string) {
+export default async function getAuth(dbName: string) {
   try {
     const db = nano.use(dbName);
     const post = await db.get(dbName);

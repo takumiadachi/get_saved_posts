@@ -1,13 +1,13 @@
 import axios from "axios";
 import { btoa } from "../../../utility/btoa";
 import { REDDIT_API_V1 } from "../Constants/reddit_api_v1";
-import Details from "./model/details";
+import AuthDetails from "./model/AuthDetails";
 
 const REDDIT_CLIENT_ID = process.env.REDDIT_CLIENT_ID;
 const REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
 const REDDIT_REDIRECT_URI = process.env.REDDIT_REDIRECT_URI;
 
-export default async function retrieveAccessToken(code): Promise<Details> {
+export default async function retrieveAccessToken(code): Promise<AuthDetails> {
   const response = await axios({
     method: "post",
     url: `${REDDIT_API_V1}access_token`, // https://www.reddit.com/api/v1/access_token
@@ -23,12 +23,12 @@ export default async function retrieveAccessToken(code): Promise<Details> {
       "Content-Type": "application/x-www-form-urlencoded"
     }
   });
-  const details = new Details(
+  const authDetails = new AuthDetails(
     response.data.access_token,
     response.data.expires_in,
     response.data.refresh_token,
     response.data.scope,
     response.data.token_type
   );
-  return details;
+  return authDetails;
 }
