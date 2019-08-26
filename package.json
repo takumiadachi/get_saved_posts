@@ -4,10 +4,14 @@
   "description": "Download your saved posts from reddit into a easy to data mine format.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "tsc && npm run copy-views-assets && node ./dist/server.js",
     "dev": "nodemon",
     "test": "jest --silent",
-    "db": "ts-node ./src/db/script.ts"
+    "db": "ts-node ./src/db/script.ts",
+    "watch-ts": "tsc -w",
+    "build": "tsc && npm run copy-views-assets",
+    "all": "concurrently \"npm:watch-ts\" \"npm:dev\"",
+    "copy-views-assets": "ts-node copyViewsAssets.ts"
   },
   "author": "Takumi Adachi",
   "license": "ISC",
@@ -23,6 +27,7 @@
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
+    "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "lodash": "^4.17.15",
@@ -30,6 +35,7 @@
     "nano": "^8.1.0",
     "pug": "^2.0.4",
     "session-file-store": "^1.3.1",
+    "shelljs": "^0.8.3",
     "snoowrap": "^1.18.0",
     "typescript": "^3.5.3",
     "uuid": "^3.3.2"
@@ -39,10 +45,13 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@prettier/plugin-pug": "^1.0.0",
     "@types/jest": "^24.0.15",
     "babel-jest": "^24.8.0",
+    "concurrently": "^4.1.2",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
     "ts-node": "^8.3.0"
   }
 }

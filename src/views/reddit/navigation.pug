@@ -1,14 +1,15 @@
 //- <div>
-//-   <ul style="list-style-type:none">
-//-       <li><a href=${#{BASEURL}}>#{BASEURL}</a></li>
-//-       <li><a href="http://localhost:4201/reddit">http://localhost:4201/reddit</a></li>
-//-       <li><a href="http://localhost:4201/reddit/getPost/evsqjhn">http://localhost:4201/reddit/getPost/evsqjhn</a></li>
-//-       <li><a href="http://localhost:4201/reddit/getPost/c7bqbji">http://localhost:4201/reddit/getPost/c7bqbji</a></li>
-//-       <li><a href="http://localhost:4201/reddit/refresh">http://localhost:4201/reddit/refresh</a></li>
-//-       <li><a href="http://localhost:4201/reddit/views/all/cstxi8">http://localhost:4201/reddit/all/cstxi8</a></li>
-//-   </ul>
+//- <ul style="list-style-type:none">
+//- <li><a href=${#{BASEURL}}>#{BASEURL}</a></li>
+//- <li><a href="http://localhost:4201/reddit">http://localhost:4201/reddit</a></li>
+//- <li><a href="http://localhost:4201/reddit/getPost/evsqjhn">http://localhost:4201/reddit/getPost/evsqjhn</a></li>
+//- <li><a href="http://localhost:4201/reddit/getPost/c7bqbji">http://localhost:4201/reddit/getPost/c7bqbji</a></li>
+//- <li><a href="http://localhost:4201/reddit/refresh">http://localhost:4201/reddit/refresh</a></li>
+//- <li><a href="http://localhost:4201/reddit/views/all/cstxi8">http://localhost:4201/reddit/all/cstxi8</a></li>
+//- </ul>
 //- </div>
 
+<!-- prettier-ignore -->
 div
   ul(style="list-style-type:none")
     li 
@@ -24,21 +25,18 @@ div
     li
       a(href=`${BASEURL}/reddit/views/all/`) #{BASEURL}/reddit/views/all
     li
-      form(method="POST" action="/reddit/refresh/")
+      form(method="POST", action="/reddit/refresh/")
         div
-          label(for='refresh') Refresh Token (POST): 
+          label(for="refresh") Refresh Token (POST):
           input(type="submit")
 
-
 //- - var list = [ `${BASEURL}/reddit`,`${BASEURL}/reddit/views/all`,`${BASEURL}/reddit/refresh`,`${BASEURL}/reddit/getPost/c7bqbji`,`${BASEURL}/reddit/getPost/expanded/evsqjhn/ups/20`,`${BASEURL}/reddit/views/all/cstxi8`]
-
 
 //- //- div #{list[0]}
 
 //- mixin aHref(href, name)
-//-   a(href=href)&attributes(attributes)= name
+//- a(href=href)&attributes(attributes)= name
 
 //- ul(style="list-style-type:none")
-//-   each link in list
-//-     li=a(href=link)
-
+//- each link in list
+//- li=a(href=link)

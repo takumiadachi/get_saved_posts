@@ -25,7 +25,7 @@ redditRouter.get("/", async (req, res) => {
   const details = await getAuth(req.session.sessionID);
   // console.log(details);
   if (details) {
-    res.render(path.join(__dirname, "views/index.pug"), {
+    res.render(path.join(__dirname, "../../views/reddit/"), {
       authenticated: true,
       sessionID: req.session.sessionID,
       state: req.session.state
@@ -66,7 +66,9 @@ redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
 });
 
 redditRouter.post("/addPost/submission/", async (req, res) => {
-  const id = req.params.id;
+  // Use javascript instead of forms
+  console.log(req.body);
+  const id = req.body;
   console.log(id);
   // const post = await getSubmissionById(id);
   // const data = await addPost(req.session.sessionID, post);
@@ -74,11 +76,11 @@ redditRouter.post("/addPost/submission/", async (req, res) => {
 });
 
 redditRouter.get("/success", async (req, res) => {
-  // console.log("req.query", req.query);
   if (_.isEmpty(req.query)) {
     res.redirect(REDIRECT_URL);
     return;
   }
+
   const code = req.query.code;
   const state = req.query.state;
 
@@ -106,14 +108,6 @@ redditRouter.get("/destroy", (req, res) => {
 
 // http://[address]/reddit/refresh
 redditRouter.post("/refresh", async (req, res) => {
-  // console.log(details);
-  // if (!details.refresh_token) {
-  //   res.redirect(REDIRECT_URL);
-  //   return;
-  // }
-  // const code = req.query.code;
-  // const state = req.query.state;
-
   try {
     const authDetails = await getAuth(req.session.sessionID);
     const rToken = await refreshToken(authDetails["refresh_token"]);
@@ -123,6 +117,7 @@ redditRouter.post("/refresh", async (req, res) => {
     // res.redirect(REDIRECT_URL);
   } catch (error) {
     console.log(error);
+    res.redirect(REDIRECT_URL);
   }
 });
 

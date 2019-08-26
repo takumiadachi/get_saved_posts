@@ -1,14 +1,20 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <title>title</title>
+    //- <script type="javascript/text" src="../dist/client.js"></script>
+  </head>
   <body>
     include navigation.pug
     <div>/reddit</div>
     <div>Authenticated: #{authenticated}</div>
     <div>SessionID: #{sessionID}</div>
     div
-      form(method="POST" action="/reddit/addPost/submission/")
+      form(method="POST" action="/reddit/addPost/submission")
         div
           label(for='submission') Reddit SubmissionID: 
           input(type="text" placeholder="A Submission.." name="id")
           input(type="submit")
   </body>
+  //- <script type="text/javascript" src="../dist/client.js"></script>
 </html>
