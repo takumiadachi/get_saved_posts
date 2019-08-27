@@ -3,16 +3,12 @@ import express from "express";
 import _ from "lodash";
 import retrieveAccessToken from "./auth/retrieveAccessToken";
 import path from "path";
-import uuidv1 from "uuid/v1";
 import refreshToken from "./auth/refreshToken";
 import getCommentById from "../../api/reddit/v1/getCommentById";
 import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
-import Details from "./auth/model/AuthDetails";
 import nano from "../../db/couchdb/connect";
 import createAuth from "../../db/couchdb/auth/createAuth";
 import getAuth from "../../db/couchdb/auth/getAuth";
-import addPost from "../../db/couchdb/methods/reddit/addPost";
-import getSubmissionById from "../../api/reddit/v1/getSubmissionById";
 let redditRouter = express.Router();
 
 /**
@@ -65,7 +61,7 @@ redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   res.json(data);
 });
 
-redditRouter.post("/addPost/submission/", async (req, res) => {
+redditRouter.post("/addPost/submission/", async req => {
   // Use javascript instead of forms
   console.log(req.body);
   const id = req.body;
@@ -82,7 +78,6 @@ redditRouter.get("/success", async (req, res) => {
   }
 
   const code = req.query.code;
-  const state = req.query.state;
 
   try {
     /**
@@ -91,7 +86,6 @@ redditRouter.get("/success", async (req, res) => {
     console.log("req.session", req.session.sessionID);
     const details = await retrieveAccessToken(code);
     details.setId(req.session.sessionID);
-    const createdAuth = await createAuth(req.session.sessionID, details);
     req.session.authenticated = true;
     req.session.state = req.query.state;
     // Redirect to authenticated route.
@@ -102,7 +96,7 @@ redditRouter.get("/success", async (req, res) => {
 });
 
 // http://[address]/reddit/destroy
-redditRouter.get("/destroy", (req, res) => {
+redditRouter.get("/destroy", () => {
   // Destroy session id in database
 });
 

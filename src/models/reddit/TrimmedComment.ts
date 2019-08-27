@@ -43,6 +43,12 @@ export default class TrimmedComment extends Content<TrimmedComment>
     this.replies = replies;
   }
 
+  /**
+   * Generate a Comment from a comment provided by Reddit.
+   *
+   * @param comm
+   * @param func
+   */
   public static fromComment(comm: Comment, func?: Function): TrimmedComment {
     return new TrimmedComment(
       comm.id,
