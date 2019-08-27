@@ -1,5 +1,6 @@
 import axios from "axios";
 import { HN_API_BASEURL, API_V0 } from "../URL";
+import Story from "../../../models/hackernews/Story";
 
 /**
  * Get a HN story. Similar to a Reddit submission
@@ -10,7 +11,7 @@ import { HN_API_BASEURL, API_V0 } from "../URL";
  *
  * @param id
  */
-export default async function getStoryByIdAndComments(
+export default async function getStoryAndCommentsById(
   id: string,
   depth: number = 1
 ) {
@@ -19,12 +20,23 @@ export default async function getStoryByIdAndComments(
     const response = await axios.get(
       `${HN_API_BASEURL}/${API_V0}/item/${id}.json?print=pretty`
     );
-    const root = response.data;
-    // for (child: number of root['kids'])
-
-    return response;
+    const root = Story.fromStory(response.data);
+    const promises = await root.kids.map(async id => {
+      const response = await axios.get(
+        `${HN_API_BASEURL}/${API_V0}/item/${id}.json?print=pretty`
+      );
+      const story = Story.fromStory(response.data);
+      return story;
+    });
+    const all = await Promise.all(promises);
+    return all;
   } catch (error) {
     console.log(error);
     return null;
   }
 }
+
+(async () => {
+  const data = await getStoryAndCommentsById("8863");
+  console.log(data);
+})();

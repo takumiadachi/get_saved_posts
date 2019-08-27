@@ -1,4 +1,6 @@
-export default class Story {
+import Item from "./Item";
+
+export default class Story implements Item {
   by: string;
   id: number;
   kids: Array<number>;
@@ -7,6 +9,13 @@ export default class Story {
   title: string;
   type: string; // story
   url: string;
+
+  deleted: boolean;
+  time: number;
+  text: string;
+  dead: boolean;
+  parent: number;
+  descendants: number;
 
   constructor(by, id, kids, score, created, title, type, url) {
     this.by = by;
