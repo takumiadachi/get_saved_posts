@@ -26,7 +26,7 @@ redditRouter.get("/", async (req, res) => {
   // console.log(details);
   if (details) {
     res.render(path.join(__dirname, "../../views/reddit/"), {
-      authenticated: true,
+      authenticated: req.session.authenticated,
       sessionID: req.session.sessionID,
       state: req.session.state
     });
@@ -85,12 +85,12 @@ redditRouter.get("/success", async (req, res) => {
   const state = req.query.state;
 
   try {
+    /**
+     * Store credentials in DB securely and redirect to authenticated route.
+     */
     console.log("req.session", req.session.sessionID);
     const details = await retrieveAccessToken(code);
     details.setId(req.session.sessionID);
-    /**
-     * STORE THIS IN DB
-     */
     const createdAuth = await createAuth(req.session.sessionID, details);
     req.session.authenticated = true;
     req.session.state = req.query.state;
@@ -112,17 +112,10 @@ redditRouter.post("/refresh", async (req, res) => {
     const authDetails = await getAuth(req.session.sessionID);
     const rToken = await refreshToken(authDetails["refresh_token"]);
     console.log(rToken);
-    // console.log("test");
-    // Redirect to authenticated route.
-    // res.redirect(REDIRECT_URL);
   } catch (error) {
     console.log(error);
     res.redirect(REDIRECT_URL);
   }
-});
-
-redditRouter.post("*", async (req, res) => {
-  res.redirect(REDIRECT_URL);
 });
 
 export default redditRouter;

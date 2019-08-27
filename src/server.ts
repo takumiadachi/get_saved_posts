@@ -27,7 +27,7 @@ app.listen(PORT, () => console.log(`Server started on ${PORT}`));
  */
 
 //Error Handler. Provides full stack - remove for production
-app.use(errorHandler());
+// app.use(errorHandler());
 // Session & session-file-store
 var FileStore = require("session-file-store")(session);
 var fileStoreOptions = {};
