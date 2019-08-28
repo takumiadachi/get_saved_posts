@@ -32,10 +32,3 @@ export default async function getItemById(
     return null;
   }
 }
-
-(async () => {
-  let item = await getItemById("8863");
-  console.log(item);
-  item = await getItemById("2921983");
-  console.log(item);
-})();

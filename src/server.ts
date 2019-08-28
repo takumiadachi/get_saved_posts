@@ -1,17 +1,15 @@
 require("dotenv").config();
-import path from "path";
 // Express
 import express from "express";
-
+import path from "path";
 // Middleware
 import errorHandler from "errorhandler";
 import bodyParser from "body-parser";
 import session from "express-session";
-import uuidv1 from "uuid/v1";
-
-// Routers
+// Routers & routes
 import redditRouter from "./routers/reddit/router";
-import generateRedditOAuthURL from "./routers/reddit/auth/generateRedditOAuthURL";
+import root from "./routes/root";
+import notFound404 from "./routes/notFound404";
 
 // Start the server with port.
 const PORT: number = parseInt(process.env.PORT) || 4201;
@@ -57,41 +55,23 @@ app.set("json spaces", 2);
 
 // God middleware
 app.use((req, res, next) => {
-  console.log();
-  if (req.session.views) {
-    req.session.views++;
-  } else {
-    req.session.views = 1;
-  }
-  if (req.session.sessionID) {
-    console.log(req.url, req.session.sessionID, req.session.views);
-  } else {
-    console.log(req.url, req.session.views);
-  }
+  // console.log();
+  // if (req.session.views) {
+  //   req.session.views++;
+  // } else {
+  //   req.session.views = 1;
+  // }
+  // if (req.session.sessionID) {
+  //   console.log(req.url, req.session.sessionID, req.session.views);
+  // } else {
+  //   console.log(req.url, req.session.views);
+  // }
   next();
 });
 
 /**
  * Routes
  */
-// Entry point Currently for the whole application
-app.get("/", async (req, res) => {
-  if (!req.session.sessionID) {
-    // req.session.sessionID = "gre-" + uuidv1();
-    req.session.sessionID = "gre-" + "uniqueid";
-  }
-
-  res.render(path.join(__dirname, "./views/login/index.pug"), {
-    authURL: generateRedditOAuthURL()
-  });
-});
-
+app.get("/", root); // Entry point Currently for the whole application
 app.use("/reddit", redditRouter);
-
-// 404 Route
-app.get("*", function(req, res) {
-  res.redirect("http://localhost:4201/reddit"); // change this back if in development
-  // res
-  //   .status(404) // HTTP status 404: NotFound
-  //   .send("Not found");
-});
+app.get("*", notFound404); // 404 Route

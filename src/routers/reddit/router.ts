@@ -7,8 +7,8 @@ import refreshToken from "./auth/refreshToken";
 import getCommentById from "../../api/reddit/v1/getCommentById";
 import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
 import nano from "../../db/couchdb/connect";
-import createAuth from "../../db/couchdb/auth/createAuth";
 import getAuth from "../../db/couchdb/auth/getAuth";
+import createAuth from "../../db/couchdb/auth/createAuth";
 let redditRouter = express.Router();
 
 /**
@@ -16,17 +16,44 @@ let redditRouter = express.Router();
  */
 const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
 
+redditRouter.get("/success", async (req, res) => {
+  if (_.isEmpty(req.query)) {
+    console.log("fuck");
+    res.redirect(REDIRECT_URL);
+    return;
+  }
+
+  const code = req.query.code;
+  const state = req.query.state;
+  try {
+    /**
+     * Store credentials in DB securely and redirect to authenticated route.
+     * FIGURE OUT authentication
+     */
+    const details = await retrieveAccessToken(code);
+    const createdAuth = await createAuth(req.session.sessionID, details);
+    console.log("created auth", createdAuth);
+    details.setId(req.session.sessionID);
+    req.session.authenticated = true;
+    req.session.state = state;
+    // Redirect to authenticated route.
+    await res.redirect(REDIRECT_URL);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // http://[address]/reddit
 redditRouter.get("/", async (req, res) => {
   const details = await getAuth(req.session.sessionID);
-  // console.log(details);
-  if (details) {
+  if (req.session.authenticated) {
     res.render(path.join(__dirname, "../../views/reddit/"), {
       authenticated: req.session.authenticated,
       sessionID: req.session.sessionID,
       state: req.session.state
     });
   } else {
+    console.log("User is not authenticated");
     res.redirect(process.env.BASEURL);
   }
 });
@@ -63,36 +90,12 @@ redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
 
 redditRouter.post("/addPost/submission/", async req => {
   // Use javascript instead of forms
-  console.log(req.body);
+  req.body;
   const id = req.body;
-  console.log(id);
+  // console.log(id);
   // const post = await getSubmissionById(id);
   // const data = await addPost(req.session.sessionID, post);
   // console.log(data);
-});
-
-redditRouter.get("/success", async (req, res) => {
-  if (_.isEmpty(req.query)) {
-    res.redirect(REDIRECT_URL);
-    return;
-  }
-
-  const code = req.query.code;
-
-  try {
-    /**
-     * Store credentials in DB securely and redirect to authenticated route.
-     */
-    console.log("req.session", req.session.sessionID);
-    const details = await retrieveAccessToken(code);
-    details.setId(req.session.sessionID);
-    req.session.authenticated = true;
-    req.session.state = req.query.state;
-    // Redirect to authenticated route.
-    await res.redirect(REDIRECT_URL);
-  } catch (error) {
-    console.log(error);
-  }
 });
 
 // http://[address]/reddit/destroy
