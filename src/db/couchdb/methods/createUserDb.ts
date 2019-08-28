@@ -6,8 +6,8 @@ import nano from "../connect";
 export default async function createUserDb(dbName: string) {
   let info = {};
   // Set to lowercase because CouchDB only accepts lowercase letters.
-  dbName = dbName.toLocaleLowerCase();
   try {
+    dbName = dbName.toLocaleLowerCase();
     await nano.db.get(dbName);
     info["name"] = dbName;
     return dbName;

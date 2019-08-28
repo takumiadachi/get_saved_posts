@@ -18,7 +18,6 @@ const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
 
 redditRouter.get("/success", async (req, res) => {
   if (_.isEmpty(req.query)) {
-    console.log("fuck");
     res.redirect(REDIRECT_URL);
     return;
   }
@@ -33,7 +32,6 @@ redditRouter.get("/success", async (req, res) => {
     const userID = req.session.sessionID;
     const details = await retrieveAccessToken(code, userID);
     const createdAuth = await createAuth(userID, details);
-    console.log("created auth", createdAuth);
     details.setId(req.session.sessionID);
     req.session.authenticated = true;
     req.session.state = state;
@@ -61,7 +59,7 @@ redditRouter.get("/", async (req, res) => {
 
 redditRouter.get("/views/all", async (req, res) => {
   // const id = req.params.id;
-  const db = nano.use("uniqueuser");
+  const db = nano.use(req.session.sessionID);
   const data = await db.view("post_view", "all", {
     include_docs: true
   });

@@ -1,6 +1,6 @@
 import nano from "../connect";
 import createUserDB from "../methods/createUserDb";
-import Details from "../../../routers/reddit/auth/model/AuthDetails";
+import Details from "../../../models/auth/AuthDetails";
 
 export default async function createAuth(dbName: string, details: Details) {
   try {
@@ -12,7 +12,7 @@ export default async function createAuth(dbName: string, details: Details) {
     if (error.reason === "conflict") {
       return null;
     }
-    console.log(error);
+    // console.log(error);
     return null;
   }
 }

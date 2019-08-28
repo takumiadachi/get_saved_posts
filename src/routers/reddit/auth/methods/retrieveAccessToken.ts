@@ -1,7 +1,7 @@
 import axios from "axios";
 import { btoa } from "../../../../utility/btoa";
 import { REDDIT_API_V1 } from "../../Constants/reddit_api_v1";
-import AuthDetails from "../model/AuthDetails";
+import AuthDetails from "../../../../models/auth/AuthDetails";
 
 const REDDIT_CLIENT_ID = process.env.REDDIT_CLIENT_ID;
 const REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
