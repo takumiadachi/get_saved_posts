@@ -1,9 +1,9 @@
 require("dotenv").config();
 import express from "express";
 import _ from "lodash";
-import retrieveAccessToken from "./auth/retrieveAccessToken";
+import retrieveAccessToken from "./auth/methods/retrieveAccessToken";
 import path from "path";
-import refreshToken from "./auth/refreshToken";
+import refreshToken from "./auth/methods/refreshToken";
 import getCommentById from "../../api/reddit/v1/getCommentById";
 import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
 import nano from "../../db/couchdb/connect";
@@ -28,10 +28,11 @@ redditRouter.get("/success", async (req, res) => {
   try {
     /**
      * Store credentials in DB securely and redirect to authenticated route.
-     * FIGURE OUT authentication
+     * userID is also the sessionID and dbName. They are all the same.
      */
-    const details = await retrieveAccessToken(code);
-    const createdAuth = await createAuth(req.session.sessionID, details);
+    const userID = req.session.sessionID;
+    const details = await retrieveAccessToken(code, userID);
+    const createdAuth = await createAuth(userID, details);
     console.log("created auth", createdAuth);
     details.setId(req.session.sessionID);
     req.session.authenticated = true;
@@ -98,6 +99,9 @@ redditRouter.post("/addPost/submission/", async req => {
   // console.log(data);
 });
 
+/**
+ * Revoke/Destroy access token
+ */
 // http://[address]/reddit/destroy
 redditRouter.get("/destroy", () => {
   // Destroy session id in database

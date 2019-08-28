@@ -1,4 +1,4 @@
-import { REDDIT_API_V1 } from "../Constants/reddit_api_v1";
+import { REDDIT_API_V1 } from "../../Constants/reddit_api_v1";
 
 export default function generateRedditOAuthURL(
   clientId: string = process.env.REDDIT_CLIENT_ID,

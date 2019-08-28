@@ -1,6 +1,6 @@
 import axios from "axios";
-import { btoa } from "../../../utility/btoa";
-import { REDDIT_API_V1 } from "../Constants/reddit_api_v1";
+import { btoa } from "../../../../utility/btoa";
+import { REDDIT_API_V1 } from "../../Constants/reddit_api_v1";
 
 const REDDIT_CLIENT_ID = process.env.REDDIT_CLIENT_ID;
 const REDDIT_CLIENT_SECRET = process.env.REDDIT_CLIENT_SECRET;
@@ -24,7 +24,7 @@ export default async function refreshToken(refresh_token) {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return null;
   }
 }

@@ -4,7 +4,7 @@ import Details from "../../../routers/reddit/auth/model/AuthDetails";
 
 export default async function createAuth(dbName: string, details: Details) {
   try {
-    const user = await createUserDB(dbName);
+    const userCreated = await createUserDB(dbName);
     const db = await nano.use(dbName);
     const insertAuth = await db.insert(details);
     return insertAuth;
@@ -12,7 +12,7 @@ export default async function createAuth(dbName: string, details: Details) {
     if (error.reason === "conflict") {
       return null;
     }
-    // console.log(error);
+    console.log(error);
     return null;
   }
 }

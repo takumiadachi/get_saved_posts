@@ -1,4 +1,4 @@
-import generateRedditOAuthURL from "../routers/reddit/auth/generateRedditOAuthURL";
+import generateRedditOAuthURL from "../routers/reddit/auth/methods/generateRedditOAuthURL";
 import path from "path";
 
 export default async function root(req, res) {

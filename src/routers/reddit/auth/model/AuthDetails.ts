@@ -9,7 +9,20 @@ export default class AuthDetails implements Nano.MaybeDocument {
   refresh_token: string;
   scope: string;
 
-  constructor(access_token, expires_in, refresh_token, scope, token_type) {
+  constructor(
+    access_token,
+    expires_in,
+    refresh_token,
+    scope,
+    token_type,
+    _id?
+  ) {
+    if (_id) {
+      this._id = _id;
+    } else {
+      this._id = access_token;
+    }
+
     this.access_token = access_token;
     this.expires_in = expires_in;
     this.refresh_token = refresh_token;
