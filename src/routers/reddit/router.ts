@@ -9,6 +9,7 @@ import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
 import nano from "../../db/couchdb/connect";
 import getAuth from "../../db/couchdb/auth/getAuth";
 import createAuth from "../../db/couchdb/auth/createAuth";
+import updateAuth from "../../db/couchdb/auth/updateAuth";
 let redditRouter = express.Router();
 
 /**
@@ -30,9 +31,25 @@ redditRouter.get("/success", async (req, res) => {
      * userID is also the sessionID and dbName. They are all the same.
      */
     const userID = req.session.sessionID;
-    const details = await retrieveAccessToken(code, userID);
-    const createdAuth = await createAuth(userID, details);
-    details.setId(req.session.sessionID);
+
+    const auth = await getAuth(userID);
+    console.log(auth);
+    if (auth) {
+      console.log("Update user: ", userID);
+      const details = await retrieveAccessToken(code, userID);
+      const updatedUser = await updateAuth(userID, {
+        access_token: details.access_token,
+        refresh_token: details.refresh_token
+      });
+      console.log(updatedUser);
+    } else {
+      console.log("Create new user: ", userID);
+      const details = await retrieveAccessToken(code, userID);
+      details.setId(userID);
+      const createdAuth = await createAuth(userID, details);
+      console.log(createdAuth);
+    }
+
     req.session.authenticated = true;
     req.session.state = state;
     // Redirect to authenticated route.
@@ -87,11 +104,14 @@ redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   res.json(data);
 });
 
-redditRouter.post("/addPost/submission/", async req => {
+redditRouter.post("/addPost/submission/", async (req, res) => {
+  const currentPage = req.header("Referer") || "/";
+  console.log(currentPage);
   // Use javascript instead of forms
   req.body;
   const id = req.body;
-  // console.log(id);
+  console.log(id);
+  res.redirect(currentPage);
   // const post = await getSubmissionById(id);
   // const data = await addPost(req.session.sessionID, post);
   // console.log(data);
@@ -107,13 +127,16 @@ redditRouter.get("/destroy", () => {
 
 // http://[address]/reddit/refresh
 redditRouter.post("/refresh", async (req, res) => {
+  const currentPage = req.header("Referer") || "/";
   try {
     const authDetails = await getAuth(req.session.sessionID);
     const rToken = await refreshToken(authDetails["refresh_token"]);
     console.log(rToken);
+    res.redirect(currentPage);
   } catch (error) {
     console.log(error);
-    res.redirect(REDIRECT_URL);
+    console.log(currentPage);
+    res.redirect(currentPage);
   }
 });
 

@@ -1,3 +1,9 @@
+/**
+ * 404 page.
+ *
+ * @param req
+ * @param res
+ */
 export default async function notFound404(req, res) {
   res.redirect("http://localhost:4201/reddit"); // change this back if in development
   // res

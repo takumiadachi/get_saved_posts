@@ -1,4 +1,5 @@
 import nano from "../connect";
+import _ from "lodash";
 
 /**
  * Update auth details for user
@@ -16,20 +17,20 @@ export default async function updateAuth(
     const db = nano.use(dbName);
     const post = await db.get(_id);
     changes["_rev"] = post._rev;
-    console.log(changes);
+    const mergedChanges = _.extend(post, changes);
     // @ts-ignore
-    const update = await db.insert(changes, post._id);
+    const update = await db.insert(mergedChanges, post._id);
     return update;
   } catch (error) {
-    // console.log(error.reason);
+    console.log(error);
     return null;
   }
 }
 
-(async () => {
-  const data = await updateAuth("gre-uniqueid", {
-    access_token: "new access_token",
-    refresh_token: "new refresH_token"
-  });
-  console.log(data);
-})();
+// (async () => {
+//   const data = await updateAuth("gre-uniqueid", {
+//     access_token: "new access_token",
+//     refresh_token: "new refresH_token"
+//   });
+//   console.log(data);
+// })();

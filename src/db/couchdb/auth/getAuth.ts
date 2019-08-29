@@ -12,8 +12,8 @@ import nano from "../connect";
 export default async function getAuth(dbName: string) {
   try {
     const db = nano.use(dbName);
-    const post = await db.get(dbName);
-    return post;
+    const details = await db.get(dbName);
+    return details;
   } catch (error) {
     // console.log(error.reason);
     return null;
