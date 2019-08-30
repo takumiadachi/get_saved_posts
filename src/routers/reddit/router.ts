@@ -34,14 +34,16 @@ redditRouter.get("/success", async (req, res) => {
 
     const auth = await getAuth(userID);
     console.log(auth);
+    // If user exists, just update tokens and revoke the previous tokens
     if (auth) {
-      console.log("Update user: ", userID);
+      console.log("Update user:", userID);
       const details = await retrieveAccessToken(code, userID);
       const updatedUser = await updateAuth(userID, {
         access_token: details.access_token,
         refresh_token: details.refresh_token
       });
       console.log(updatedUser);
+      // else if user does not exist, create a new user with db and add new tokens.
     } else {
       console.log("Create new user: ", userID);
       const details = await retrieveAccessToken(code, userID);
@@ -104,19 +106,6 @@ redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   res.json(data);
 });
 
-redditRouter.post("/addPost/submission/", async (req, res) => {
-  const currentPage = req.header("Referer") || "/";
-  console.log(currentPage);
-  // Use javascript instead of forms
-  req.body;
-  const id = req.body;
-  console.log(id);
-  res.redirect(currentPage);
-  // const post = await getSubmissionById(id);
-  // const data = await addPost(req.session.sessionID, post);
-  // console.log(data);
-});
-
 /**
  * Revoke/Destroy access token
  */
@@ -125,13 +114,33 @@ redditRouter.get("/destroy", () => {
   // Destroy session id in database
 });
 
+redditRouter.post("/addPost/submission/", async (req, res) => {
+  const currentPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
+
+  console.log(currentPage);
+  // Use javascript instead of forms
+  req.body;
+  const id = req.body;
+  console.log(id);
+
+  // const post = await getSubmissionById(id);
+  // const data = await addPost(req.session.sessionID, post);
+  // console.log(data);
+  res.redirect(currentPage);
+});
+
 // http://[address]/reddit/refresh
 redditRouter.post("/refresh", async (req, res) => {
-  const currentPage = req.header("Referer") || "/";
+  const currentPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
+  const userID = req.session.sessionID;
   try {
-    const authDetails = await getAuth(req.session.sessionID);
+    const authDetails = await getAuth(userID);
     const rToken = await refreshToken(authDetails["refresh_token"]);
-    console.log(rToken);
+    const updateToken = await updateAuth(userID, {
+      access_token: authDetails["access_token"],
+      refresh_token: authDetails["refresh_token"]
+    });
+    console.log(updateToken);
     res.redirect(currentPage);
   } catch (error) {
     console.log(error);

@@ -1,5 +1,6 @@
 import nano from "../connect";
 import _ from "lodash";
+import revokeToken from "../../../routers/reddit/auth/methods/revokeToken";
 
 /**
  * Update auth details for user
@@ -15,11 +16,20 @@ export default async function updateAuth(
   try {
     const _id = dbName;
     const db = nano.use(dbName);
-    const post = await db.get(_id);
-    changes["_rev"] = post._rev;
-    const mergedChanges = _.extend(post, changes);
+    const oldAuthDetails = await db.get(_id);
+    // Revoke old tokens
+    console.log(changes);
+    if (changes.access_token) {
+      console.log("revok");
+      revokeToken(oldAuthDetails["access_token"], "access_token");
+    }
+    if (changes.refresh_token) {
+      revokeToken(oldAuthDetails["refresh_token"], "refresh_token");
+    }
+    changes["_rev"] = oldAuthDetails._rev; // Set the rev properly so couchDb can increment it.
+    const mergedChanges = _.extend(oldAuthDetails, changes);
     // @ts-ignore
-    const update = await db.insert(mergedChanges, post._id);
+    const update = await db.insert(mergedChanges, _id);
     return update;
   } catch (error) {
     console.log(error);
