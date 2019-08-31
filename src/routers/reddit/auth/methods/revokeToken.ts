@@ -1,3 +1,4 @@
+require("dotenv").config();
 import axios from "axios";
 import { REDDIT_API_V1 } from "../../Constants/reddit_api_v1";
 import { btoa } from "../../../../utility/btoa";
@@ -21,27 +22,38 @@ export default async function revokeToken(token, tokenType) {
     // const revoked = await axios.post(
     //   `${REDDIT_API_V1}revoke_token?token=${token}&token_type_hint=${tokenType}`
     // );
+    console.log(`Basic ${btoa(process.env.REDDIT_CLIENT_ID)}`);
     const revoked = await axios({
       method: "post",
-      url: `https://www.reddit.com/revoke_token?token=${token}&token_type_hint=${tokenType}`,
+      url: `${REDDIT_API_V1}revoke_token`,
+      params: {
+        token: token,
+        token_type_hint: tokenType
+      },
       headers: {
         Authorization: `Basic ${btoa(
           process.env.REDDIT_CLIENT_ID + ":" + process.env.REDDIT_CLIENT_SECRET
         )}`
       }
     });
-    console.log("revoke", revoked);
+    // process.env.REDDIT_CLIENT_ID + ":" + process.env.REDDIT_CLIENT_SECRET
+    // console.log("revoke", revoked);
     return revoked;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    // console.log(error);
     return null;
   }
 }
 
-// (async () => {
-//   const revoked = await revokeToken(
-//     "290425859781-zJUqPg-9jkH_9Hv84NGmKc4Csg4",
-//     "access_token"
-//   );
-//   console.log(revoked);
-// })();
+(async () => {
+  try {
+    const test = await revokeToken(
+      "290425859781-7y-rOhcrX26uh7KQpfO6nUqUpU8",
+      "refresh_token"
+    );
+    console.log(test.status);
+  } catch (error) {
+    console.log(error);
+  }
+})();
