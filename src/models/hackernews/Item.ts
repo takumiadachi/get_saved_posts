@@ -1,4 +1,4 @@
-export default interface Item {
+interface Item {
   id: number;
   deleted: boolean;
   type: string;
@@ -15,3 +15,5 @@ export default interface Item {
 
   //poll uninmplemented
 }
+
+export default Item;

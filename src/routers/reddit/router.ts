@@ -12,7 +12,7 @@ import createAuth from "../../db/couchdb/auth/createAuth";
 import updateAuth from "../../db/couchdb/auth/updateAuth";
 import permalinkToId from "../../api/reddit/helpers/permalinkToId";
 import getSubmissionById from "../../api/reddit/v1/getSubmissionById";
-import addPost from "../../db/couchdb/methods/reddit/addPost";
+import addRedditPost from "../../db/couchdb/methods/reddit/addRedditPost";
 let redditRouter = express.Router();
 
 /**
@@ -121,18 +121,18 @@ redditRouter.get("/destroy", () => {
   // Destroy session id in database
 });
 
-redditRouter.post("/addPost/submission/", async (req, res) => {
+redditRouter.post("/addRedditPost/submission/", async (req, res) => {
   const currentPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
 
   const data = req.body.data;
   const id = permalinkToId(data);
   if (id.submissionId) {
     const post = await getSubmissionById(id.submissionId);
-    const addedPost = await addPost(req.session.sessionID, post);
+    const addedPost = await addRedditPost(req.session.sessionID, post);
     console.log(addedPost);
   }
 
-  // const data = await addPost(req.session.sessionID, post);
+  // const data = await addRedditPost(req.session.sessionID, post);
   // console.log(data);
   res.redirect(currentPage);
 });

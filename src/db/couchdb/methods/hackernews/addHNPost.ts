@@ -1,10 +1,11 @@
+import Comment from "src/models/hackernews/Comment";
+import Story from "src/models/hackernews/Story";
 import nano from "../../connect";
-import TrimmedComment from "../../../../models/reddit/TrimmedComment";
-import TrimmedSubmission from "../../../../models/reddit/TrimmedSubmission";
+import Item from "src/models/hackernews/Item";
 
-export default async function addPost(
+export default async function addHNPost(
   dbName: string,
-  post: TrimmedComment | TrimmedSubmission
+  post: Item | Story | Comment
 ) {
   try {
     const db = nano.use(dbName);

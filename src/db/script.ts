@@ -6,7 +6,7 @@
 import nano from "../db/couchdb/connect";
 import createUserDb from "../db/couchdb/methods/createUserDb";
 import removeUserDb from "../db/couchdb/methods/removeUserDb";
-import addPost from "../db/couchdb/methods/reddit/addPost";
+import addRedditPost from "../db/couchdb/methods/reddit/addRedditPost";
 import PostView from "../db/couchdb/views/reddit/postView";
 import addView from "./couchdb/methods/addView";
 import getSubmissionById from "../api/reddit/v1/getSubmissionById";
@@ -24,15 +24,15 @@ import getSubmissionById from "../api/reddit/v1/getSubmissionById";
 
   // Add the Posts
   let submission = await getSubmissionById("cstxi8");
-  let added = await addPost(dbName, submission);
+  let added = await addRedditPost(dbName, submission);
   submission = await getSubmissionById("ctkecb"); // over 14k comments
-  added = await addPost(dbName, submission);
+  added = await addRedditPost(dbName, submission);
   submission = await getSubmissionById("ctwcz2");
-  added = await addPost(dbName, submission);
+  added = await addRedditPost(dbName, submission);
   submission = await getSubmissionById("ctrz8g");
-  added = await addPost(dbName, submission);
+  added = await addRedditPost(dbName, submission);
   submission = await getSubmissionById("ctvpcs");
-  added = await addPost(dbName, submission);
+  added = await addRedditPost(dbName, submission);
   // const got = await getPost("uniqueuser", "cstxi8");
 
   // Add the Views
