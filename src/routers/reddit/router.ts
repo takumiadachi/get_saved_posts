@@ -10,6 +10,9 @@ import nano from "../../db/couchdb/connect";
 import getAuth from "../../db/couchdb/auth/getAuth";
 import createAuth from "../../db/couchdb/auth/createAuth";
 import updateAuth from "../../db/couchdb/auth/updateAuth";
+import permalinkToId from "../../api/reddit/helpers/permalinkToId";
+import getSubmissionById from "../../api/reddit/v1/getSubmissionById";
+import addPost from "../../db/couchdb/methods/reddit/addPost";
 let redditRouter = express.Router();
 
 /**
@@ -21,6 +24,10 @@ redditRouter.get("/success", async (req, res) => {
   if (_.isEmpty(req.query)) {
     res.redirect(REDIRECT_URL);
     return;
+  }
+  if (req.query.state !== req.session.state) {
+    console.log(req.query.code, req.session.state);
+    res.send("State not matching");
   }
 
   const code = req.query.code;
@@ -117,13 +124,14 @@ redditRouter.get("/destroy", () => {
 redditRouter.post("/addPost/submission/", async (req, res) => {
   const currentPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
 
-  console.log(currentPage);
-  // Use javascript instead of forms
-  req.body;
-  const id = req.body;
-  console.log(id);
+  const data = req.body.data;
+  const id = permalinkToId(data);
+  if (id.submissionId) {
+    const post = await getSubmissionById(id.submissionId);
+    const addedPost = await addPost(req.session.sessionID, post);
+    console.log(addedPost);
+  }
 
-  // const post = await getSubmissionById(id);
   // const data = await addPost(req.session.sessionID, post);
   // console.log(data);
   res.redirect(currentPage);
@@ -140,11 +148,11 @@ redditRouter.post("/refresh", async (req, res) => {
       access_token: authDetails["access_token"],
       refresh_token: authDetails["refresh_token"]
     });
-    console.log(updateToken);
+    // console.log(updateToken);
     res.redirect(currentPage);
   } catch (error) {
-    console.log(error);
-    console.log(currentPage);
+    // console.log(error);
+    // console.log(currentPage);
     res.redirect(currentPage);
   }
 });

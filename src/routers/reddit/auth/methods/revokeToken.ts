@@ -16,13 +16,7 @@ export default async function revokeToken(token, tokenType) {
   }
   try {
     // Need proper authorization headers
-    // console.log(
-    //   `${REDDIT_API_V1}revoke_token?token=${token}&token_type_hint=${tokenType}`
-    // );
-    // const revoked = await axios.post(
-    //   `${REDDIT_API_V1}revoke_token?token=${token}&token_type_hint=${tokenType}`
-    // );
-    console.log(`Basic ${btoa(process.env.REDDIT_CLIENT_ID)}`);
+    // console.log(`Basic ${btoa(process.env.REDDIT_CLIENT_ID)}`);
     const revoked = await axios({
       method: "post",
       url: `${REDDIT_API_V1}revoke_token`,
@@ -36,24 +30,20 @@ export default async function revokeToken(token, tokenType) {
         )}`
       }
     });
-    // process.env.REDDIT_CLIENT_ID + ":" + process.env.REDDIT_CLIENT_SECRET
-    // console.log("revoke", revoked);
     return revoked;
   } catch (error) {
-    // console.log(error);
-    // console.log(error);
     return null;
   }
 }
 
-(async () => {
-  try {
-    const test = await revokeToken(
-      "290425859781-7y-rOhcrX26uh7KQpfO6nUqUpU8",
-      "refresh_token"
-    );
-    console.log(test.status);
-  } catch (error) {
-    console.log(error);
-  }
-})();
+// (async () => {
+//   try {
+//     const test = await revokeToken(
+//       "290425859781-7y-rOhcrX26uh7KQpfO6nUqUpU8",
+//       "refresh_token"
+//     );
+//     console.log(test.status);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// })();

@@ -20,11 +20,18 @@ export default async function updateAuth(
     // Revoke old tokens
     console.log(changes);
     if (changes.access_token) {
-      console.log("revok");
-      revokeToken(oldAuthDetails["access_token"], "access_token");
+      const revoked = await revokeToken(
+        oldAuthDetails["access_token"],
+        "access_token"
+      );
+      console.log(revoked.status);
     }
     if (changes.refresh_token) {
-      revokeToken(oldAuthDetails["refresh_token"], "refresh_token");
+      const revoked = await revokeToken(
+        oldAuthDetails["refresh_token"],
+        "refresh_token"
+      );
+      console.log(revoked.status);
     }
     changes["_rev"] = oldAuthDetails._rev; // Set the rev properly so couchDb can increment it.
     const mergedChanges = _.extend(oldAuthDetails, changes);

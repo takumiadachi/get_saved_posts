@@ -16,18 +16,18 @@ export default function permalinkToId(permalink: string) {
   }
 }
 
-(async () => {
-  let url =
-    "https://www.reddit.com/r/AskReddit/comments/cr6q08/do_kids_in_us_schools_really_dissect_frogs_in/ex272rc?utm_source=share&utm_medium=web2x";
-  let data = permalinkToId(url);
-  console.log(data);
+// (async () => {
+//   let url =
+//     "https://www.reddit.com/r/AskReddit/comments/cr6q08/do_kids_in_us_schools_really_dissect_frogs_in/ex272rc?utm_source=share&utm_medium=web2x";
+//   let data = permalinkToId(url);
+//   console.log(data);
 
-  url = `https://www.reddit.com/r/TwoXChromosomes/comments/4al6fu/craving_vinegar/`;
-  data = permalinkToId(url);
-  console.log(data);
-  // console.log(data);
-  // const json = JSON.stringify(data);
-  // fs.writeFile("./reddit_me.json", json, (err, result) => {
-  //   if (err) console.log("error", err);
-  // });
-})();
+//   url = `https://www.reddit.com/r/TwoXChromosomes/comments/4al6fu/craving_vinegar/`;
+//   data = permalinkToId(url);
+//   console.log(data);
+//   // console.log(data);
+//   // const json = JSON.stringify(data);
+//   // fs.writeFile("./reddit_me.json", json, (err, result) => {
+//   //   if (err) console.log("error", err);
+//   // });
+// })();
