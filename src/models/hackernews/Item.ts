@@ -1,4 +1,8 @@
-interface Item {
+import Nano from "nano";
+
+interface Item extends Nano.MaybeDocument {
+  _id: string;
+  _rev: string;
   id: number;
   deleted: boolean;
   type: string;

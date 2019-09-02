@@ -1,6 +1,8 @@
 import Item from "./Item";
 
 export default class Story implements Item {
+  _id: string;
+  _rev: string;
   by: string;
   id: number;
   kids: Array<number>;

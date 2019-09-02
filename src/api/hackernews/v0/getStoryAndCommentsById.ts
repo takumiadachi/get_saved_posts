@@ -1,6 +1,9 @@
 import axios from "axios";
+import Comment from "../../../models/hackernews/Comment";
 import { HN_API_BASEURL, API_V0 } from "../URL";
-import Story from "../../../models/hackernews/Story";
+import Story from "src/models/hackernews/Story";
+
+const fs = require("fs");
 
 /**
  * Get a HN story. Similar to a Reddit submission
@@ -25,8 +28,8 @@ export default async function getStoryAndCommentsById(
       const response = await axios.get(
         `${HN_API_BASEURL}/${API_V0}/item/${id}.json?print=pretty`
       );
-      const story = Story.fromStory(response.data);
-      return story;
+      const comment = Comment.fromComment(response.data);
+      return comment;
     });
     const all = await Promise.all(promises);
     return all;
@@ -38,5 +41,9 @@ export default async function getStoryAndCommentsById(
 
 (async () => {
   const data = await getStoryAndCommentsById("8863");
+  const json = JSON.stringify(data);
+  fs.writeFile("reddit_me.json", json, (err, result) => {
+    if (err) console.log("error", err);
+  });
   console.log(data);
 })();

@@ -1,6 +1,9 @@
 import Item from "./Item";
+import Nano from "nano";
 
 export default class Comment implements Item {
+  _id: string;
+  _rev: string;
   by: string;
   id: number;
   kids: Array<number>;
@@ -42,5 +45,18 @@ export default class Comment implements Item {
       comment["time"],
       comment["type"]
     );
+  }
+
+  processAPIResponse(response: Nano.DocumentInsertResponse) {
+    if (response.ok === true) {
+      // if (this.permalink) {
+      //   this._id = uuhash(this.permalink);
+      //   // console.log(this._id);
+      // } else {
+      //   this._id = response.id; //
+      // }
+      // We only need to update rev which changes whenever document is updated
+      this._rev = response.rev;
+    }
   }
 }

@@ -18,8 +18,3 @@ export default async function getSubredditWikiContent(
     return null;
   }
 }
-
-// (async () => {
-//   const wiki = await getSubredditWikiContent("AskReddit", "index#");
-//   console.log(wiki);
-// })();

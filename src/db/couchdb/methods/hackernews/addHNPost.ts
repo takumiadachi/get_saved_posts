@@ -1,20 +1,24 @@
 import Comment from "src/models/hackernews/Comment";
 import Story from "src/models/hackernews/Story";
 import nano from "../../connect";
-import Item from "src/models/hackernews/Item";
+import { MaybeDocument } from "nano";
 
 export default async function addHNPost(
   dbName: string,
-  post: Item | Story | Comment
+  item: Story & Comment & MaybeDocument
 ) {
   try {
     const db = nano.use(dbName);
-    // const uuid = await await nano.uuids(1);
-    const inserted = await db.insert(post);
-    post.processAPIResponse(inserted);
-    return post;
+    const inserted = await db.insert(item);
+    item.processAPIResponse(inserted);
+    return item;
   } catch (error) {
     console.log(error.reason);
     return null;
   }
 }
+
+(async () => {
+  const addedHNPost = await addHNPost("AskReddit", "index#");
+  console.log(addedHNPost);
+})();
