@@ -1,4 +1,4 @@
-import getSubmissionById from "../../../src/api/reddit/v1/getSubmissionById";
+import getSubmissionById from "../../../api/reddit/v1/getSubmissionById";
 
 describe("getSubmissionById async works", () => {
   beforeAll(async () => {});

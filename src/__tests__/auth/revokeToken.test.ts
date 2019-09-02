@@ -1,4 +1,4 @@
-import revokeToken from "../../src/routers/reddit/auth/methods/revokeToken";
+import revokeToken from "../../routers/reddit/auth/methods/revokeToken";
 
 describe("revokeToken works", () => {
   test("should throw an error about tokenType", async () => {

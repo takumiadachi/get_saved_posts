@@ -1,4 +1,4 @@
-import refreshToken from "../../src/routers/reddit/auth/methods/refreshToken";
+import refreshToken from "../../routers/reddit/auth/methods/refreshToken";
 
 describe("refreshToken works", () => {
   test("should return something", async () => {

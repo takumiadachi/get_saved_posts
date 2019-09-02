@@ -1,4 +1,4 @@
-import getItemById from "../../../src/api/hackernews/v0/getItemById";
+import getItemById from "../../../api/hackernews/v0/getItemById";
 
 describe("getitemById async works", () => {
   test("should return null", async () => {
