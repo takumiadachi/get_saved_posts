@@ -11,7 +11,8 @@
     "watch-ts": "tsc -w",
     "build": "tsc && npm run copy-views-assets",
     "all": "npm run copy-views-assets && concurrently \"npm:watch-ts\" \"nodemon dist/server.js\"",
-    "copy-views-assets": "ts-node copyViewsAssets.ts"
+    "copy-views-assets": "ts-node copyViewsAssets.ts",
+    "ts-node": "ts-node -r tsconfig-paths/register --"
   },
   "author": "Takumi Adachi",
   "license": "ISC",

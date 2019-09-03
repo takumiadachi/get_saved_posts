@@ -23,16 +23,17 @@ export default async function getStoryAndCommentsById(
     const response = await axios.get(
       `${HN_API_BASEURL}/${API_V0}/item/${id}.json?print=pretty`
     );
-    const root = Story.fromStory(response.data);
-    const promises = await root.kids.map(async id => {
+    const story = Story.fromStory(response.data);
+    const promises = await story.kids.map(async id => {
       const response = await axios.get(
         `${HN_API_BASEURL}/${API_V0}/item/${id}.json?print=pretty`
       );
       const comment = Comment.fromComment(response.data);
       return comment;
     });
-    const all = await Promise.all(promises);
-    return all;
+    const comments = await Promise.all(promises);
+    story.setComments(comments);
+    return story;
   } catch (error) {
     console.log(error);
     return null;

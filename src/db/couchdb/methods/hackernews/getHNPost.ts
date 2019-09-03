@@ -2,7 +2,6 @@ import Comment from "../../../../models/hackernews/Comment";
 import Story from "src/models/hackernews/Story";
 import nano from "../../connect";
 import { MaybeDocument } from "nano";
-import getStoryAndCommentsById from "src/api/hackernews/v0/getStoryAndCommentsById";
 
 export default async function getHNPost(
   dbName: string,
@@ -18,9 +17,3 @@ export default async function getHNPost(
     return null;
   }
 }
-
-(async () => {
-  const story = await getStoryAndCommentsById("20857887");
-  const gotHNPost = await getHNPost("gre-uniqueid", story);
-  console.log(gotHNPost);
-})();

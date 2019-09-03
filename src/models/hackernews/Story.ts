@@ -1,4 +1,5 @@
 import Item from "./Item";
+import Comment from "./Comment";
 
 export default class Story implements Item {
   _id: string;
@@ -11,6 +12,7 @@ export default class Story implements Item {
   title: string;
   type: string; // story
   url: string;
+  comments: Comment[];
 
   deleted: boolean;
   time: number;
@@ -28,6 +30,14 @@ export default class Story implements Item {
     this.title = title;
     this.type = type;
     this.url = url;
+  }
+
+  setComments(comments: Comment[]) {
+    this.comments = comments;
+  }
+
+  getComments() {
+    return this.comments;
   }
 
   /**

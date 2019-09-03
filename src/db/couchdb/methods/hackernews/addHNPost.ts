@@ -2,6 +2,7 @@ import Comment from "src/models/hackernews/Comment";
 import Story from "src/models/hackernews/Story";
 import nano from "../../connect";
 import { MaybeDocument } from "nano";
+import getStoryAndCommentsById from "@src/api/hackernews/v0/getStoryAndCommentsById";
 
 export default async function addHNPost(
   dbName: string,
@@ -19,6 +20,7 @@ export default async function addHNPost(
 }
 
 (async () => {
-  const addedHNPost = await addHNPost("AskReddit", "index#");
+  const story = await getStoryAndCommentsById("20857887");
+  const addedHNPost = await addHNPost("gre-uniqueid", story);
   console.log(addedHNPost);
 })();

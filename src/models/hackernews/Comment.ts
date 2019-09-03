@@ -11,6 +11,7 @@ export default class Comment implements Item {
   text: string;
   time: number; // created
   type: string; // comment
+  comments: Comment[];
 
   deleted: boolean;
   dead: boolean;
@@ -45,6 +46,14 @@ export default class Comment implements Item {
       comment["time"],
       comment["type"]
     );
+  }
+
+  setComments(comments: Comment[]) {
+    this.comments = comments;
+  }
+
+  getComments() {
+    return this.comments;
   }
 
   processAPIResponse(response: Nano.DocumentInsertResponse) {

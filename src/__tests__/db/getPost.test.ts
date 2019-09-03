@@ -1,8 +1,8 @@
-import removeUserDb from "../../db/couchdb/methods/removeUserDb";
-import createUserDb from "../../db/couchdb/methods/createUserDb";
-import getSubmissionById from "../../api/reddit/v1/getSubmissionById";
 import addRedditPost from "@src/db/couchdb/methods/reddit/addRedditPost";
 import getRedditPost from "@src/db/couchdb/methods/reddit/getRedditPost";
+import removeUserDb from "@src/db/couchdb/methods/removeUserDb";
+import createUserDb from "@src/db/couchdb/methods/createUserDb";
+import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
 
 beforeAll(async done => {
   const destroyed = await removeUserDb("testdb");
