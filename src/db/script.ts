@@ -3,13 +3,15 @@
  */
 
 // CouchDB
-import nano from "../db/couchdb/connect";
-import createUserDb from "../db/couchdb/methods/createUserDb";
-import removeUserDb from "../db/couchdb/methods/removeUserDb";
-import addRedditPost from "../db/couchdb/methods/reddit/addRedditPost";
-import PostView from "../db/couchdb/views/reddit/postView";
 import addView from "./couchdb/methods/addView";
-import getSubmissionById from "../api/reddit/v1/getSubmissionById";
+import getStoryAndCommentsById from "@src/api/hackernews/v0/getStoryAndCommentsById";
+import addHNPost from "./couchdb/methods/hackernews/addHNPost";
+import removeUserDb from "./couchdb/methods/removeUserDb";
+import createUserDb from "./couchdb/methods/createUserDb";
+import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
+import addRedditPost from "./couchdb/methods/reddit/addRedditPost";
+import PostView from "./couchdb/views/reddit/postView";
+import nano from "./couchdb/connect";
 
 // DB
 (async () => {
@@ -33,7 +35,9 @@ import getSubmissionById from "../api/reddit/v1/getSubmissionById";
   added = await addRedditPost(dbName, submission);
   submission = await getSubmissionById("ctvpcs");
   added = await addRedditPost(dbName, submission);
-  // const got = await getPost("uniqueuser", "cstxi8");
+  let story = await getStoryAndCommentsById("20857887");
+  const addedHNPost = await addHNPost("gre-uniqueid", story);
+  console.log(addedHNPost);
 
   // Add the Views
 

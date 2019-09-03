@@ -15,8 +15,8 @@ export default async function addHNPost(dbName: string, item: Story) {
   }
 }
 
-(async () => {
-  const story = await getStoryAndCommentsById("20857887");
-  const addedHNPost = await addHNPost("gre-uniqueid", story);
-  console.log(addedHNPost);
-})();
+// (async () => {
+//   const story = await getStoryAndCommentsById("20857887");
+//   const addedHNPost = await addHNPost("gre-uniqueid", story);
+//   console.log(addedHNPost);
+// })();

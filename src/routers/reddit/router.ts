@@ -1,18 +1,10 @@
 require("dotenv").config();
 import express from "express";
 import _ from "lodash";
-import retrieveAccessToken from "./auth/methods/retrieveAccessToken";
 import path from "path";
-import refreshToken from "./auth/methods/refreshToken";
-import getCommentById from "../../api/reddit/v1/getCommentById";
-import getCommentByIdExpanded from "../../api/reddit/v1/getCommentByIdExpanded";
-import nano from "../../db/couchdb/connect";
-import getAuth from "../../db/couchdb/auth/getAuth";
-import createAuth from "../../db/couchdb/auth/createAuth";
-import updateAuth from "../../db/couchdb/auth/updateAuth";
-import permalinkToId from "../../api/reddit/helpers/permalinkToId";
-import getSubmissionById from "../../api/reddit/v1/getSubmissionById";
-import addRedditPost from "../../db/couchdb/methods/reddit/addRedditPost";
+// Methods
+import retrieveAccessToken from "./auth/methods/retrieveAccessToken";
+
 let redditRouter = express.Router();
 
 /**

@@ -1,19 +1,17 @@
-import Comment from "../../../../models/hackernews/Comment";
-import Story from "src/models/hackernews/Story";
 import nano from "../../connect";
-import { MaybeDocument } from "nano";
 
-export default async function getHNPost(
-  dbName: string,
-  item: Story & Comment & MaybeDocument
-) {
+export default async function getHNPost(dbName: string, id) {
   try {
     const db = nano.use(dbName);
-    const inserted = await db.insert(item);
-    item.processAPIResponse(inserted);
-    return item;
+    const gotHNPost = await db.get(id);
+    return gotHNPost;
   } catch (error) {
     console.log(error.reason);
     return null;
   }
 }
+
+(async () => {
+  const post = await getHNPost("gre-uniqueid", "20857887");
+  console.log(post);
+})();
