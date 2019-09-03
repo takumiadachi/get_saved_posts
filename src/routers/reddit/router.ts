@@ -4,6 +4,16 @@ import _ from "lodash";
 import path from "path";
 // Methods
 import retrieveAccessToken from "./auth/methods/retrieveAccessToken";
+import getAuth from "@src/db/couchdb/auth/getAuth";
+import updateAuth from "@src/db/couchdb/auth/updateAuth";
+import createAuth from "@src/db/couchdb/auth/createAuth";
+import nano from "@src/db/couchdb/connect";
+import getCommentById from "@src/api/reddit/v1/getCommentById";
+import getCommentByIdExpanded from "@src/api/reddit/v1/getCommentByIdExpanded";
+import permalinkToId from "@src/api/reddit/helpers/permalinkToId";
+import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
+import addRedditPost from "@src/db/couchdb/methods/reddit/addRedditPost";
+import refreshToken from "./auth/methods/refreshToken";
 
 let redditRouter = express.Router();
 
@@ -11,6 +21,26 @@ let redditRouter = express.Router();
  * REDDIT
  */
 const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
+
+// http://[address]/reddit
+redditRouter.get("/", async (req, res) => {
+  // const details = await getAuth(req.session.sessionID);
+  const db = nano.use(req.session.sessionID);
+  const view = await db.view("post_view", "all", {
+    include_docs: true
+  });
+  if (req.session.authenticated) {
+    res.render(path.join(__dirname, "../../views/reddit/"), {
+      authenticated: req.session.authenticated,
+      sessionID: req.session.sessionID,
+      state: req.session.state,
+      view: view
+    });
+  } else {
+    console.log("User is not authenticated");
+    res.redirect(process.env.BASEURL);
+  }
+});
 
 redditRouter.get("/success", async (req, res) => {
   if (_.isEmpty(req.query)) {
@@ -60,21 +90,6 @@ redditRouter.get("/success", async (req, res) => {
   }
 });
 
-// http://[address]/reddit
-redditRouter.get("/", async (req, res) => {
-  const details = await getAuth(req.session.sessionID);
-  if (req.session.authenticated) {
-    res.render(path.join(__dirname, "../../views/reddit/"), {
-      authenticated: req.session.authenticated,
-      sessionID: req.session.sessionID,
-      state: req.session.state
-    });
-  } else {
-    console.log("User is not authenticated");
-    res.redirect(process.env.BASEURL);
-  }
-});
-
 redditRouter.get("/views/all", async (req, res) => {
   // const id = req.params.id;
   const db = nano.use(req.session.sessionID);
@@ -118,14 +133,13 @@ redditRouter.post("/addRedditPost/submission/", async (req, res) => {
 
   const data = req.body.data;
   const id = permalinkToId(data);
+
   if (id.submissionId) {
     const post = await getSubmissionById(id.submissionId);
     const addedPost = await addRedditPost(req.session.sessionID, post);
     console.log(addedPost);
   }
 
-  // const data = await addRedditPost(req.session.sessionID, post);
-  // console.log(data);
   res.redirect(currentPage);
 });
 
@@ -140,11 +154,8 @@ redditRouter.post("/refresh", async (req, res) => {
       access_token: authDetails["access_token"],
       refresh_token: authDetails["refresh_token"]
     });
-    // console.log(updateToken);
     res.redirect(currentPage);
   } catch (error) {
-    // console.log(error);
-    // console.log(currentPage);
     res.redirect(currentPage);
   }
 });

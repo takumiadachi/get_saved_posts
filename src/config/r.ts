@@ -77,4 +77,15 @@ rMe.config({
   // warnings: true
 });
 
-export { r, r2, rMe, rMe2 };
+function createSnoowrapClient(refresh_token) {
+  return new snoowrap({
+    userAgent: USER_AGENT,
+    clientId: process.env.REDDIT_CLIENT_ID,
+    clientSecret: process.env.REDDIT_CLIENT_SECRET,
+    refreshToken: refresh_token
+  }).config({
+    requestDelay: 300
+  });
+}
+
+export { r, r2, rMe, rMe2, createSnoowrapClient };

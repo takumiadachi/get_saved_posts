@@ -24,14 +24,14 @@ export default async function updateAuth(
         oldAuthDetails["access_token"],
         "access_token"
       );
-      console.log(revoked.status);
+      console.log(`revoked access_token: ${oldAuthDetails["access_token"]}`);
     }
     if (changes.refresh_token) {
       const revoked = await revokeToken(
         oldAuthDetails["refresh_token"],
         "refresh_token"
       );
-      console.log(revoked.status);
+      console.log(`revoked refresh_token: ${oldAuthDetails["refresh_token"]}`);
     }
     changes["_rev"] = oldAuthDetails._rev; // Set the rev properly so couchDb can increment it.
     const mergedChanges = _.extend(oldAuthDetails, changes);
