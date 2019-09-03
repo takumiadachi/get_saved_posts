@@ -1,5 +1,6 @@
 import Item from "./Item";
 import Comment from "./Comment";
+import Nano from "nano";
 
 export default class Story implements Item {
   _id: string;
@@ -21,7 +22,17 @@ export default class Story implements Item {
   parent: number;
   descendants: number;
 
-  constructor(by, id, kids, score, created, title, type, url) {
+  constructor(
+    by: string,
+    id: number,
+    kids: number[],
+    score: number,
+    created: number,
+    title: string,
+    type: string,
+    url: string
+  ) {
+    this._id = id.toString();
     this.by = by;
     this.id = id;
     this.kids = kids;
@@ -57,5 +68,18 @@ export default class Story implements Item {
       story["type"],
       story["url"]
     );
+  }
+
+  processAPIResponse(response: Nano.DocumentInsertResponse) {
+    if (response.ok === true) {
+      // if (this.permalink) {
+      //   this._id = uuhash(this.permalink);
+      //   // console.log(this._id);
+      // } else {
+      //   this._id = response.id; //
+      // }
+      // We only need to update rev which changes whenever document is updated
+      this._rev = response.rev;
+    }
   }
 }

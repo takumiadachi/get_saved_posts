@@ -1,13 +1,9 @@
 import Comment from "src/models/hackernews/Comment";
 import Story from "src/models/hackernews/Story";
 import nano from "../../connect";
-import { MaybeDocument } from "nano";
 import getStoryAndCommentsById from "@src/api/hackernews/v0/getStoryAndCommentsById";
 
-export default async function addHNPost(
-  dbName: string,
-  item: Story & Comment & MaybeDocument
-) {
+export default async function addHNPost(dbName: string, item: Story) {
   try {
     const db = nano.use(dbName);
     const inserted = await db.insert(item);
