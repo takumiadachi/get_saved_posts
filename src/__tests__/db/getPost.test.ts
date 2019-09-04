@@ -3,13 +3,17 @@ import getRedditPost from "@src/db/couchdb/methods/reddit/getRedditPost";
 import removeUserDb from "@src/db/couchdb/methods/removeUserDb";
 import createUserDb from "@src/db/couchdb/methods/createUserDb";
 import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
+import {
+  snoowrapConfig,
+  snoowrapConfigLongDelay
+} from "@src/config/reddit/config";
 
 beforeAll(async done => {
   const destroyed = await removeUserDb("testdb");
   console.log(destroyed);
   const created = await createUserDb("testdb");
   console.log(created);
-  const submission = await getSubmissionById("cstxi8");
+  const submission = await getSubmissionById("cstxi8", snoowrapConfig);
   const added = await addRedditPost("testdb", submission);
   // console.log(added);
   done();

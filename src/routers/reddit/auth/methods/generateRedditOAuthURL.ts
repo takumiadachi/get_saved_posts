@@ -25,3 +25,5 @@ export default function generateRedditOAuthURL(
   const oAuthURL: string = `${REDDIT_API_V1}authorize?client_id=${clientId}&response_type=code&state=${state}&redirect_uri=${redirectUri}&duration=${duration}&scope=${scope}`;
   return oAuthURL;
 }
+
+// use proper client id and redirect uri

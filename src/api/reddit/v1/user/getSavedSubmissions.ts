@@ -1,20 +1,21 @@
 import { Comment, Submission } from "snoowrap";
-import { rMe2 } from "../../../../config/r";
-import TrimmedSubmission from "../../../../models/reddit/TrimmedSubmission";
+import snoowrap from "snoowrap";
+import TrimmedSubmission from "@src/models/reddit/TrimmedSubmission";
 
-// Get saved user posts
 /**
  * Search for saved submissions.
  *
  * Must be authenticated with a Reddit username/password.
  *
  * @param search
+ * @param snoowrapClient
  */
 async function getSavedSubmissions(
-  search: string
+  search: string,
+  snoowrapClient: snoowrap
 ): Promise<(Comment | Submission | TrimmedSubmission)[]> {
   try {
-    const savedContent = await rMe2.getMe().getSavedContent();
+    const savedContent = await snoowrapClient.getMe().getSavedContent();
     const allSavedContent = await savedContent.fetchAll();
     // Map all saved content urls based on search query.
     const filteredContent: (TrimmedSubmission)[] = allSavedContent.map(

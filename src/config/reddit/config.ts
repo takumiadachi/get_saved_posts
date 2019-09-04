@@ -12,31 +12,31 @@ const USER_AGENT = `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
 /**
  * Has a request delay of 100. It will go over Reddit's rate limits if there is too many requests
  */
-const r = new snoowrap({
+const snoowrapConfig = new snoowrap({
   userAgent: USER_AGENT,
   clientId: process.env.REDDIT_CLIENT_ID,
   clientSecret: process.env.REDDIT_CLIENT_SECRET,
   refreshToken: process.env.REDDIT_REFRESH_TOKEN
 });
 
-r.config({
+snoowrapConfig.config({
   requestDelay: 100
   // warnings: true
 });
 
 /**
- * rMe2 has a longer request delay for operations that require it to prevent going over rate limits.
+ * snoowrapConfigLongDelay has a longer request delay for operations that require it to prevent going over rate limits.
  *
  * Does not use a username/password.
  */
-const r2 = new snoowrap({
+const snoowrapConfigLongDelay = new snoowrap({
   userAgent: USER_AGENT,
   clientId: process.env.REDDIT_CLIENT_ID,
   clientSecret: process.env.REDDIT_CLIENT_SECRET,
   refreshToken: process.env.REDDIT_REFRESH_TOKEN
 });
 
-r2.config({
+snoowrapConfigLongDelay.config({
   requestDelay: 1000
   // warnings: true
 });
@@ -46,7 +46,7 @@ r2.config({
  *
  * Uses a username/password.
  */
-const rMe = new snoowrap({
+const snoowrapConfigUser = new snoowrap({
   userAgent: USER_AGENT,
   clientId: process.env.REDDIT_CLIENT_ID,
   clientSecret: process.env.REDDIT_CLIENT_SECRET,
@@ -54,17 +54,17 @@ const rMe = new snoowrap({
   password: process.env.REDDIT_PASSWORD
 });
 
-rMe.config({
+snoowrapConfigUser.config({
   requestDelay: 25
   // warnings: true
 });
 
 /**
- * rMe2 has a longer request delay for operations that require it to prevent going over rate limits.
+ * snoowrapConfigUserLongDelay has a longer request delay for operations that require it to prevent going over rate limits.
  *
  * Uses a username/password.
  */
-const rMe2 = new snoowrap({
+const snoowrapConfigUserLongDelay = new snoowrap({
   userAgent: USER_AGENT,
   clientId: process.env.REDDIT_CLIENT_ID,
   clientSecret: process.env.REDDIT_CLIENT_SECRET,
@@ -72,7 +72,7 @@ const rMe2 = new snoowrap({
   password: process.env.REDDIT_PASSWORD
 });
 
-rMe.config({
+snoowrapConfigUserLongDelay.config({
   requestDelay: 1500
   // warnings: true
 });
@@ -88,4 +88,10 @@ function createSnoowrapClient(refresh_token) {
   });
 }
 
-export { r, r2, rMe, rMe2, createSnoowrapClient };
+export {
+  snoowrapConfig,
+  snoowrapConfigLongDelay,
+  snoowrapConfigUser,
+  snoowrapConfigUserLongDelay,
+  createSnoowrapClient
+};

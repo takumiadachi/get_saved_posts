@@ -1,20 +1,22 @@
 import TrimmedComment from "../../../models/reddit/TrimmedComment";
 import { Comment, Listing } from "snoowrap";
-import { rMe2 } from "../../../config/r";
+import snoowrap from "snoowrap";
 
 /**
  * Get comment by id and expand every comment. Requires alot of requests to Reddit API.
  *
  * @param id
  * @param upVotes
+ * @param snoowrapClient
  */
 export default async function getCommentByIdExpanded(
   id: string,
-  upVotes: number = -10
+  upVotes: number = -10,
+  snoowrapClient: snoowrap
 ): Promise<TrimmedComment> {
   // Change this to async await in the future
   let total = 0;
-  return rMe2
+  return snoowrapClient
     .getComment(id)
     .fetch()
     .then(comment => comment.expandReplies())

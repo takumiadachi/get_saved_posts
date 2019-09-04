@@ -1,18 +1,19 @@
-import { rMe } from "../../../config/r";
 import TrimmedSubmission from "../../../models/reddit/TrimmedSubmission";
 import { Listing, Comment } from "snoowrap";
 import TrimmedComment from "../../../models/reddit/TrimmedComment";
 const fs = require("fs");
+import snoowrap from "snoowrap";
+
 /**
  * Get comment by id and expand every comment. Requires alot of requests to Reddit API.
- *
  * @param id
- * @param upVotes
+ * @param snoowrapClient
  */
 export default async function getSubmissionById(
-  id: string
+  id: string,
+  snoowrapClient: snoowrap
 ): Promise<TrimmedSubmission> {
-  return rMe
+  return snoowrapClient
     .getSubmission(id)
     .fetch()
     .then(submission => {

@@ -2,6 +2,10 @@ require("dotenv").config();
 import express from "express";
 import _ from "lodash";
 import path from "path";
+import {
+  snoowrapConfig,
+  snoowrapConfigLongDelay
+} from "@src/config/reddit/config";
 // Methods
 import retrieveAccessToken from "./auth/methods/retrieveAccessToken";
 import getAuth from "@src/db/couchdb/auth/getAuth";
@@ -42,6 +46,9 @@ redditRouter.get("/", async (req, res) => {
   }
 });
 
+/**
+ * Go to this route after successfully authenticating via Reddit OAuth flow.
+ */
 redditRouter.get("/success", async (req, res) => {
   if (_.isEmpty(req.query)) {
     res.redirect(REDIRECT_URL);
@@ -72,7 +79,7 @@ redditRouter.get("/success", async (req, res) => {
         refresh_token: details.refresh_token
       });
       console.log(updatedUser);
-      // else if user does not exist, create a new user with db and add new tokens.
+      // else if user does not exist, create a new user within db and add new tokens.
     } else {
       console.log("Create new user: ", userID);
       const details = await retrieveAccessToken(code, userID);
@@ -102,21 +109,21 @@ redditRouter.get("/views/all", async (req, res) => {
 
 redditRouter.get("/getPost/:id/", async (req, res) => {
   const id = req.params.id;
-  const data = await getCommentById(id);
+  const data = await getCommentById(id, snoowrapConfig);
   res.json(data);
 });
 
 // ...:upvotes/* is optional
 redditRouter.get("/getPost/expanded/:id/", async (req, res) => {
   const id = req.params.id;
-  const data = await getCommentByIdExpanded(id, -100);
+  const data = await getCommentByIdExpanded(id, -100, snoowrapConfig);
   res.json(data);
 });
 
 redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   const id = req.params.id;
   const upvotes: number = req.params.ups;
-  const data = await getCommentByIdExpanded(id, upvotes);
+  const data = await getCommentByIdExpanded(id, upvotes, snoowrapConfig);
   res.json(data);
 });
 
@@ -129,34 +136,35 @@ redditRouter.get("/destroy", () => {
 });
 
 redditRouter.post("/addRedditPost/submission/", async (req, res) => {
-  const currentPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
+  const lastPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
 
   const data = req.body.data;
   const id = permalinkToId(data);
 
   if (id.submissionId) {
-    const post = await getSubmissionById(id.submissionId);
+    const post = await getSubmissionById(id.submissionId, snoowrapConfig);
     const addedPost = await addRedditPost(req.session.sessionID, post);
     console.log(addedPost);
   }
 
-  res.redirect(currentPage);
+  res.redirect(lastPage);
 });
 
 // http://[address]/reddit/refresh
 redditRouter.post("/refresh", async (req, res) => {
-  const currentPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
+  const lastPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
   const userID = req.session.sessionID;
   try {
     const authDetails = await getAuth(userID);
     const rToken = await refreshToken(authDetails["refresh_token"]);
     const updateToken = await updateAuth(userID, {
+      //updateAuth also revokes previous tokens
       access_token: authDetails["access_token"],
       refresh_token: authDetails["refresh_token"]
     });
-    res.redirect(currentPage);
+    res.redirect(lastPage); // Redirect to the last page
   } catch (error) {
-    res.redirect(currentPage);
+    res.redirect(lastPage);
   }
 });
 

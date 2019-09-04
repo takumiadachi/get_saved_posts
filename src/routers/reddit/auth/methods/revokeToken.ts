@@ -35,15 +35,3 @@ export default async function revokeToken(token, tokenType) {
     return null;
   }
 }
-
-// (async () => {
-//   try {
-//     const test = await revokeToken(
-//       "290425859781-7y-rOhcrX26uh7KQpfO6nUqUpU8",
-//       "refresh_token"
-//     );
-//     console.log(test.status);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// })();
