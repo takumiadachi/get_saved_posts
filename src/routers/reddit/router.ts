@@ -50,10 +50,12 @@ redditRouter.get("/", async (req, res) => {
  * Go to this route after successfully authenticating via Reddit OAuth flow.
  */
 redditRouter.get("/success", async (req, res) => {
+  //If there is no queries then redirect
   if (_.isEmpty(req.query)) {
     res.redirect(REDIRECT_URL);
     return;
   }
+  //If someone hijacked the state and they don't match, log the error and redirect
   if (req.query.state !== req.session.state) {
     console.log(req.query.code, req.session.state);
     res.send("State not matching");
@@ -61,16 +63,16 @@ redditRouter.get("/success", async (req, res) => {
 
   const code = req.query.code;
   const state = req.query.state;
+
+  /**
+   * Store credentials in DB securely and redirect to authenticated route.
+   * userID is also the sessionID and dbName. They are all the same.
+   */
   try {
-    /**
-     * Store credentials in DB securely and redirect to authenticated route.
-     * userID is also the sessionID and dbName. They are all the same.
-     */
     const userID = req.session.sessionID;
 
     const auth = await getAuth(userID);
-    console.log(auth);
-    // If user exists, just update tokens and revoke the previous tokens
+    // UPDATE If user exists, just update tokens and revoke the previous tokens
     if (auth) {
       console.log("Update user:", userID);
       const details = await retrieveAccessToken(code, userID);
@@ -79,7 +81,7 @@ redditRouter.get("/success", async (req, res) => {
         refresh_token: details.refresh_token
       });
       console.log(updatedUser);
-      // else if user does not exist, create a new user within db and add new tokens.
+      // CREATE else if user does not exist, create a new user within db and add new tokens.
     } else {
       console.log("Create new user: ", userID);
       const details = await retrieveAccessToken(code, userID);
@@ -97,6 +99,7 @@ redditRouter.get("/success", async (req, res) => {
   }
 });
 
+// Show all posts
 redditRouter.get("/views/all", async (req, res) => {
   // const id = req.params.id;
   const db = nano.use(req.session.sessionID);
@@ -107,6 +110,7 @@ redditRouter.get("/views/all", async (req, res) => {
   res.json(data);
 });
 
+// Get a post by id
 redditRouter.get("/getPost/:id/", async (req, res) => {
   const id = req.params.id;
   const data = await getCommentById(id, snoowrapConfig);
@@ -120,6 +124,7 @@ redditRouter.get("/getPost/expanded/:id/", async (req, res) => {
   res.json(data);
 });
 
+// Get a post expanded, requires alot of requests and may hang due to too many requests
 redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   const id = req.params.id;
   const upvotes: number = req.params.ups;
@@ -150,6 +155,7 @@ redditRouter.post("/addRedditPost/submission/", async (req, res) => {
   res.redirect(lastPage);
 });
 
+// Refresh tokens. Revoke before refreshing.
 // http://[address]/reddit/refresh
 redditRouter.post("/refresh", async (req, res) => {
   const lastPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
