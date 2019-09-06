@@ -18,6 +18,7 @@ import permalinkToId from "@src/api/reddit/helpers/permalinkToId";
 import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
 import addRedditPost from "@src/db/couchdb/methods/reddit/addRedditPost";
 import refreshToken from "./auth/methods/refreshToken";
+import { logger } from "@src/winston";
 
 let redditRouter = express.Router();
 
@@ -29,19 +30,26 @@ const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
 // http://[address]/reddit
 redditRouter.get("/", async (req, res) => {
   // const details = await getAuth(req.session.sessionID);
-  const db = nano.use(req.session.sessionID);
-  const view = await db.view("post_view", "all", {
-    include_docs: true
-  });
+
   if (req.session.authenticated) {
+    try {
+      const db = nano.use(req.session.sessionID);
+      const view = await db.view("post_view", "all", {
+        include_docs: true
+      });
+    } catch (error) {
+      logger.log({ level: "error", message: "errr" });
+    }
+
     res.render(path.join(__dirname, "../../views/reddit/"), {
       authenticated: req.session.authenticated,
       sessionID: req.session.sessionID,
-      state: req.session.state,
-      view: view
+      state: req.session.state
+      // view: view
     });
   } else {
-    console.log("User is not authenticated");
+    logger.info({ message: "User is not authenticated" });
+
     res.redirect(process.env.BASEURL);
   }
 });
@@ -74,7 +82,7 @@ redditRouter.get("/success", async (req, res) => {
     const auth = await getAuth(userID);
     // UPDATE If user exists, just update tokens and revoke the previous tokens
     if (auth) {
-      console.log("Update user:", userID);
+      logger.info({ message: `Update user: ${userID}` });
       const details = await retrieveAccessToken(code, userID);
       const updatedUser = await updateAuth(userID, {
         access_token: details.access_token,
@@ -83,7 +91,7 @@ redditRouter.get("/success", async (req, res) => {
       console.log(updatedUser);
       // CREATE else if user does not exist, create a new user within db and add new tokens.
     } else {
-      console.log("Create new user: ", userID);
+      logger.info({ message: `Create new user: ${userID}` });
       const details = await retrieveAccessToken(code, userID);
       details.setId(userID);
       const createdAuth = await createAuth(userID, details);
@@ -106,7 +114,6 @@ redditRouter.get("/views/all", async (req, res) => {
   const data = await db.view("post_view", "all", {
     include_docs: true
   });
-  console.log(data);
   res.json(data);
 });
 
@@ -149,9 +156,8 @@ redditRouter.post("/addRedditPost/submission/", async (req, res) => {
   if (id.submissionId) {
     const post = await getSubmissionById(id.submissionId, snoowrapConfig);
     const addedPost = await addRedditPost(req.session.sessionID, post);
-    console.log(addedPost);
   }
-
+  // Send back a confirmation that reddit post was successfully added
   res.redirect(lastPage);
 });
 
