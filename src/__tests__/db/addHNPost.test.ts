@@ -12,6 +12,11 @@ beforeAll(async done => {
   done();
 }, 100000);
 
+afterAll(async done => {
+  const destroyed = await removeUserDb("testhndb");
+  done();
+}, 100000);
+
 describe("addHNPost DB async works", () => {
   test("should add a hacker news (HN) story with comments", async () => {
     const story = await getStoryAndCommentsById("20857887");

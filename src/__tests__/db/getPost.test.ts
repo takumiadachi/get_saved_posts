@@ -19,6 +19,11 @@ beforeAll(async done => {
   done();
 }, 100000);
 
+afterAll(async done => {
+  const destroyed = await removeUserDb("testdb");
+  done();
+}, 100000);
+
 describe("getPost DB async works", () => {
   test("should return null", async () => {
     const submission = await getRedditPost("testdb", "this is a bad id");
