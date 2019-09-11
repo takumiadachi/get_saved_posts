@@ -8,10 +8,14 @@ import getStoryAndCommentsById from "@src/api/hackernews/v0/getStoryAndCommentsB
 import addHNPost from "./couchdb/methods/hackernews/addHNPost";
 import removeUserDb from "./couchdb/methods/removeUserDb";
 import createUserDb from "./couchdb/methods/createUserDb";
-import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
 import addRedditPost from "./couchdb/methods/reddit/addRedditPost";
 import PostView from "./couchdb/views/reddit/postView";
 import nano from "./couchdb/connect";
+import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
+import {
+  snoowrapConfig,
+  snoowrapConfigLongDelay
+} from "@src/config/reddit/config";
 
 // DB
 (async () => {
@@ -25,15 +29,15 @@ import nano from "./couchdb/connect";
   // const comment = await getCommentById("ewunlr7");
 
   // Add the Posts
-  let submission = await getSubmissionById("cstxi8");
+  let submission = await getSubmissionById("cstxi8", snoowrapConfig);
   let added = await addRedditPost(dbName, submission);
-  submission = await getSubmissionById("ctkecb"); // over 14k comments
+  submission = await getSubmissionById("ctkecb", snoowrapConfig); // over 14k comments
   added = await addRedditPost(dbName, submission);
-  submission = await getSubmissionById("ctwcz2");
+  submission = await getSubmissionById("ctwcz2", snoowrapConfig);
   added = await addRedditPost(dbName, submission);
-  submission = await getSubmissionById("ctrz8g");
+  submission = await getSubmissionById("ctrz8g", snoowrapConfig);
   added = await addRedditPost(dbName, submission);
-  submission = await getSubmissionById("ctvpcs");
+  submission = await getSubmissionById("ctvpcs", snoowrapConfig);
   added = await addRedditPost(dbName, submission);
   let story = await getStoryAndCommentsById("20857887");
   const addedHNPost = await addHNPost("gre-uniqueid", story);
