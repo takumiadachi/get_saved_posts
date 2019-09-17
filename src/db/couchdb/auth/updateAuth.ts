@@ -18,20 +18,20 @@ export default async function updateAuth(
     const db = nano.use(dbName);
     const oldAuthDetails = await db.get(_id);
     // Revoke old tokens
-    console.log(changes);
+    // console.log(changes);
     if (changes.access_token) {
       const revoked = await revokeToken(
         oldAuthDetails["access_token"],
         "access_token"
       );
-      console.log(`revoked access_token: ${oldAuthDetails["access_token"]}`);
+      // console.log(`revoked access_token: ${oldAuthDetails["access_token"]}`);
     }
     if (changes.refresh_token) {
       const revoked = await revokeToken(
         oldAuthDetails["refresh_token"],
         "refresh_token"
       );
-      console.log(`revoked refresh_token: ${oldAuthDetails["refresh_token"]}`);
+      // console.log(`revoked refresh_token: ${oldAuthDetails["refresh_token"]}`);
     }
     changes["_rev"] = oldAuthDetails._rev; // Set the rev properly so couchDb can increment it.
     const mergedChanges = _.extend(oldAuthDetails, changes);

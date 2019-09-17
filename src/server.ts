@@ -66,7 +66,7 @@ app.use((req, res, next) => {
   // } else {
   //   console.log(req.url, req.session.views);
   // }
-  console.log(req.session);
+  // console.log(req.session);
   next();
 });
 

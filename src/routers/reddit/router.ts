@@ -14,11 +14,11 @@ import createAuth from "@src/db/couchdb/auth/createAuth";
 import nano from "@src/db/couchdb/connect";
 import getCommentById from "@src/api/reddit/v1/getCommentById";
 import getCommentByIdExpanded from "@src/api/reddit/v1/getCommentByIdExpanded";
-import permalinkToId from "@src/api/reddit/helpers/permalinkToId";
 import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
 import addRedditPost from "@src/db/couchdb/methods/reddit/addRedditPost";
 import refreshToken from "./auth/methods/refreshToken";
 import { logger } from "@src/winston";
+import winston from "winston";
 
 let redditRouter = express.Router();
 
@@ -29,7 +29,10 @@ const REDIRECT_URL = `${process.env.BASEURL}/reddit`;
 
 // http://[address]/reddit
 redditRouter.get("/", async (req, res) => {
-  // const details = await getAuth(req.session.sessionID);
+  if (process.env.MODE === "Development") {
+    req.session.authenticated = true;
+    req.session.sessionID = "gre-uniqueid";
+  }
 
   if (req.session.authenticated) {
     try {
@@ -38,7 +41,10 @@ redditRouter.get("/", async (req, res) => {
         include_docs: true
       });
     } catch (error) {
-      logger.log({ level: "error", message: "errr" });
+      logger.info({
+        ip: req.header("x-forwarded-for") || req.connection.remoteAddress,
+        message: "Database error"
+      });
     }
 
     res.render(path.join(__dirname, "../../views/reddit/"), {
@@ -48,7 +54,10 @@ redditRouter.get("/", async (req, res) => {
       // view: view
     });
   } else {
-    logger.info({ message: "User is not authenticated" });
+    logger.info({
+      ip: req.header("x-forwarded-for") || req.connection.remoteAddress,
+      message: "User is not authenticated"
+    });
 
     res.redirect(process.env.BASEURL);
   }
@@ -63,10 +72,14 @@ redditRouter.get("/success", async (req, res) => {
     res.redirect(REDIRECT_URL);
     return;
   }
-  //If someone hijacked the state and they don't match, log the error and redirect
+  //If someone hijacked the state and they don't match, log the error.
   if (req.query.state !== req.session.state) {
     console.log(req.query.code, req.session.state);
-    res.send("State not matching");
+    logger.info({
+      ip: req.header("x-forwarded-for") || req.connection.remoteAddress,
+      message: `${req.query.code} does not match ${req.session.state} code !== session`
+    });
+    res.send("State does not match.");
   }
 
   const code = req.query.code;
@@ -103,14 +116,16 @@ redditRouter.get("/success", async (req, res) => {
     // Redirect to authenticated route.
     await res.redirect(REDIRECT_URL);
   } catch (error) {
-    console.log(error);
+    logger.info({
+      ip: req.header("x-forwarded-for") || req.connection.remoteAddress,
+      message: error
+    });
   }
 });
 
 // Show all posts
 redditRouter.get("/views/all", async (req, res) => {
-  // const id = req.params.id;
-  const db = nano.use(req.session.sessionID);
+  const db = nano.use(req.session.sessionID); // db is the same name as the sessionID
   const data = await db.view("post_view", "all", {
     include_docs: true
   });
@@ -127,7 +142,7 @@ redditRouter.get("/getPost/:id/", async (req, res) => {
 // ...:upvotes/* is optional
 redditRouter.get("/getPost/expanded/:id/", async (req, res) => {
   const id = req.params.id;
-  const data = await getCommentByIdExpanded(id, -100, snoowrapConfig);
+  const data = await getCommentByIdExpanded(id, -100, snoowrapConfigLongDelay);
   res.json(data);
 });
 
@@ -135,7 +150,11 @@ redditRouter.get("/getPost/expanded/:id/", async (req, res) => {
 redditRouter.get("/getPost/expanded/:id/ups/:ups", async (req, res) => {
   const id = req.params.id;
   const upvotes: number = req.params.ups;
-  const data = await getCommentByIdExpanded(id, upvotes, snoowrapConfig);
+  const data = await getCommentByIdExpanded(
+    id,
+    upvotes,
+    snoowrapConfigLongDelay
+  );
   res.json(data);
 });
 
@@ -147,24 +166,29 @@ redditRouter.get("/destroy", () => {
   // Destroy session id in database
 });
 
-redditRouter.post("/addRedditPost/submission/", async (req, res) => {
-  const lastPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
-
-  const data = req.body.data;
-  const id = permalinkToId(data);
-
-  if (id.submissionId) {
-    const post = await getSubmissionById(id.submissionId, snoowrapConfig);
-    const addedPost = await addRedditPost(req.session.sessionID, post);
+redditRouter.post("/addRedditPost/submission/:id", async (req, res) => {
+  if (process.env.MODE === "Development") {
+    req.session.authenticated = true;
+    req.session.sessionID = "gre-uniqueid";
   }
-  // Send back a confirmation that reddit post was successfully added
-  res.redirect(lastPage);
+
+  if (req.params.id) {
+    const post = await getSubmissionById(req.params.id, snoowrapConfig);
+    const addedPost = await addRedditPost(req.session.sessionID, post);
+    // Log the API call
+    logger.info({
+      ip: req.header("x-forwarded-for") || req.connection.remoteAddress,
+      message: req.params.id
+    });
+    res.end(req.params.id);
+  } else {
+    res.end(null);
+  }
 });
 
 // Refresh tokens. Revoke before refreshing.
 // http://[address]/reddit/refresh
 redditRouter.post("/refresh", async (req, res) => {
-  const lastPage = req.header("Referer") || "/"; // Good practice to redirect to last page used after post
   const userID = req.session.sessionID;
   try {
     const authDetails = await getAuth(userID);
@@ -174,9 +198,14 @@ redditRouter.post("/refresh", async (req, res) => {
       access_token: authDetails["access_token"],
       refresh_token: authDetails["refresh_token"]
     });
-    res.redirect(lastPage); // Redirect to the last page
+    // res.redirect(lastPage); // Redirect to the last page
+    res.end(userID);
   } catch (error) {
-    res.redirect(lastPage);
+    logger.info({
+      ip: req.header("x-forwarded-for") || req.connection.remoteAddress,
+      message: "Unable to refresh token."
+    });
+    res.end(null);
   }
 });
 
