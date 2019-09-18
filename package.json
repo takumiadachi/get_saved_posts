@@ -7,7 +7,7 @@
     "start": "tsc && npm run copy-views-assets && node ./dist/server.js",
     "dev": "nodemon",
     "test": "jest --silent",
-    "db": "ts-node ./src/db/script.ts",
+    "db": "ts-node -r tsconfig-paths/register -- ./src/script.ts",
     "watch-ts": "tsc -w",
     "build": "tsc && npm run copy-views-assets",
     "all": "npm run copy-views-assets && concurrently \"npm:watch-ts\" \"nodemon dist/server.js\"",

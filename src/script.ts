@@ -3,19 +3,16 @@
  */
 
 // CouchDB
-import addView from "./couchdb/methods/addView";
-import getStoryAndCommentsById from "@src/api/hackernews/v0/getStoryAndCommentsById";
-import addHNPost from "./couchdb/methods/hackernews/addHNPost";
-import removeUserDb from "./couchdb/methods/removeUserDb";
-import createUserDb from "./couchdb/methods/createUserDb";
-import addRedditPost from "./couchdb/methods/reddit/addRedditPost";
-import PostView from "./couchdb/views/reddit/postView";
-import nano from "./couchdb/connect";
-import getSubmissionById from "@src/api/reddit/v1/getSubmissionById";
-import {
-  snoowrapConfig,
-  snoowrapConfigLongDelay
-} from "@src/config/reddit/config";
+import addView from "./db/couchdb/methods/addView";
+import addHNPost from "./db/couchdb/methods/hackernews/addHNPost";
+import removeUserDb from "./db/couchdb/methods/removeUserDb";
+import createUserDb from "./db/couchdb/methods/createUserDb";
+import addRedditPost from "./db/couchdb/methods/reddit/addRedditPost";
+import nano from "./db/couchdb/connect";
+import PostView from "./db/couchdb/views/reddit/PostView";
+import getSubmissionById from "./api/reddit/v1/getSubmissionById";
+import { snoowrapConfig } from "./config/reddit/config";
+import getStoryAndCommentsById from "./api/hackernews/v0/getStoryAndCommentsById";
 
 // DB
 (async () => {

@@ -11,7 +11,7 @@ export default async function getHNPost(dbName: string, id) {
   }
 }
 
-(async () => {
-  const post = await getHNPost("gre-uniqueid", "20857887");
-  console.log(post);
-})();
+// (async () => {
+//   const post = await getHNPost("gre-uniqueid", "20857887");
+//   console.log(post);
+// })();
