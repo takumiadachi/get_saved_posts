@@ -1,4 +1,5 @@
 import getCommentByIdExpanded from "./api/reddit/v1/getCommentByIdExpanded";
+import { snoowrapConfigLongDelay } from "./config/reddit/config";
 
 const fs = require("fs");
 
