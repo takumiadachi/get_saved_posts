@@ -1,6 +1,5 @@
 import generateRedditOAuthURL from "../routers/reddit/auth/methods/generateRedditOAuthURL";
 import path from "path";
-import generateState from "../utility/generateState";
 
 /**
  * Entry route for the whole server/app
