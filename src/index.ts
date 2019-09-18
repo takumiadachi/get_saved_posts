@@ -1,10 +1,6 @@
 import getCommentByIdExpanded from "./api/reddit/v1/getCommentByIdExpanded";
-import getSavedSubmissions from "./api/reddit/v1/user/getSavedSubmissions";
-import getCommentById from "./api/reddit/v1/getCommentById";
+
 const fs = require("fs");
-import TrimmedComment from "./models/reddit/TrimmedComment";
-import PostView from "./db/couchdb/views/reddit/postView";
-import getSubmissionById from "./api/reddit/v1/getSubmissionById";
 
 // API
 (async () => {
@@ -12,7 +8,11 @@ import getSubmissionById from "./api/reddit/v1/getSubmissionById";
   // const data = await getCommentById("ewunlr7");
   // const json = JSON.stringify(data);
   // console.log(json);
-  const content = await getCommentByIdExpanded("exkcima", -40); // Replace ev0azy2 with another comment id
+  const content = await getCommentByIdExpanded(
+    "exkcima",
+    -40,
+    snoowrapConfigLongDelay
+  ); // Replace ev0azy2 with another comment id
   const json = JSON.stringify(content);
   fs.writeFile("reddit_me.json", json, (err, result) => {
     if (err) console.log("error", err);
