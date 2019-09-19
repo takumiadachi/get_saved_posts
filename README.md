@@ -1,5 +1,7 @@
 # Get Saved Posts
 
+[![Build Status](<https://dev.azure.com/takumiadachi/learn-pouchdb-ts-react/_apis/build/status/learn-pouchdb-ts-react%20(1)?branchName=master>)](https://dev.azure.com/takumiadachi/learn-pouchdb-ts-react/_build/latest?definitionId=2&branchName=master)
+
 get_saved_posts is an api that lets you get posts you've saved or posts online in an easy to digest format with alot of uneeded meta-data trimmed.
 
 ## Technologies
